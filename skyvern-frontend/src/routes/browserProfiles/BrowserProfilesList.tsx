@@ -155,11 +155,11 @@ function BrowserProfilesList({ searchKey }: Props = {}) {
         succeeded: succeededIds.length,
         total: targets.length,
         results,
-        successTitle: (n) => `Deleted ${n} profile${n !== 1 ? "s" : ""}.`,
+        successTitle: (n) => `已成功删除 ${n} 个配置文件。`,
         failureTitle: (n) =>
-          `Failed to delete ${n} profile${n !== 1 ? "s" : ""}.`,
+          `删除 ${n} 个配置文件失败。`,
         partialTitle: (successCount, failedCount) =>
-          `Deleted ${successCount} profile${successCount !== 1 ? "s" : ""}. ${failedCount} failed.`,
+          `已成功删除 ${successCount} 个配置文件，${failedCount} 个失败。`,
       });
       if (failedIds.size === 0) {
         clearSelection();
@@ -193,14 +193,14 @@ function BrowserProfilesList({ searchKey }: Props = {}) {
   if (isError) {
     return (
       <div className="rounded-md border border-slate-700 bg-slate-elevation1 p-6 text-sm text-neutral-600 dark:text-slate-300">
-        <div className="mb-3">Failed to load browser profiles.</div>
+        <div className="mb-3">加载浏览器配置文件失败。</div>
         <Button
           variant="secondary"
           onClick={() => refetch()}
           disabled={isFetching}
         >
           {isFetching && <ReloadIcon className="mr-2 size-4 animate-spin" />}
-          Retry
+          重试
         </Button>
       </div>
     );
@@ -210,17 +210,16 @@ function BrowserProfilesList({ searchKey }: Props = {}) {
     return (
       <div className="rounded-md border border-slate-700 bg-slate-elevation1 p-10 text-sm text-neutral-600 dark:text-slate-300">
         {hasSearch ? (
-          <>No browser profiles match &ldquo;{searchKey}&rdquo;.</>
+          <>没有匹配 &ldquo;{searchKey}&rdquo; 的浏览器配置文件。</>
         ) : (
           <div className="flex flex-col items-center gap-3 text-center">
             <BrowserIcon className="size-10 text-neutral-600 dark:text-slate-400" />
             <div className="space-y-1">
               <p className="text-base font-medium text-slate-100">
-                No browser profiles yet
+                暂无浏览器配置文件
               </p>
               <p className="mx-auto max-w-md text-sm text-neutral-600 dark:text-slate-400">
-                Start a session, then click Save Profile on the session page to
-                capture it here.
+                启动浏览器会话，然后在会话页面上点击“保存配置文件”以在此处捕获它。
               </p>
             </div>
           </div>
@@ -241,13 +240,13 @@ function BrowserProfilesList({ searchKey }: Props = {}) {
                 someSelected={someSelected}
                 hasSelection={selected.size > 0}
                 onToggleAll={toggleSelectAll}
-                ariaLabel="Select all browser profiles"
+                ariaLabel="选择所有浏览器配置文件"
               />
-              <TableHead className="w-[20%] truncate">Name</TableHead>
-              <TableHead className="w-[37%] truncate">Description</TableHead>
-              <TableHead className="w-[15%] truncate">Source Browser</TableHead>
-              <TableHead className="w-[15%] truncate">Created</TableHead>
-              <TableHead className="w-32 text-right">Actions</TableHead>
+              <TableHead className="w-[20%] truncate">名称</TableHead>
+              <TableHead className="w-[37%] truncate">描述</TableHead>
+              <TableHead className="w-[15%] truncate">源浏览器</TableHead>
+              <TableHead className="w-[15%] truncate">创建时间</TableHead>
+              <TableHead className="w-32 text-right">操作</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -291,7 +290,7 @@ function BrowserProfilesList({ searchKey }: Props = {}) {
         <div className="relative px-3 py-3">
           <div className="absolute left-3 top-1/2 flex -translate-y-1/2 items-center gap-2 text-sm">
             <span className="text-neutral-600 dark:text-slate-400">
-              Items per page
+              每页条数
             </span>
             <select
               className="h-8 rounded-md border border-input bg-background px-2 text-sm"
@@ -356,7 +355,7 @@ function BrowserProfilesList({ searchKey }: Props = {}) {
             }
           >
             <GarbageIcon className="mr-1.5 h-4 w-4" />
-            Delete
+            删除
           </Button>
         </SelectionBar>
       )}
@@ -371,15 +370,10 @@ function BrowserProfilesList({ searchKey }: Props = {}) {
         <DialogContent>
           <DialogHeader>
             <DialogTitle>
-              Delete {deleteDialog.targets.length} Browser Profile
-              {deleteDialog.targets.length === 1 ? "" : "s"}
+              删除 {deleteDialog.targets.length} 个浏览器配置文件
             </DialogTitle>
             <DialogDescription>
-              Are you sure you want to delete {deleteDialog.targets.length}{" "}
-              {deleteDialog.targets.length === 1
-                ? "browser profile"
-                : "browser profiles"}
-              ? This action cannot be undone.
+              您确定要删除这 {deleteDialog.targets.length} 个浏览器配置文件吗？此操作无法撤销。
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
@@ -388,7 +382,7 @@ function BrowserProfilesList({ searchKey }: Props = {}) {
               disabled={isBulkOperating}
               onClick={() => setDeleteDialog({ open: false, targets: [] })}
             >
-              Cancel
+              取消
             </Button>
             <Button
               variant="destructive"
@@ -397,7 +391,7 @@ function BrowserProfilesList({ searchKey }: Props = {}) {
                 void handleBulkDeleteConfirm();
               }}
             >
-              {isBulkOperating ? "Deleting..." : "Delete"}
+              {isBulkOperating ? "正在删除..." : "删除"}
             </Button>
           </DialogFooter>
         </DialogContent>

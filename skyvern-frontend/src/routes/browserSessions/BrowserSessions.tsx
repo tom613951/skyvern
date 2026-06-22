@@ -59,9 +59,9 @@ function sessionIsOpen(browserSession: BrowserSession): boolean {
   );
 }
 
-const No = () => <Pill tone="neutral">No</Pill>;
+const No = () => <Pill tone="neutral">否</Pill>;
 
-const Yes = () => <Pill tone="success">Yes</Pill>;
+const Yes = () => <Pill tone="success">是</Pill>;
 
 const BROWSER_TYPE_OPTIONS: Array<{
   value: BrowserSessionType;
@@ -80,13 +80,13 @@ const EXTENSION_OPTIONS: Array<{
 }> = [
   {
     value: "ad-blocker",
-    label: "Ad Blocker",
-    description: "Blocks ads and common trackers in session pages.",
+    label: "广告拦截器",
+    description: "在网页会话中拦截广告及常见的追踪器。",
   },
   {
     value: "captcha-solver",
-    label: "Captcha Solver",
-    description: "Enables automated captcha solving when available.",
+    label: "验证码自动识别器",
+    description: "启用自动解析/绕过网页验证码服务（如果可用）。",
     enterprise: true,
   },
 ];
@@ -200,7 +200,7 @@ function BrowserSessions() {
               ) : (
                 <PlusIcon className="mr-2 h-4 w-4" />
               )}
-              Create
+              创建
             </Button>
           </div>
         </div>
@@ -208,28 +208,28 @@ function BrowserSessions() {
           <Table className="w-full table-fixed">
             <TableHeader>
               <TableRow>
-                <TableHead className="w-[22%] truncate">ID</TableHead>
-                <TableHead className="w-[10%] truncate">Open</TableHead>
+                <TableHead className="w-[22%] truncate">会话 ID</TableHead>
+                <TableHead className="w-[10%] truncate">开启</TableHead>
                 <TableHead className="w-[14%]">
                   <span className="inline-flex items-center gap-1.5">
-                    Occupied
+                    占用中
                     <HelpTooltip
                       className="inline"
-                      content="Browser is busy running a task or agent"
+                      content="浏览器当前正在运行任务或智能体"
                     />
                   </span>
                 </TableHead>
-                <TableHead className="w-[14%] truncate">Started</TableHead>
-                <TableHead className="w-[12%] truncate">Timeout</TableHead>
-                <TableHead className="w-[28%] truncate">CDP Url</TableHead>
+                <TableHead className="w-[14%] truncate">启动时间</TableHead>
+                <TableHead className="w-[12%] truncate">超时</TableHead>
+                <TableHead className="w-[28%] truncate">CDP 地址</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {isLoading ? (
-                <TableMessageRow colSpan={6}>Loading browsers…</TableMessageRow>
+                <TableMessageRow colSpan={6}>正在加载浏览器…</TableMessageRow>
               ) : browserSessions?.length === 0 ? (
                 <TableMessageRow colSpan={6}>
-                  No browser sessions found
+                  未找到浏览器会话
                 </TableMessageRow>
               ) : (
                 browserSessions?.map((browserSession) => {
@@ -241,7 +241,7 @@ function BrowserSessions() {
                   const ago = startedAtDate ? (
                     formatMs(Date.now() - startedAtDate.getTime()).ago
                   ) : (
-                    <span className="opacity-50">never</span>
+                    <span className="opacity-50">从不</span>
                   );
                   const cdpUrl = browserSession.browser_address ?? "-";
 
@@ -273,14 +273,14 @@ function BrowserSessions() {
                         title={
                           browserSession.started_at
                             ? basicTimeFormat(browserSession.started_at)
-                            : "not started"
+                            : "未启动"
                         }
                       >
                         {ago}
                       </TableCell>
                       <TableCell className="tabular-nums text-muted-foreground">
                         {browserSession.timeout
-                          ? `${browserSession.timeout}m`
+                          ? `${browserSession.timeout}分钟`
                           : "-"}
                       </TableCell>
                       <TableCell>
@@ -304,7 +304,7 @@ function BrowserSessions() {
           </Table>
           <div className="relative px-3 py-3">
             <div className="absolute left-3 top-1/2 flex -translate-y-1/2 items-center gap-2 text-sm">
-              <span className="text-slate-400">Items per page</span>
+              <span className="text-slate-400">每页条数</span>
               <select
                 className="h-8 rounded-md border border-input bg-background px-2 text-sm"
                 value={itemsPerPage}
@@ -365,15 +365,14 @@ function BrowserSessions() {
       >
         <DrawerContent className="bottom-2 right-0 top-2 mt-0 h-full w-96 rounded border-0 p-6">
           <DrawerHeader>
-            <DrawerTitle>Create Browser Session</DrawerTitle>
+            <DrawerTitle>创建浏览器会话</DrawerTitle>
             <DrawerDescription>
-              Create a new browser session to interact with websites, or run
-              agents in.
+              创建一个新的浏览器会话以与网站进行交互，或在其中运行智能体。
               <div className="mt-8 flex flex-col gap-4">
                 <div className="space-y-2">
                   <div className="flex gap-2">
-                    <Label>Proxy Location</Label>
-                    <HelpTooltip content="Route Skyvern through one of our available proxies." />
+                    <Label>代理地理位置</Label>
+                    <HelpTooltip content="通过我们提供的代理路由 Skyvern 的网络流量。" />
                   </div>
                   <ProxySelector
                     value={sessionOptions.proxyLocation}
@@ -389,15 +388,15 @@ function BrowserSessions() {
                 </div>
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
-                    <Label>Timeout (Minutes)</Label>
-                    <HelpTooltip content="Duration to keep the browser session open. Automatically extends as it is used." />
+                    <Label>超时时间 (分钟)</Label>
+                    <HelpTooltip content="保持浏览器会话打开的持续时间。使用时会自动延长。" />
                   </div>
                   <Input
                     type="number"
                     min={5}
                     max={1440}
                     value={sessionOptions.timeoutMinutes ?? ""}
-                    placeholder="timeout (minutes)"
+                    placeholder="超时时间 (分钟)"
                     onChange={(event) => {
                       const value =
                         event.target.value === ""
@@ -412,8 +411,8 @@ function BrowserSessions() {
                 </div>
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
-                    <Label>Browser Type</Label>
-                    <HelpTooltip content="Choose the browser engine for this session. Leave default to use server defaults." />
+                    <Label>浏览器类型</Label>
+                    <HelpTooltip content="为此会话选择浏览器引擎。保留默认值以使用服务器默认设置。" />
                   </div>
                   <Select
                     value={sessionOptions.browserType ?? "default"}
@@ -431,7 +430,7 @@ function BrowserSessions() {
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="default">Default</SelectItem>
+                      <SelectItem value="default">默认</SelectItem>
                       {BROWSER_TYPE_OPTIONS.map((browserType) => (
                         <SelectItem
                           key={browserType.value}
@@ -445,8 +444,8 @@ function BrowserSessions() {
                 </div>
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
-                    <Label>Extensions</Label>
-                    <HelpTooltip content="Optional browser extensions to install when the session starts." />
+                    <Label>浏览器插件</Label>
+                    <HelpTooltip content="会话启动时要安装的可选浏览器插件。" />
                   </div>
                   <div className="space-y-2 rounded-md border p-3">
                     {EXTENSION_OPTIONS.map((extension) => (
@@ -472,7 +471,7 @@ function BrowserSessions() {
                               <span>{extension.label}</span>
                               {extension.enterprise ? (
                                 <span className="rounded bg-amber-500/20 px-1.5 py-0.5 text-[10px] font-medium text-amber-400">
-                                  Enterprise
+                                  企业版
                                 </span>
                               ) : null}
                             </span>
@@ -508,7 +507,7 @@ function BrowserSessions() {
                   ) : (
                     <PlusIcon className="mr-2 h-4 w-4" />
                   )}
-                  Create
+                  创建
                 </Button>
               </div>
             </DrawerDescription>

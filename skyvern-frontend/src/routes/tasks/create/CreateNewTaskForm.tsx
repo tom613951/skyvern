@@ -158,12 +158,12 @@ function CreateNewTaskForm({ initialValues }: Props) {
       if (error.response?.status === 402) {
         toast({
           variant: "destructive",
-          title: "Failed to create task",
+          title: "创建任务失败",
           description:
-            "You don't have enough credits to run this task. Go to billing to see your credit balance.",
+            "您的余额不足。请前往账单页面充值后重新运行任务。",
           action: (
-            <ToastAction altText="Go to Billing" asChild>
-              <Link to="billing">Go to Billing</Link>
+            <ToastAction altText="前往账单" asChild>
+              <Link to="billing">前往账单</Link>
             </ToastAction>
           ),
         });
@@ -171,18 +171,18 @@ function CreateNewTaskForm({ initialValues }: Props) {
       }
       toast({
         variant: "destructive",
-        title: "There was an error creating the task.",
+        title: "创建任务时出错",
         description: error.message,
       });
     },
     onSuccess: (response) => {
       toast({
         variant: "success",
-        title: "Task Created",
-        description: `${response.data.task_id} created successfully.`,
+        title: "任务创建成功",
+        description: `任务 ${response.data.task_id} 已成功创建。`,
         action: (
-          <ToastAction altText="View" asChild>
-            <Link to={`/tasks/${response.data.task_id}`}>View</Link>
+          <ToastAction altText="查看" asChild>
+            <Link to={`/tasks/${response.data.task_id}`}>查看</Link>
           </ToastAction>
         ),
       });
@@ -216,7 +216,7 @@ function CreateNewTaskForm({ initialValues }: Props) {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <TaskFormSection
           index={1}
-          title="Base Content"
+          title="基础配置"
           active={isActive("base")}
           onClick={() => {
             toggleSection("base");
@@ -237,9 +237,9 @@ function CreateNewTaskForm({ initialValues }: Props) {
                       <div className="flex gap-16">
                         <FormLabel>
                           <div className="w-72">
-                            <h1 className="text-lg">URL</h1>
+                            <h1 className="text-lg">目标 URL</h1>
                             <h2 className="text-base text-slate-400">
-                              The starting URL for the task
+                              任务开始执行的网页 URL
                             </h2>
                           </div>
                         </FormLabel>
@@ -261,10 +261,9 @@ function CreateNewTaskForm({ initialValues }: Props) {
                       <div className="flex gap-16">
                         <FormLabel>
                           <div className="w-72">
-                            <h1 className="text-lg">Navigation Goal</h1>
+                            <h1 className="text-lg">导航与操作目标</h1>
                             <h2 className="text-base text-slate-400">
-                              Where should Skyvern go and what should Skyvern
-                              do?
+                              Skyvern 应该去哪里，以及要做什么？
                             </h2>
                           </div>
                         </FormLabel>
@@ -272,7 +271,7 @@ function CreateNewTaskForm({ initialValues }: Props) {
                           <FormControl>
                             <AutoResizingTextarea
                               {...field}
-                              placeholder="Tell Skyvern what to do."
+                              placeholder="在这里描述你的自动化流程需求..."
                               value={field.value === null ? "" : field.value}
                             />
                           </FormControl>
@@ -292,10 +291,9 @@ function CreateNewTaskForm({ initialValues }: Props) {
                           <div className="flex gap-16">
                             <FormLabel>
                               <div className="w-72">
-                                <h1 className="text-lg">Navigation Payload</h1>
+                                <h1 className="text-lg">导航参数载荷 (Payload)</h1>
                                 <h2 className="text-base text-slate-400">
-                                  Specify important parameters, routes, or
-                                  states
+                                  指定流程所需的重要参数、路由或初始状态（JSON 格式）
                                 </h2>
                               </div>
                               <Button
@@ -307,7 +305,7 @@ function CreateNewTaskForm({ initialValues }: Props) {
                                 }}
                                 size="sm"
                               >
-                                Hide Advanced Settings
+                                隐藏高级设置
                               </Button>
                             </FormLabel>
                             <div className="w-full">
@@ -339,7 +337,7 @@ function CreateNewTaskForm({ initialValues }: Props) {
                       }}
                       size="sm"
                     >
-                      Show Advanced Settings
+                      显示高级设置
                     </Button>
                   </div>
                 )}
@@ -349,7 +347,7 @@ function CreateNewTaskForm({ initialValues }: Props) {
         </TaskFormSection>
         <TaskFormSection
           index={2}
-          title="Extraction"
+          title="数据提取"
           active={isActive("extraction")}
           onClick={() => {
             toggleSection("extraction");
@@ -370,9 +368,9 @@ function CreateNewTaskForm({ initialValues }: Props) {
                       <div className="flex gap-16">
                         <FormLabel>
                           <div className="w-72">
-                            <h1 className="text-lg">Data Extraction Goal</h1>
+                            <h1 className="text-lg">数据提取目标</h1>
                             <h2 className="text-base text-slate-400">
-                              What outputs are you looking to get?
+                              您希望通过本任务获得什么样的数据输出？
                             </h2>
                           </div>
                         </FormLabel>
@@ -380,7 +378,7 @@ function CreateNewTaskForm({ initialValues }: Props) {
                           <FormControl>
                             <AutoResizingTextarea
                               {...field}
-                              placeholder="What data do you need to extract?"
+                              placeholder="在这里描述需要从网页中提取哪些数据..."
                               value={field.value === null ? "" : field.value}
                             />
                           </FormControl>
@@ -398,9 +396,9 @@ function CreateNewTaskForm({ initialValues }: Props) {
                       <div className="flex gap-16">
                         <FormLabel>
                           <div className="w-72">
-                            <h1 className="text-lg">Data Schema</h1>
+                            <h1 className="text-lg">输出数据结构 (Schema)</h1>
                             <h2 className="text-base text-slate-400">
-                              Specify the output format in JSON
+                              使用 JSON 指定要输出的结构化数据格式
                             </h2>
                           </div>
                         </FormLabel>
@@ -426,7 +424,7 @@ function CreateNewTaskForm({ initialValues }: Props) {
         </TaskFormSection>
         <TaskFormSection
           index={3}
-          title="Advanced Settings"
+          title="高级设置"
           active={isActive("advanced")}
           onClick={() => {
             toggleSection("advanced");
@@ -449,10 +447,9 @@ function CreateNewTaskForm({ initialValues }: Props) {
                       <div className="flex gap-16">
                         <FormLabel>
                           <div className="w-72">
-                            <h1 className="text-lg">Include Action History</h1>
+                            <h1 className="text-lg">包含动作历史</h1>
                             <h2 className="text-base text-slate-400">
-                              Whether to include action history when verifying
-                              the task completion.
+                              在验证任务是否完成时，是否引入之前的动作历史作为参考。
                             </h2>
                           </div>
                         </FormLabel>
@@ -479,10 +476,9 @@ function CreateNewTaskForm({ initialValues }: Props) {
                       <div className="flex gap-16">
                         <FormLabel>
                           <div className="w-72">
-                            <h1 className="text-lg">Max Steps Override</h1>
+                            <h1 className="text-lg">最大步数限制</h1>
                             <h2 className="text-base text-slate-400">
-                              Want to allow this task to execute more or less
-                              steps than the default?
+                              允许本次任务执行的最大步骤数（留空则为默认值）。
                             </h2>
                           </div>
                         </FormLabel>
@@ -493,7 +489,7 @@ function CreateNewTaskForm({ initialValues }: Props) {
                               type="number"
                               min={1}
                               value={field.value ?? ""}
-                              placeholder={`Default: ${organization?.max_steps_per_run ?? MAX_STEPS_DEFAULT}`}
+                              placeholder={`默认: ${organization?.max_steps_per_run ?? MAX_STEPS_DEFAULT}`}
                               onChange={(event) => {
                                 const value =
                                   event.target.value === ""
@@ -517,10 +513,9 @@ function CreateNewTaskForm({ initialValues }: Props) {
                       <div className="flex gap-16">
                         <FormLabel>
                           <div className="w-72">
-                            <h1 className="text-lg">Webhook Callback URL</h1>
+                            <h1 className="text-lg">Webhook 回调地址</h1>
                             <h2 className="text-base text-slate-400">
-                              The URL of a webhook endpoint to send the
-                              extracted information
+                              提取到数据后，发送消息回调的 Webhook 接口 URL 路径。
                             </h2>
                           </div>
                         </FormLabel>
@@ -546,7 +541,7 @@ function CreateNewTaskForm({ initialValues }: Props) {
                                     className="self-start"
                                     disabled={!field.value}
                                   >
-                                    Test Webhook
+                                    测试 Webhook
                                   </Button>
                                 }
                               />
@@ -568,11 +563,10 @@ function CreateNewTaskForm({ initialValues }: Props) {
                           <FormLabel>
                             <div className="w-72">
                               <div className="flex items-center gap-2 text-lg">
-                                Proxy Location
+                                代理地理位置
                               </div>
                               <h2 className="text-sm text-slate-400">
-                                Route Skyvern through one of our available
-                                proxies.
+                                通过我们提供的代理路由 Skyvern 的网络流量。
                               </h2>
                             </div>
                           </FormLabel>
@@ -599,9 +593,9 @@ function CreateNewTaskForm({ initialValues }: Props) {
                       <div className="flex gap-16">
                         <FormLabel>
                           <div className="w-72">
-                            <h1 className="text-lg">Max Screenshot Scrolls</h1>
+                            <h1 className="text-lg">最大滚动截屏次数</h1>
                             <h2 className="text-base text-slate-400">
-                              {`The maximum number of scrolls for the post action screenshot. Default is ${MAX_SCREENSHOT_SCROLLS_DEFAULT}. If it's set to 0, it will take the current viewport screenshot.`}
+                              {`执行动作后向下滚动的最大截屏次数。默认是 ${MAX_SCREENSHOT_SCROLLS_DEFAULT}。如果设为 0，将仅截取当前可视区域。`}
                             </h2>
                           </div>
                         </FormLabel>
@@ -612,7 +606,7 @@ function CreateNewTaskForm({ initialValues }: Props) {
                               type="number"
                               min={0}
                               value={field.value ?? ""}
-                              placeholder={`Default: ${MAX_SCREENSHOT_SCROLLS_DEFAULT}`}
+                              placeholder={`默认: ${MAX_SCREENSHOT_SCROLLS_DEFAULT}`}
                               onChange={(event) => {
                                 const value =
                                   event.target.value === ""
@@ -637,10 +631,9 @@ function CreateNewTaskForm({ initialValues }: Props) {
                       <div className="flex gap-16">
                         <FormLabel>
                           <div className="w-72">
-                            <h1 className="text-lg">Extra HTTP Headers</h1>
+                            <h1 className="text-lg">额外 HTTP 请求头</h1>
                             <h2 className="text-base text-slate-400">
-                              Specify some self defined HTTP requests headers in
-                              Dict format
+                              以字典（Dict）格式指定自定义的 HTTP 请求头参数。
                             </h2>
                           </div>
                         </FormLabel>
@@ -649,7 +642,7 @@ function CreateNewTaskForm({ initialValues }: Props) {
                             <KeyValueInput
                               value={field.value ?? ""}
                               onChange={(val) => field.onChange(val)}
-                              addButtonText="Add Header"
+                              addButtonText="添加请求头"
                             />
                           </FormControl>
                           <FormMessage />
@@ -666,10 +659,9 @@ function CreateNewTaskForm({ initialValues }: Props) {
                       <div className="flex gap-16">
                         <FormLabel>
                           <div className="w-72">
-                            <h1 className="text-lg">Error Messages</h1>
+                            <h1 className="text-lg">自定义错误码映射</h1>
                             <h2 className="text-base text-slate-400">
-                              Specify any error outputs you would like to be
-                              notified about
+                              指定您想要监控并捕获的错误输出和逻辑条件（JSON 格式）。
                             </h2>
                           </div>
                         </FormLabel>
@@ -698,7 +690,7 @@ function CreateNewTaskForm({ initialValues }: Props) {
                       <div className="flex gap-16">
                         <FormLabel>
                           <div className="w-72">
-                            <h1 className="text-lg">2FA Identifier</h1>
+                            <h1 className="text-lg">双重认证 (2FA) 标识符</h1>
                             <h2 className="text-base text-slate-400"></h2>
                           </div>
                         </FormLabel>
@@ -706,7 +698,7 @@ function CreateNewTaskForm({ initialValues }: Props) {
                           <FormControl>
                             <Input
                               {...field}
-                              placeholder="Add an ID that links your TOTP to the task"
+                              placeholder="关联双重认证 (TOTP) 动态密码的安全密钥标识符。"
                               value={field.value === null ? "" : field.value}
                             />
                           </FormControl>
@@ -724,10 +716,9 @@ function CreateNewTaskForm({ initialValues }: Props) {
                       <div className="flex gap-16">
                         <FormLabel>
                           <div className="w-72">
-                            <h1 className="text-lg">Browser Address</h1>
+                            <h1 className="text-lg">浏览器调试地址</h1>
                             <h2 className="text-base text-slate-400">
-                              The address of the Browser server to use for the
-                              task run.
+                              本次任务运行所使用的 Chrome/Chromium 调试地址。
                             </h2>
                           </div>
                         </FormLabel>
@@ -785,7 +776,7 @@ function CreateNewTaskForm({ initialValues }: Props) {
               <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
             )}
             <PlayIcon className="mr-2 h-4 w-4" />
-            Run
+            开始运行
           </Button>
         </div>
       </form>

@@ -115,8 +115,8 @@ function ImportWorkflowButton({
     } catch (error) {
       toast({
         variant: "destructive",
-        title: `Error importing ${fileName}`,
-        description: getErrorMessage(error, "Failed to import agent"),
+        title: `导入 ${fileName} 出错`,
+        description: getErrorMessage(error, "导入智能体失败"),
       });
       return false;
     }
@@ -141,8 +141,8 @@ function ImportWorkflowButton({
       return true;
     } catch (error) {
       toast({
-        title: `Import Failed: ${file.name}`,
-        description: getErrorMessage(error, "Failed to import PDF"),
+        title: `导入失败: ${file.name}`,
+        description: getErrorMessage(error, "导入 PDF 失败"),
         variant: "destructive",
       });
       return false;
@@ -194,12 +194,12 @@ function ImportWorkflowButton({
         variant: "success",
         title:
           successCount === 1
-            ? "Agent imported"
-            : `${successCount} agents imported`,
+            ? "智能体导入成功"
+            : `成功导入 ${successCount} 个智能体`,
         description:
           successCount === files.length
-            ? "Successfully imported all agents"
-            : `${successCount} of ${files.length} agents imported successfully`,
+            ? "成功导入所有智能体"
+            : `成功导入 ${successCount} / ${files.length} 个智能体`,
       });
     }
   };
@@ -217,8 +217,8 @@ function ImportWorkflowButton({
       if (ok) {
         anyPdfStarted = true;
         toast({
-          title: "Import started",
-          description: `Importing ${file.name}...`,
+          title: "开始导入",
+          description: `正在导入 ${file.name}...`,
         });
       }
     }
@@ -274,10 +274,10 @@ function ImportWorkflowButton({
         variant: "destructive",
         title:
           checkFailed.length === 1
-            ? "Could not verify duplicate"
-            : `Could not verify ${checkFailed.length} duplicates`,
+            ? "无法验证是否重复"
+            : `无法验证 ${checkFailed.length} 个智能体是否重复`,
         description:
-          "Network error checking if these agents already exist. Review before importing.",
+          "检查这些智能体是否已存在时发生网络错误。请在导入前核对。",
       });
     }
 
@@ -366,12 +366,12 @@ function ImportWorkflowButton({
                 }`}
               >
                 <UploadIcon className="h-4 w-4" />
-                {isImporting ? "Importing..." : "Import"}
+                {isImporting ? "正在导入..." : "导入"}
               </div>
             </Label>
           </TooltipTrigger>
           <TooltipContent>
-            Import one or more agents from YAML, JSON, or PDF files
+            从 YAML、JSON 或 PDF 文件导入一个或多个智能体
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
@@ -387,15 +387,15 @@ function ImportWorkflowButton({
           <DialogHeader>
             <DialogTitle>
               {pendingDuplicates.length === 1
-                ? "Duplicate agent detected"
-                : "Duplicate agents detected"}
+                ? "检测到重复的智能体"
+                : "检测到重复的智能体"}
             </DialogTitle>
             <DialogDescription asChild>
               <div className="space-y-3">
                 <p>
                   {pendingDuplicates.length === 1
-                    ? "The following file may create a duplicate:"
-                    : "The following files may create duplicates:"}
+                    ? "以下文件可能会创建重复的智能体:"
+                    : "以下文件可能会创建重复的智能体:"}
                 </p>
                 <ul className="space-y-2 rounded-md border border-amber-500/50 bg-amber-500/10 p-3 text-sm">
                   {pendingDuplicates.map((dup) => (
@@ -411,33 +411,32 @@ function ImportWorkflowButton({
                       </div>
                       <div className="text-xs text-muted-foreground">
                         {dup.duplicateReason?.kind === "existing" &&
-                          "An agent with this title already exists"}
+                          "已存在此标题的智能体"}
                         {dup.duplicateReason?.kind === "intra-batch" &&
-                          "Another selected file has the same title"}
+                          "另一个选中的文件具有相同的标题"}
                         {dup.duplicateReason?.kind === "check-failed" &&
-                          "Could not verify if a duplicate exists"}
+                          "无法核实是否存在重复"}
                       </div>
                     </li>
                   ))}
                 </ul>
                 <p>
-                  Would you like to import{" "}
-                  {pendingDuplicates.length === 1 ? "it" : "them"} anyway?
+                  您是否仍然要导入？
                 </p>
               </div>
             </DialogDescription>
           </DialogHeader>
           <DialogFooter className="gap-2 sm:gap-2">
             <Button variant="secondary" onClick={handleCancelImport}>
-              Cancel
+              取消
             </Button>
             {pendingNonDuplicates.length > 0 && (
               <Button variant="outline" onClick={handleSkipDuplicates}>
-                Skip duplicates
+                跳过重复项
               </Button>
             )}
             <Button onClick={handleConfirmImportDuplicates}>
-              Import anyway
+              仍然导入
             </Button>
           </DialogFooter>
         </DialogContent>

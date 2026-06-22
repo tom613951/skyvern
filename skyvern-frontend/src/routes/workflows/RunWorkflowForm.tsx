@@ -630,7 +630,7 @@ function RunWorkflowForm({
               {!runWorkflowMutation.isPending && (
                 <PlayIcon className="mr-2 h-4 w-4" />
               )}
-              Run agent
+              运行智能体
             </Button>
           </div>
         </header>
@@ -794,13 +794,13 @@ function RunWorkflowForm({
             );
           })}
           {workflowParameters.length === 0 && (
-            <div>This agent doesn't have any inputs</div>
+            <div>该智能体不需要任何输入参数</div>
           )}
         </div>
 
         <div className="space-y-8 rounded-lg bg-slate-elevation3 px-6 py-5">
           <header>
-            <h1 className="text-lg">Settings</h1>
+            <h1 className="text-lg">设置</h1>
           </header>
           <FormField
             key="webhookCallbackUrl"
@@ -812,12 +812,12 @@ function RunWorkflowForm({
                   return;
                 }
                 if (typeof value !== "string") {
-                  return "Invalid URL";
+                  return "无效的 URL";
                 }
-                const urlSchema = z.string().url({ message: "Invalid URL" });
+                const urlSchema = z.string().url({ message: "无效的 URL" });
                 const { success } = urlSchema.safeParse(value);
                 if (!success) {
-                  return "Invalid URL";
+                  return "无效的 URL";
                 }
               },
             }}
@@ -828,11 +828,10 @@ function RunWorkflowForm({
                     <FormLabel>
                       <div className="w-72">
                         <div className="flex items-center gap-2 text-lg">
-                          Webhook Callback URL
+                          Webhook 回调地址
                         </div>
                         <h2 className="text-sm text-slate-400">
-                          The URL of a webhook endpoint to send the details of
-                          the agent result.
+                          智能体执行完毕后，发送结果详情的 Webhook 接口 URL 地址。
                         </h2>
                       </div>
                     </FormLabel>
@@ -864,7 +863,7 @@ function RunWorkflowForm({
                                 className="self-start"
                                 disabled={!field.value}
                               >
-                                Test Webhook
+                                测试 Webhook
                               </Button>
                             }
                           />
@@ -888,10 +887,10 @@ function RunWorkflowForm({
                     <FormLabel>
                       <div className="w-72">
                         <div className="flex items-center gap-2 text-lg">
-                          Proxy Location
+                          代理地理位置
                         </div>
                         <h2 className="text-sm text-slate-400">
-                          Route Skyvern through one of our available proxies.
+                          通过我们提供的代理路由 Skyvern 的网络流量。
                         </h2>
                       </div>
                     </FormLabel>
@@ -918,17 +917,16 @@ function RunWorkflowForm({
               const descriptions: Record<string, ReactNode> = {
                 agent: hasCode ? (
                   <span>
-                    Run this agent with AI. (Even though it has generated code.)
+                    使用 AI 运行该智能体（即使已生成代码）。
                   </span>
                 ) : (
-                  <span>Run this agent with AI.</span>
+                  <span>使用 AI 运行该智能体。</span>
                 ),
                 code: hasCode ? (
-                  <span>Run this agent with generated code.</span>
+                  <span>使用生成的代码运行该智能体。</span>
                 ) : (
                   <span>
-                    Run this agent with generated code (after it is first
-                    generated).
+                    使用生成的代码运行该智能体（在首次生成后）。
                   </span>
                 ),
               };
@@ -938,7 +936,7 @@ function RunWorkflowForm({
                     <FormLabel>
                       <div className="w-72">
                         <div className="flex items-center gap-2 text-lg">
-                          Run With
+                          运行方式
                         </div>
                         <h2 className="text-sm text-slate-400">
                           {descriptions[field.value] ?? descriptions.agent}
@@ -948,16 +946,16 @@ function RunWorkflowForm({
                     <div className="w-full space-y-2">
                       <FormControl>
                         <Select
-                          value={field.value}
-                          onValueChange={(v) => field.onChange(v)}
+                           value={field.value}
+                           onValueChange={(v) => field.onChange(v)}
                         >
-                          <SelectTrigger className="w-48">
-                            <SelectValue placeholder="Run Method" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="agent">Skyvern Agent</SelectItem>
-                            <SelectItem value="code">Code</SelectItem>
-                          </SelectContent>
+                           <SelectTrigger className="w-48">
+                             <SelectValue placeholder="运行方式" />
+                           </SelectTrigger>
+                           <SelectContent>
+                             <SelectItem value="agent">Skyvern 智能体</SelectItem>
+                             <SelectItem value="code">代码</SelectItem>
+                           </SelectContent>
                         </Select>
                       </FormControl>
                       <FormMessage />
@@ -979,12 +977,10 @@ function RunWorkflowForm({
                     <FormLabel>
                       <div className="w-72">
                         <div className="flex items-center gap-2 text-lg">
-                          AI Fallback (self-healing)
+                          AI 故障回退 (自愈)
                         </div>
                         <h2 className="text-sm text-slate-400">
-                          If the run fails when running with code, keep this on
-                          to have AI attempt to fix the issue and regenerate the
-                          code.
+                          如果使用代码运行失败，保持开启将允许 AI 尝试修复问题并重新生成代码。
                         </h2>
                       </div>
                     </FormLabel>
@@ -1009,7 +1005,7 @@ function RunWorkflowForm({
             <AccordionItem value="advanced" className="border-b-0">
               <AccordionTrigger className="py-0">
                 <header>
-                  <h1 className="text-lg">Advanced Settings</h1>
+                  <h1 className="text-lg">高级设置</h1>
                 </header>
               </AccordionTrigger>
               <AccordionContent className="pl-6 pr-1 pt-1">
@@ -1025,11 +1021,10 @@ function RunWorkflowForm({
                             <FormLabel>
                               <div className="w-72">
                                 <div className="flex items-center gap-2 text-lg">
-                                  Browser Session ID
+                                  浏览器会话 ID
                                 </div>
                                 <h2 className="text-sm text-slate-400">
-                                  Use a persistent browser session to maintain
-                                  state and enable browser interaction.
+                                  使用持久浏览器会话以保持状态并允许浏览器交互。
                                 </h2>
                               </div>
                             </FormLabel>
@@ -1062,11 +1057,10 @@ function RunWorkflowForm({
                             <FormLabel>
                               <div className="w-72">
                                 <div className="flex items-center gap-2 text-lg">
-                                  Browser Profile
+                                  浏览器配置文件
                                 </div>
                                 <h2 className="text-sm text-slate-400">
-                                  Load a saved browser profile to reuse cookies,
-                                  storage, and signed-in state for this run.
+                                  加载已保存的浏览器配置文件，以便在本次运行中重用 Cookie、本地存储和登录状态。
                                 </h2>
                               </div>
                             </FormLabel>
@@ -1095,11 +1089,10 @@ function RunWorkflowForm({
                             <FormLabel>
                               <div className="w-72">
                                 <div className="flex items-center gap-2 text-lg">
-                                  Browser Address
+                                  浏览器调试地址
                                 </div>
                                 <h2 className="text-sm text-slate-400">
-                                  The address of the Browser server to use for
-                                  the agent run.
+                                  本次运行所使用的浏览器服务器调试地址。
                                 </h2>
                               </div>
                             </FormLabel>
@@ -1133,11 +1126,10 @@ function RunWorkflowForm({
                             <FormLabel>
                               <div className="w-72">
                                 <div className="flex items-center gap-2 text-lg">
-                                  Extra HTTP Headers
+                                  额外 HTTP 请求头
                                 </div>
                                 <h2 className="text-sm text-slate-400">
-                                  Specify some self defined HTTP requests
-                                  headers in Dict format
+                                  以字典（Dict）格式指定自定义的 HTTP 请求头参数。
                                 </h2>
                               </div>
                             </FormLabel>
@@ -1146,7 +1138,7 @@ function RunWorkflowForm({
                                 <KeyValueInput
                                   value={field.value ?? ""}
                                   onChange={(val) => field.onChange(val)}
-                                  addButtonText="Add Header"
+                                  addButtonText="添加请求头"
                                 />
                               </FormControl>
                               <FormMessage />
@@ -1167,13 +1159,10 @@ function RunWorkflowForm({
                             <FormLabel>
                               <div className="w-72">
                                 <div className="flex items-center gap-2 text-lg">
-                                  CDP Connect Headers
+                                  CDP 连接请求头
                                 </div>
                                 <h2 className="text-sm text-slate-400">
-                                  Headers attached only to the CDP WebSocket
-                                  handshake when connecting to a remote browser
-                                  (e.g. auth for the CDP endpoint). Not
-                                  forwarded to target sites.
+                                  仅在连接到远程浏览器时附加到 CDP WebSocket 握手的请求头（例如 CDP 端点的身份验证），不会转发到目标网站。
                                 </h2>
                               </div>
                             </FormLabel>
@@ -1182,7 +1171,7 @@ function RunWorkflowForm({
                                 <KeyValueInput
                                   value={field.value ?? ""}
                                   onChange={(val) => field.onChange(val)}
-                                  addButtonText="Add Header"
+                                  addButtonText="添加请求头"
                                 />
                               </FormControl>
                               <FormMessage />
@@ -1203,10 +1192,10 @@ function RunWorkflowForm({
                             <FormLabel>
                               <div className="w-72">
                                 <div className="flex items-center gap-2 text-lg">
-                                  Max Screenshot Scrolls
+                                  最大滚动截屏次数
                                 </div>
                                 <h2 className="text-sm text-slate-400">
-                                  {`The maximum number of scrolls for the post action screenshot. Default is ${MAX_SCREENSHOT_SCROLLS_DEFAULT}. If it's set to 0, it will take the current viewport screenshot.`}
+                                  {`执行动作后向下滚动的最大截屏次数。默认是 ${MAX_SCREENSHOT_SCROLLS_DEFAULT}。如果设为 0，将仅截取当前可视区域。`}
                                 </h2>
                               </div>
                             </FormLabel>
@@ -1217,7 +1206,7 @@ function RunWorkflowForm({
                                   type="number"
                                   min={0}
                                   value={field.value ?? ""}
-                                  placeholder={`Default: ${MAX_SCREENSHOT_SCROLLS_DEFAULT}`}
+                                  placeholder={`默认: ${MAX_SCREENSHOT_SCROLLS_DEFAULT}`}
                                   onChange={(event) => {
                                     const value =
                                       event.target.value === ""

@@ -482,28 +482,28 @@ export type ActionType = (typeof ActionTypes)[keyof typeof ActionTypes];
 export const ReadableActionTypes: {
   [key in ActionType]: string;
 } = {
-  input_text: "Input Text",
-  click: "Click",
-  hover: "Hover",
-  select_option: "Select Option",
-  upload_file: "Upload File",
-  download_file: "Download File",
-  complete: "Complete",
-  wait: "Wait",
-  terminate: "Terminate",
-  solve_captcha: "Solve Captcha",
-  extract: "Extract Data",
-  reload_page: "Reload Page",
-  keypress: "Press Keys",
-  scroll: "Scroll",
-  move: "Move",
-  null_action: "Screenshot",
-  verification_code: "Verification Code",
-  drag: "Drag",
-  left_mouse: "Left Mouse",
-  goto_url: "Goto URL",
-  close_page: "Close Page",
-  execute_js: "Execute JS",
+  input_text: "输入文本",
+  click: "点击",
+  hover: "悬停",
+  select_option: "选择选项",
+  upload_file: "上传文件",
+  download_file: "下载文件",
+  complete: "完成",
+  wait: "等待",
+  terminate: "终止",
+  solve_captcha: "破解验证码",
+  extract: "提取数据",
+  reload_page: "刷新页面",
+  keypress: "按键",
+  scroll: "滚动",
+  move: "移动",
+  null_action: "屏幕截图",
+  verification_code: "验证码",
+  drag: "拖拽",
+  left_mouse: "鼠标左键",
+  goto_url: "访问 URL",
+  close_page: "关闭页面",
+  execute_js: "执行 JS",
 };
 
 // Recorded code-block actions can carry an action_type the readable map doesn't
@@ -515,7 +515,7 @@ export function getReadableActionType(actionType: string): string {
     return known;
   }
   if (!actionType) {
-    return "Step";
+    return "步骤";
   }
   return actionType
     .split("_")

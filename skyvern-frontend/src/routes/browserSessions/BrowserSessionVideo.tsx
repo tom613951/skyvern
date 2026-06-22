@@ -43,7 +43,7 @@ function BrowserSessionVideo() {
   if (isLoading) {
     return (
       <div className="flex h-full w-full items-center justify-center">
-        <div className="text-lg">Loading videos...</div>
+        <div className="text-lg">正在加载视频...</div>
       </div>
     );
   }
@@ -52,7 +52,7 @@ function BrowserSessionVideo() {
     return (
       <div className="flex h-full w-full items-center justify-center">
         <div className="text-lg text-red-500">
-          Error loading videos: {error.message}
+          加载视频出错: {error.message}
         </div>
       </div>
     );
@@ -63,12 +63,12 @@ function BrowserSessionVideo() {
       <div className="flex h-full w-full items-center justify-center">
         <div className="text-center">
           <div className="mb-2 text-lg text-gray-500">
-            No recordings available
+            暂无录制视频
           </div>
           <div className="text-sm text-gray-400">
             {isSessionRunning
-              ? "Recordings will be available after the session completes"
-              : "No recordings were created for this session"}
+              ? "会话结束后将提供录制视频"
+              : "未为此会话创建录制视频"}
           </div>
         </div>
       </div>
@@ -78,9 +78,9 @@ function BrowserSessionVideo() {
   return (
     <div className="h-full w-full p-4">
       <div className="mb-4">
-        <h2 className="text-xl font-semibold">Browser Session Videos</h2>
+        <h2 className="text-xl font-semibold">浏览器会话录像</h2>
         <p className="text-sm text-gray-500">
-          Recorded videos from this browser session
+          来自该浏览器会话的录像视频
         </p>
       </div>
 
@@ -92,7 +92,7 @@ function BrowserSessionVideo() {
           >
             <div className="mb-2">
               <h3 className="font-medium">
-                {recording.filename || `Recording ${index + 1}`}
+                {recording.filename || `录像 ${index + 1}`}
                 {recording.modified_at && (
                   <span className="ml-2 text-sm text-gray-500">
                     ({new Date(recording.modified_at).toLocaleString()})
@@ -118,19 +118,19 @@ function BrowserSessionVideo() {
                     rel="noopener noreferrer"
                     className="text-blue-600 hover:text-blue-800"
                   >
-                    Download video
+                    下载视频
                   </a>
                 </div>
               </div>
             ) : (
               <div className="text-gray-500">
-                Video URL not available - video may still be processing
+                视频 URL 不可用 - 视频可能仍在处理中
               </div>
             )}
 
             {recording.checksum && (
               <div className="mt-2 text-sm text-gray-600">
-                Checksum: {recording.checksum}
+                校验和: {recording.checksum}
               </div>
             )}
           </div>

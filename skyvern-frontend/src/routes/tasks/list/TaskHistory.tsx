@@ -63,7 +63,7 @@ function TaskHistory() {
   });
 
   if (isError) {
-    return <div>Error: {error?.message}</div>;
+    return <div>错误: {error?.message}</div>;
   }
 
   function handleNavigate(event: React.MouseEvent, id: string) {
@@ -107,7 +107,7 @@ function TaskHistory() {
   return (
     <div className="space-y-4">
       <header className="flex items-center justify-between">
-        <h1 className="text-2xl">Task Runs</h1>
+        <h1 className="text-2xl">任务运行列表</h1>
         <div className="flex gap-2">
           <StatusFilterDropdown
             values={statusFilters}
@@ -115,7 +115,7 @@ function TaskHistory() {
           />
           <Button variant="secondary" onClick={handleExport}>
             <DownloadIcon className="mr-2" />
-            Export CSV
+            导出 CSV
           </Button>
         </div>
       </header>
@@ -124,9 +124,9 @@ function TaskHistory() {
           <TableHeader>
             <TableRow>
               <TableHead className="w-1/4">ID</TableHead>
-              <TableHead className="w-1/4">URL</TableHead>
-              <TableHead className="w-1/6">Status</TableHead>
-              <TableHead className="w-1/4">Created At</TableHead>
+              <TableHead className="w-1/4">URL 地址</TableHead>
+              <TableHead className="w-1/6">状态</TableHead>
+              <TableHead className="w-1/4">创建时间</TableHead>
               <TableHead className="w-1/12" />
             </TableRow>
           </TableHeader>
@@ -135,7 +135,7 @@ function TaskHistory() {
               <TaskListSkeletonRows />
             ) : tasks?.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={5}>No tasks found</TableCell>
+                <TableCell colSpan={5}>未找到任务</TableCell>
               </TableRow>
             ) : (
               tasks?.map((task) => {

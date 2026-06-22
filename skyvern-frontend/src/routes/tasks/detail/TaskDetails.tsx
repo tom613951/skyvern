@@ -126,14 +126,14 @@ function TaskDetails() {
       }
       toast({
         variant: "success",
-        title: "Task Canceled",
-        description: "The task has been successfully canceled.",
+        title: "任务已取消",
+        description: "任务已成功取消。",
       });
     },
     onError: (error) => {
       toast({
         variant: "destructive",
-        title: "Error",
+        title: "错误",
         description: error.message,
       });
     },
@@ -148,14 +148,14 @@ function TaskDetails() {
       return <Status404 />;
     }
 
-    return <div>Error: {taskError?.message}</div>;
+    return <div>错误: {taskError?.message}</div>;
   }
 
   const showExtractedInformation =
     task?.status === Status.Completed && task.extracted_information !== null;
   const extractedInformation = showExtractedInformation ? (
     <div className="space-y-1">
-      <Label className="text-lg">Extracted Information</Label>
+      <Label className="text-lg">提取出的信息</Label>
       <CodeEditor
         language="json"
         value={JSON.stringify(task.extracted_information, null, 2)}
@@ -179,7 +179,7 @@ function TaskDetails() {
   const failureReason = showFailureReason ? (
     <div className="space-y-1">
       <div className="flex items-center gap-2">
-        <Label className="text-lg">Failure Reason</Label>
+        <Label className="text-lg">失败原因</Label>
         <FailureCategoryBadge failureCategory={task.failure_category ?? null} />
       </div>
       <CodeEditor
@@ -195,7 +195,7 @@ function TaskDetails() {
 
   const webhookFailureReason = task?.webhook_failure_reason ? (
     <div className="space-y-1">
-      <Label>Webhook Failure Reason</Label>
+      <Label>Webhook 失败原因</Label>
       <div className="rounded-md border border-yellow-600 p-4 text-sm">
         {task.webhook_failure_reason}
       </div>
@@ -267,18 +267,18 @@ function TaskDetails() {
             {taskIsRunningOrQueued && (
               <Dialog>
                 <DialogTrigger asChild>
-                  <Button variant="destructive">Cancel</Button>
+                  <Button variant="destructive">取消</Button>
                 </DialogTrigger>
                 <DialogContent>
                   <DialogHeader>
-                    <DialogTitle>Are you sure?</DialogTitle>
+                    <DialogTitle>您确定吗？</DialogTitle>
                     <DialogDescription>
-                      Are you sure you want to cancel this task?
+                      您确定要取消此任务吗？
                     </DialogDescription>
                   </DialogHeader>
                   <DialogFooter>
                     <DialogClose asChild>
-                      <Button variant="secondary">Back</Button>
+                      <Button variant="secondary">返回</Button>
                     </DialogClose>
                     <Button
                       variant="destructive"
@@ -290,7 +290,7 @@ function TaskDetails() {
                       {cancelTaskMutation.isPending && (
                         <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
                       )}
-                      Cancel Task
+                      取消任务
                     </Button>
                   </DialogFooter>
                 </DialogContent>
@@ -300,7 +300,7 @@ function TaskDetails() {
               <Button asChild>
                 <Link to={`/tasks/create/retry/${task.task_id}`}>
                   <PlayIcon className="mr-2 h-4 w-4" />
-                  Rerun
+                  重新运行
                 </Link>
               </Button>
             )}
@@ -340,19 +340,19 @@ function TaskDetails() {
       <SwitchBarNavigation
         options={[
           {
-            label: "Actions",
+            label: "操作步骤",
             to: "actions",
           },
           {
-            label: "Recording",
+            label: "视频录制",
             to: "recording",
           },
           {
-            label: "Inputs",
+            label: "输入参数",
             to: "parameters",
           },
           {
-            label: "Diagnostics",
+            label: "诊断信息",
             to: "diagnostics",
           },
         ]}

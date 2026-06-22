@@ -126,13 +126,13 @@ function ActionCardCompact({
             {fromScript && (
               <TooltipProvider>
                 <Tooltip delayDuration={300}>
-                  <TooltipTrigger asChild>
-                    <span className="shrink-0" aria-label="Code Execution">
+                   <TooltipTrigger asChild>
+                    <span className="shrink-0" aria-label="代码执行">
                       <LightningBoltIcon className="h-4 w-4 text-[gold]" />
                     </span>
                   </TooltipTrigger>
                   <TooltipContent className="max-w-[250px]">
-                    Code Execution
+                    代码执行
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
@@ -156,7 +156,7 @@ function ActionCardCompact({
           <button
             type="button"
             onClick={onToggleExpanded}
-            aria-label={expanded ? "Collapse details" : "Expand details"}
+            aria-label={expanded ? "收起详情" : "展开详情"}
             aria-expanded={expanded}
             className="absolute right-3 top-2.5 cursor-pointer rounded p-0.5 text-slate-400 outline-none hover:bg-slate-elevation3 hover:text-slate-200 focus-visible:ring-1 focus-visible:ring-white/40"
           >
@@ -171,7 +171,7 @@ function ActionCardCompact({
           {inputValue != null && inputValue.length > 0 && (
             <div className="rounded bg-slate-elevation5 p-2">
               <div className="mb-1 text-[10px] uppercase tracking-wide text-slate-500">
-                Input
+                输入
               </div>
               <div className="whitespace-pre-wrap break-words font-mono text-slate-300">
                 {inputValue}

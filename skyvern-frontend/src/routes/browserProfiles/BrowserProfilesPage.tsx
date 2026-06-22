@@ -10,7 +10,7 @@ import { CreateBrowserProfileButton } from "./CreateBrowserProfileButton";
 import { useBackgroundBrowserProfileCreate } from "./hooks/useBackgroundBrowserProfileCreate";
 
 const subHeaderText =
-  "Saved browser state — cookies, logins, and settings — that agents launch a fresh browser from. Cheap to store and reusable in parallel, so one saved login can fan out across many concurrent runs.";
+  "已保存的浏览器状态（Cookie、登录信息和设置），智能体可在此基础上启动新的浏览器。存储成本低且支持并行重用，因此一次保存的登录状态可以分发到多个并发运行中。";
 
 function BrowserProfilesPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -27,7 +27,7 @@ function BrowserProfilesPage() {
       <div className="space-y-2">
         <div className="flex items-center gap-2">
           <BrowserIcon className="size-6" />
-          <h1 className="text-2xl">Browser Profiles</h1>
+          <h1 className="text-2xl">浏览器配置文件</h1>
         </div>
         <p className="text-sm leading-6 text-muted-foreground">
           {subHeaderText}
@@ -42,7 +42,7 @@ function BrowserProfilesPage() {
             params.set("page", "1");
             setSearchParams(params, { replace: true });
           }}
-          placeholder="Search browser profiles..."
+          placeholder="搜索浏览器配置文件..."
           className="w-48 lg:w-72"
         />
         <CreateBrowserProfileButton />

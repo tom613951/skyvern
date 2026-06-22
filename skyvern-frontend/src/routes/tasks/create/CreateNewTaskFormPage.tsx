@@ -29,18 +29,18 @@ function CreateNewTaskFormPage() {
   });
 
   if (!template) {
-    return <div>Invalid template</div>;
+    return <div>模板无效</div>;
   }
 
   if (template === "from-prompt") {
     const data = location.state?.data as TaskGenerationApiResponse;
     if (!data.url) {
-      return <div>Something went wrong, please try again</div>; // this should never happen
+      return <div>发生了一些错误，请重试</div>; // this should never happen
     }
     return (
       <div className="space-y-4">
         <header>
-          <h1 className="text-3xl">Create New Task</h1>
+          <h1 className="text-3xl">创建新任务</h1>
         </header>
         <CreateNewTaskForm
           key={template}
@@ -75,7 +75,7 @@ function CreateNewTaskFormPage() {
     return (
       <div className="space-y-4">
         <header>
-          <h1 className="text-3xl">Create New Task</h1>
+          <h1 className="text-3xl">创建新任务</h1>
         </header>
         <CreateNewTaskForm
           key={template}
@@ -89,7 +89,7 @@ function CreateNewTaskFormPage() {
     return (
       <div className="space-y-4">
         <header>
-          <h1 className="text-3xl">Edit Task Template</h1>
+          <h1 className="text-3xl">编辑任务模板</h1>
         </header>
         <Skeleton className="h-96" />
         <Skeleton className="h-20" />
@@ -111,7 +111,7 @@ function CreateNewTaskFormPage() {
   return (
     <div className="space-y-4">
       <header>
-        <h1 className="text-3xl">Edit Task Template</h1>
+        <h1 className="text-3xl">编辑任务模板</h1>
       </header>
       <SavedTaskForm
         initialValues={{

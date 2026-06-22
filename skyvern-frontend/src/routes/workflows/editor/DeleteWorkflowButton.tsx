@@ -47,7 +47,7 @@ function DeleteWorkflowButton({ id }: Props) {
     onError: (error: AxiosError) => {
       toast({
         variant: "destructive",
-        title: "Failed to delete agent",
+        title: "删除智能体失败",
         description: error.message,
       });
     },
@@ -64,17 +64,17 @@ function DeleteWorkflowButton({ id }: Props) {
               </Button>
             </DialogTrigger>
           </TooltipTrigger>
-          <TooltipContent>Delete Agent</TooltipContent>
+          <TooltipContent>删除智能体</TooltipContent>
         </Tooltip>
       </TooltipProvider>
       <DialogContent onCloseAutoFocus={(e) => e.preventDefault()}>
         <DialogHeader>
-          <DialogTitle>Are you sure?</DialogTitle>
-          <DialogDescription>This agent will be deleted.</DialogDescription>
+          <DialogTitle>您确定吗？</DialogTitle>
+          <DialogDescription>该智能体将被删除。</DialogDescription>
         </DialogHeader>
         <DialogFooter>
           <DialogClose asChild>
-            <Button variant="secondary">Cancel</Button>
+            <Button variant="secondary">取消</Button>
           </DialogClose>
           <Button
             variant="destructive"
@@ -86,7 +86,7 @@ function DeleteWorkflowButton({ id }: Props) {
             {deleteWorkflowMutation.isPending && (
               <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
             )}
-            Delete
+            删除
           </Button>
         </DialogFooter>
       </DialogContent>

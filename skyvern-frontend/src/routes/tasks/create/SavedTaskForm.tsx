@@ -187,12 +187,12 @@ function SavedTaskForm({ initialValues }: Props) {
       if (error.response?.status === 402) {
         toast({
           variant: "destructive",
-          title: "Failed to create task",
+          title: "创建任务失败",
           description:
-            "You don't have enough credits to run this task. Go to billing to see your credit balance.",
+            "您的额度不足以运行此任务。请前往账单页面查看额度余额。",
           action: (
-            <ToastAction altText="Go to Billing" asChild>
-              <Link to="billing">Go to Billing</Link>
+            <ToastAction altText="前往账单" asChild>
+              <Link to="billing">前往账单</Link>
             </ToastAction>
           ),
         });
@@ -200,18 +200,18 @@ function SavedTaskForm({ initialValues }: Props) {
       }
       toast({
         variant: "destructive",
-        title: "Error",
+        title: "错误",
         description: error.message,
       });
     },
     onSuccess: (response) => {
       toast({
         variant: "success",
-        title: "Task Created",
-        description: `${response.data.task_id} created successfully.`,
+        title: "任务已创建",
+        description: `任务 ${response.data.task_id} 创建成功。`,
         action: (
-          <ToastAction altText="View" asChild>
-            <Link to={`/tasks/${response.data.task_id}`}>View</Link>
+          <ToastAction altText="查看" asChild>
+            <Link to={`/tasks/${response.data.task_id}`}>查看</Link>
           </ToastAction>
         ),
       });
@@ -240,15 +240,15 @@ function SavedTaskForm({ initialValues }: Props) {
     onError: (error) => {
       toast({
         variant: "destructive",
-        title: "There was an error while saving changes",
+        title: "保存更改时出错",
         description: error.message,
       });
     },
     onSuccess: () => {
       toast({
         variant: "success",
-        title: "Changes saved",
-        description: "Changes saved successfully",
+        title: "修改已保存",
+        description: "修改保存成功",
       });
       queryClient.invalidateQueries({
         queryKey: ["savedTasks"],
@@ -294,7 +294,7 @@ function SavedTaskForm({ initialValues }: Props) {
       >
         <TaskFormSection
           index={1}
-          title="Base Content"
+          title="基础内容"
           active={isActive("base")}
           onClick={() => {
             toggleSection("base");
@@ -317,15 +317,15 @@ function SavedTaskForm({ initialValues }: Props) {
                       <div className="flex gap-16">
                         <FormLabel>
                           <div className="w-72">
-                            <h1 className="text-lg">Title</h1>
+                            <h1 className="text-lg">标题</h1>
                             <h2 className="text-base text-slate-400">
-                              Name of your task
+                              您的任务名称
                             </h2>
                           </div>
                         </FormLabel>
                         <div className="w-full">
                           <FormControl>
-                            <Input placeholder="Task Name" {...field} />
+                            <Input placeholder="任务名称" {...field} />
                           </FormControl>
                           <FormMessage />
                         </div>
@@ -341,16 +341,16 @@ function SavedTaskForm({ initialValues }: Props) {
                       <div className="flex gap-16">
                         <FormLabel>
                           <div className="w-72">
-                            <h1 className="text-lg">Description</h1>
+                            <h1 className="text-lg">描述</h1>
                             <h2 className="text-base text-slate-400">
-                              What is the purpose of the task?
+                              此任务的目的是什么？
                             </h2>
                           </div>
                         </FormLabel>
                         <div className="w-full">
                           <FormControl>
                             <AutoResizingTextarea
-                              placeholder="This template is used to..."
+                              placeholder="此模板用于..."
                               {...field}
                             />
                           </FormControl>
@@ -369,9 +369,9 @@ function SavedTaskForm({ initialValues }: Props) {
                       <div className="flex gap-16">
                         <FormLabel>
                           <div className="w-72">
-                            <h1 className="text-lg">URL</h1>
+                            <h1 className="text-lg">URL 地址</h1>
                             <h2 className="text-base text-slate-400">
-                              The starting URL for the task
+                              任务的起始 URL
                             </h2>
                           </div>
                         </FormLabel>
@@ -393,10 +393,9 @@ function SavedTaskForm({ initialValues }: Props) {
                       <div className="flex gap-16">
                         <FormLabel>
                           <div className="w-72">
-                            <h1 className="text-lg">Navigation Goal</h1>
+                            <h1 className="text-lg">导航目标</h1>
                             <h2 className="text-base text-slate-400">
-                              Where should Skyvern go and what should Skyvern
-                              do?
+                              Skyvern 应该去哪里，应该做什么？
                             </h2>
                           </div>
                         </FormLabel>
@@ -404,7 +403,7 @@ function SavedTaskForm({ initialValues }: Props) {
                           <FormControl>
                             <AutoResizingTextarea
                               {...field}
-                              placeholder="Tell Skyvern what to do."
+                              placeholder="告诉 Skyvern 该做什么。"
                               value={field.value === null ? "" : field.value}
                             />
                           </FormControl>
@@ -424,10 +423,9 @@ function SavedTaskForm({ initialValues }: Props) {
                           <div className="flex gap-16">
                             <FormLabel>
                               <div className="w-72">
-                                <h1 className="text-lg">Navigation Payload</h1>
+                                <h1 className="text-lg">导航载荷 (Payload)</h1>
                                 <h2 className="text-base text-slate-400">
-                                  Specify important parameters, routes, or
-                                  states
+                                  指定重要的参数、路由或状态
                                 </h2>
                               </div>
                               <Button
@@ -439,7 +437,7 @@ function SavedTaskForm({ initialValues }: Props) {
                                 }}
                                 size="sm"
                               >
-                                Hide Advanced Settings
+                                隐藏高级设置
                               </Button>
                             </FormLabel>
                             <div className="w-full">
@@ -471,7 +469,7 @@ function SavedTaskForm({ initialValues }: Props) {
                       }}
                       size="sm"
                     >
-                      Show Advanced Settings
+                      显示高级设置
                     </Button>
                   </div>
                 )}
@@ -481,7 +479,7 @@ function SavedTaskForm({ initialValues }: Props) {
         </TaskFormSection>
         <TaskFormSection
           index={2}
-          title="Extraction"
+          title="数据提取"
           active={isActive("extraction")}
           onClick={() => {
             toggleSection("extraction");
@@ -502,9 +500,9 @@ function SavedTaskForm({ initialValues }: Props) {
                       <div className="flex gap-16">
                         <FormLabel>
                           <div className="w-72">
-                            <h1 className="text-lg">Data Extraction Goal</h1>
+                            <h1 className="text-lg">数据提取目标</h1>
                             <h2 className="text-base text-slate-400">
-                              What outputs are you looking to get?
+                              您希望获取什么输出？
                             </h2>
                           </div>
                         </FormLabel>
@@ -512,7 +510,7 @@ function SavedTaskForm({ initialValues }: Props) {
                           <FormControl>
                             <AutoResizingTextarea
                               {...field}
-                              placeholder="What data do you need to extract?"
+                              placeholder="您需要提取什么数据？"
                               value={field.value === null ? "" : field.value}
                             />
                           </FormControl>
@@ -530,9 +528,9 @@ function SavedTaskForm({ initialValues }: Props) {
                       <div className="flex gap-16">
                         <FormLabel>
                           <div className="w-72">
-                            <h1 className="text-lg">Data Schema</h1>
+                            <h1 className="text-lg">数据 Schema (结构)</h1>
                             <h2 className="text-base text-slate-400">
-                              Specify the output format in JSON
+                              以 JSON 格式指定输出结构
                             </h2>
                           </div>
                         </FormLabel>
@@ -563,7 +561,7 @@ function SavedTaskForm({ initialValues }: Props) {
         </TaskFormSection>
         <TaskFormSection
           index={3}
-          title="Advanced Settings"
+          title="高级设置"
           active={isActive("advanced")}
           onClick={() => {
             toggleSection("advanced");
@@ -586,10 +584,9 @@ function SavedTaskForm({ initialValues }: Props) {
                       <div className="flex gap-16">
                         <FormLabel>
                           <div className="w-72">
-                            <h1 className="text-lg">Max Steps Override</h1>
+                            <h1 className="text-lg">最大步数覆盖</h1>
                             <h2 className="text-base text-slate-400">
-                              Want to allow this task to execute more or less
-                              steps than the default?
+                              是否允许此任务执行比默认更多或更少的步数？
                             </h2>
                           </div>
                         </FormLabel>
@@ -600,7 +597,7 @@ function SavedTaskForm({ initialValues }: Props) {
                               type="number"
                               min={1}
                               value={field.value ?? ""}
-                              placeholder={`Default: ${organization?.max_steps_per_run ?? MAX_STEPS_DEFAULT}`}
+                              placeholder={`默认值: ${organization?.max_steps_per_run ?? MAX_STEPS_DEFAULT}`}
                               onChange={(event) => {
                                 const value =
                                   event.target.value === ""
@@ -624,10 +621,9 @@ function SavedTaskForm({ initialValues }: Props) {
                       <div className="flex gap-16">
                         <FormLabel>
                           <div className="w-72">
-                            <h1 className="text-lg">Webhook Callback URL</h1>
+                            <h1 className="text-lg">Webhook 回调 URL</h1>
                             <h2 className="text-base text-slate-400">
-                              The URL of a webhook endpoint to send the
-                              extracted information
+                              用于接收提取出的信息的 Webhook 接口 URL
                             </h2>
                           </div>
                         </FormLabel>
@@ -653,7 +649,7 @@ function SavedTaskForm({ initialValues }: Props) {
                                     className="self-start"
                                     disabled={!field.value}
                                   >
-                                    Test Webhook
+                                    测试 Webhook
                                   </Button>
                                 }
                               />
@@ -675,11 +671,10 @@ function SavedTaskForm({ initialValues }: Props) {
                           <FormLabel>
                             <div className="w-72">
                               <div className="flex items-center gap-2 text-lg">
-                                Proxy Location
+                                代理地理位置
                               </div>
                               <h2 className="text-sm text-slate-400">
-                                Route Skyvern through one of our available
-                                proxies.
+                                通过我们可用的代理路由 Skyvern 的网络流量。
                               </h2>
                             </div>
                           </FormLabel>
@@ -707,10 +702,9 @@ function SavedTaskForm({ initialValues }: Props) {
                       <div className="flex gap-16">
                         <FormLabel>
                           <div className="w-72">
-                            <h1 className="text-lg">Error Messages</h1>
+                            <h1 className="text-lg">错误消息映射</h1>
                             <h2 className="text-base text-slate-400">
-                              Specify any error outputs you would like to be
-                              notified about
+                              指定您希望获得通知的任何错误输出
                             </h2>
                           </div>
                         </FormLabel>
@@ -739,7 +733,7 @@ function SavedTaskForm({ initialValues }: Props) {
                       <div className="flex gap-16">
                         <FormLabel>
                           <div className="w-72">
-                            <h1 className="text-lg">2FA Identifier</h1>
+                            <h1 className="text-lg">双重认证 (2FA) 标识符</h1>
                             <h2 className="text-base text-slate-400"></h2>
                           </div>
                         </FormLabel>
@@ -747,7 +741,7 @@ function SavedTaskForm({ initialValues }: Props) {
                           <FormControl>
                             <Input
                               {...field}
-                              placeholder="Add an ID that links your TOTP to the task"
+                              placeholder="添加一个关联您的 TOTP 到任务的 ID"
                               value={field.value === null ? "" : field.value}
                             />
                           </FormControl>
@@ -802,7 +796,7 @@ function SavedTaskForm({ initialValues }: Props) {
             {saveTaskMutation.isPending && (
               <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
             )}
-            Save Changes
+            保存更改
           </Button>
           <Button
             type="submit"
@@ -815,7 +809,7 @@ function SavedTaskForm({ initialValues }: Props) {
             ) : (
               <PlayIcon className="mr-2 h-4 w-4" />
             )}
-            Run
+            运行
           </Button>
         </div>
       </form>

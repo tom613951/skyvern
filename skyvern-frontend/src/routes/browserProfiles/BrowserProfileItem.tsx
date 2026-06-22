@@ -63,7 +63,7 @@ function BrowserProfileItem({
           checked={selected}
           hasSelection={hasSelection}
           onSelect={onSelect}
-          ariaLabel={`Select ${profile.name}`}
+          ariaLabel={`选择 ${profile.name}`}
         />
       )}
       <TableCell className="truncate">
@@ -94,13 +94,13 @@ function BrowserProfileItem({
                   size="icon"
                   variant="ghost"
                   onClick={() => setRenameOpen(true)}
-                  aria-label="Rename browser profile"
+                  aria-label="重命名浏览器配置文件"
                   className="text-muted-foreground hover:text-foreground"
                 >
                   <Pencil1Icon className="h-4 w-4" />
                 </Button>
               </TooltipTrigger>
-              <TooltipContent>Rename Browser Profile</TooltipContent>
+              <TooltipContent>重命名浏览器配置文件</TooltipContent>
             </Tooltip>
           </TooltipProvider>
           <DeleteBrowserProfileButton profile={profile} />

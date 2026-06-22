@@ -35,25 +35,25 @@ function TaskParameters() {
   }
 
   if (taskIsError || !task) {
-    return <div>Error loading inputs</div>;
+    return <div>加载输入参数出错</div>;
   }
 
   return (
     <section className="space-y-8 rounded-lg bg-slate-elevation3 px-6 py-5">
       <div className="flex gap-16">
         <div className="w-72">
-          <h1 className="text-lg">URL</h1>
+          <h1 className="text-lg">URL 地址</h1>
           <h2 className="text-base text-slate-400">
-            The starting URL for the task
+            任务的起始 URL
           </h2>
         </div>
         <Input value={task.request.url} readOnly />
       </div>
       <div className="flex gap-16">
         <div className="w-72">
-          <h1 className="text-lg">Navigation Goal</h1>
+          <h1 className="text-lg">导航目标</h1>
           <h2 className="text-base text-slate-400">
-            Where should Skyvern go and what should Skyvern do?
+            Skyvern 应该去哪里，应该做什么？
           </h2>
         </div>
         <AutoResizingTextarea
@@ -63,9 +63,9 @@ function TaskParameters() {
       </div>
       <div className="flex gap-16">
         <div className="w-72">
-          <h1 className="text-lg">Navigation Payload</h1>
+          <h1 className="text-lg">导航载荷 (Payload)</h1>
           <h2 className="text-base text-slate-400">
-            Specify important parameters, routes, or states
+            指定重要的参数、路由或状态
           </h2>
         </div>
         <CodeEditor
@@ -83,9 +83,9 @@ function TaskParameters() {
       </div>
       <div className="flex gap-16">
         <div className="w-72">
-          <h1 className="text-lg">Data Extraction Goal</h1>
+          <h1 className="text-lg">数据提取目标</h1>
           <h2 className="text-base text-slate-400">
-            What outputs are you looking to get?
+            您希望获取什么输出？
           </h2>
         </div>
         <AutoResizingTextarea
@@ -95,9 +95,9 @@ function TaskParameters() {
       </div>
       <div className="flex gap-16">
         <div className="w-72">
-          <h1 className="text-lg">Data Schema</h1>
+          <h1 className="text-lg">数据 Schema (结构)</h1>
           <h2 className="text-base text-slate-400">
-            Specify the output format in JSON
+            以 JSON 格式指定输出结构
           </h2>
         </div>
         <CodeEditor
@@ -119,9 +119,9 @@ function TaskParameters() {
       </div>
       <div className="flex gap-16">
         <div className="w-72">
-          <h1 className="text-lg">Extra HTTP Headers</h1>
+          <h1 className="text-lg">额外 HTTP 请求头</h1>
           <h2 className="text-base text-slate-400">
-            Specify some self-defined HTTP requests headers
+            指定一些自定义的 HTTP 请求头
           </h2>
         </div>
         <div className="w-full">
@@ -138,31 +138,31 @@ function TaskParameters() {
       </div>
       <div className="flex gap-16">
         <div className="w-72">
-          <h1 className="text-lg">Webhook Callback URL</h1>
+          <h1 className="text-lg">Webhook 回调 URL</h1>
           <h2 className="text-base text-slate-400">
-            The URL of a webhook endpoint to send the extracted information
+            用于接收提取出的信息的 Webhook 接口 URL
           </h2>
         </div>
         <Input value={task.request.webhook_callback_url ?? ""} readOnly />
       </div>
       <div className="flex gap-16">
         <div className="w-72">
-          <h1 className="text-lg">Max Screenshot Scrolls</h1>
+          <h1 className="text-lg">最大截图滚动次数</h1>
           <h2 className="text-base text-slate-400">
-            The maximum number of times to scroll the page
+            对页面进行滚动以获取长截图的最大次数
           </h2>
         </div>
         <Input
-          placeholder={`Default: ${MAX_SCREENSHOT_SCROLLS_DEFAULT}`}
+          placeholder={`默认值: ${MAX_SCREENSHOT_SCROLLS_DEFAULT}`}
           value={task.request.max_screenshot_scrolls ?? ""}
           readOnly
         />
       </div>
       <div className="flex gap-16">
         <div className="w-72">
-          <h1 className="text-lg">Include Action History</h1>
+          <h1 className="text-lg">包含操作历史</h1>
           <h2 className="text-base text-slate-400">
-            Include the action history in the completion verification
+            在完成验证中包含操作历史记录
           </h2>
         </div>
         <div className="w-full">

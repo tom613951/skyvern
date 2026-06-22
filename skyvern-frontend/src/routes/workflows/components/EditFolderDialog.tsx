@@ -56,32 +56,32 @@ function EditFolderDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Edit Folder</DialogTitle>
+          <DialogTitle>编辑文件夹</DialogTitle>
           <DialogDescription>
-            Update the folder's title and description.
+            更新文件夹的标题和描述。
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit}>
           <div className="grid gap-4 py-4">
             <div className="grid gap-2">
-              <Label htmlFor="edit-folder-title">Title</Label>
+              <Label htmlFor="edit-folder-title">标题</Label>
               <Input
                 id="edit-folder-title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder="e.g., Production Agents"
+                placeholder="例如：生产智能体"
                 autoFocus
               />
             </div>
             <div className="grid gap-2">
               <Label htmlFor="edit-folder-description">
-                Description (optional)
+                描述（可选）
               </Label>
               <Textarea
                 id="edit-folder-description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                placeholder="Add a description..."
+                placeholder="添加描述..."
                 rows={3}
               />
             </div>
@@ -92,13 +92,13 @@ function EditFolderDialog({
               variant="outline"
               onClick={() => onOpenChange(false)}
             >
-              Cancel
+              取消
             </Button>
             <Button
               type="submit"
               disabled={!title.trim() || updateFolderMutation.isPending}
             >
-              Save Changes
+              保存修改
             </Button>
           </DialogFooter>
         </form>

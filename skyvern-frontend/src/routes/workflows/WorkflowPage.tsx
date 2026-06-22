@@ -197,14 +197,14 @@ function WorkflowPage() {
             <Button asChild variant="secondary">
               <Link to={buildWorkflowAnalyticsPath(workflowPermanentId)}>
                 <BarChartIcon className="mr-2 size-4" />
-                Analytics
+                分析
               </Link>
             </Button>
           ) : null}
           <Button asChild variant="secondary">
             <Link to={`/workflows/${workflowPermanentId}/scripts`}>
               <CodeIcon className="mr-2 size-4" />
-              Scripts
+              脚本
             </Link>
           </Button>
           <Button asChild variant="secondary">
@@ -213,20 +213,20 @@ function WorkflowPage() {
               data-testid="workflow-open-editor-link"
             >
               <Pencil2Icon className="mr-2 size-4" />
-              Edit
+              编辑
             </Link>
           </Button>
           <Button asChild>
             <Link to={`/workflows/${workflowPermanentId}/run`}>
               <PlayIcon className="mr-2 size-4" />
-              Run
+              运行
             </Link>
           </Button>
         </div>
       </header>
       <div className="space-y-4">
         <header>
-          <h1 className="text-2xl">Past Runs</h1>
+          <h1 className="text-2xl">历史运行</h1>
         </header>
         {!isLoading &&
         workflowRuns?.length === 0 &&
@@ -239,15 +239,15 @@ function WorkflowPage() {
             <OnboardingEmptyState
               surface="runs"
               icon={<PlayIcon className="h-6 w-6" />}
-              title="No runs yet for this workflow"
-              description="Run this workflow to see results here. Each run tracks status, parameters, and duration."
+              title="此工作流尚无运行记录"
+              description="运行此工作流以在此处查看结果。每次运行都会跟踪状态、参数和耗时。"
               primaryAction={{
-                label: "Run this workflow",
+                label: "运行此工作流",
                 onClick: () =>
                   navigate(`/workflows/${workflowPermanentId}/run`),
               }}
               secondaryAction={{
-                label: "View documentation",
+                label: "查看说明文档",
                 onClick: () =>
                   window.open(
                     "https://docs.skyvern.com",
@@ -268,7 +268,7 @@ function WorkflowPage() {
                   params.set("page", "1");
                   setSearchParams(params, { replace: true });
                 }}
-                placeholder="Search runs by input..."
+                placeholder="输入参数搜索运行..."
                 className="w-48 lg:w-72"
               />
               <StatusFilterDropdown
@@ -281,20 +281,20 @@ function WorkflowPage() {
                 <TableHeader>
                   <TableRow>
                     <TableHead className="w-[20%]">ID</TableHead>
-                    <TableHead className="w-[20%]">Status</TableHead>
-                    <TableHead className="w-[20%]">Created At</TableHead>
-                    <TableHead className="w-[20%]">Duration</TableHead>
+                    <TableHead className="w-[20%]">状态</TableHead>
+                    <TableHead className="w-[20%]">创建时间</TableHead>
+                    <TableHead className="w-[20%]">耗时</TableHead>
                     <TableHead className="w-[20%] text-right">
-                      Actions
+                      操作
                     </TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {isLoading ? (
-                    <TableMessageRow colSpan={5}>Loading runs…</TableMessageRow>
+                    <TableMessageRow colSpan={5}>加载运行中…</TableMessageRow>
                   ) : workflowRuns?.length === 0 ? (
                     <TableMessageRow colSpan={5}>
-                      No agent runs found
+                      未找到智能体运行记录
                     </TableMessageRow>
                   ) : (
                     workflowRuns?.map((workflowRun) => {
@@ -379,8 +379,8 @@ function WorkflowPage() {
                                     </TooltipTrigger>
                                     <TooltipContent>
                                       {isExpanded
-                                        ? "Hide Inputs"
-                                        : "Show Inputs"}
+                                        ? "隐藏输入"
+                                        : "显示输入"}
                                     </TooltipContent>
                                   </Tooltip>
                                 </TooltipProvider>
@@ -423,7 +423,7 @@ function WorkflowPage() {
               />
               <div className="relative px-3 py-3">
                 <div className="absolute left-3 top-1/2 flex -translate-y-1/2 items-center gap-2 text-sm">
-                  <span className="text-slate-400">Items per page</span>
+                  <span className="text-slate-400">每页条数</span>
                   <Select
                     value={String(pageSize)}
                     onValueChange={(size) => {
@@ -552,7 +552,7 @@ function WorkflowRunParameters({
   if (!run || !run.parameters || Object.keys(run.parameters).length === 0) {
     return (
       <div className="ml-8 py-4 text-sm text-slate-400">
-        No inputs for this run
+        此次运行无输入参数
       </div>
     );
   }

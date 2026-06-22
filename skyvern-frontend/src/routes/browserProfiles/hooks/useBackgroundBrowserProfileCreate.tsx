@@ -142,7 +142,7 @@ function useBackgroundBrowserProfileCreate() {
       ) {
         cleanup();
         toast({
-          title: "Profile generation not enabled for this session",
+          title: "该会话未启用配置文件生成",
           description: detail,
           variant: "destructive",
         });
@@ -170,9 +170,9 @@ function useBackgroundBrowserProfileCreate() {
           if (activeRef.current.errorCount >= MAX_CONSECUTIVE_ERRORS) {
             cleanup();
             toast({
-              title: "Connection lost",
+              title: "连接丢失",
               description:
-                "Unable to finish creating browser profile. Check your network and retry.",
+                "无法完成创建浏览器配置文件。请检查网络并重试。",
               variant: "destructive",
             });
             return;
@@ -187,7 +187,7 @@ function useBackgroundBrowserProfileCreate() {
 
       cleanup();
       toast({
-        title: "Failed to create browser profile",
+        title: "创建浏览器配置文件失败",
         description: detail ?? axiosError.message,
         variant: "destructive",
       });
@@ -201,8 +201,8 @@ function useBackgroundBrowserProfileCreate() {
     if (Date.now() - active.startTime > MAX_TOTAL_DURATION_MS) {
       cleanup();
       toast({
-        title: "Browser profile creation timed out",
-        description: "The session did not finish closing within 5 minutes.",
+        title: "创建浏览器配置文件超时",
+        description: "会话未能在 5 分钟内完成关闭。",
         variant: "destructive",
       });
       return;
@@ -226,9 +226,9 @@ function useBackgroundBrowserProfileCreate() {
       if (response.data.status === "failed") {
         cleanup();
         toast({
-          title: "Browser session failed",
+          title: "浏览器会话失败",
           description:
-            "Could not create profile — the session ended in a failed state.",
+            "无法创建配置文件 — 该会话以失败状态结束。",
           variant: "destructive",
         });
         return;
@@ -247,8 +247,8 @@ function useBackgroundBrowserProfileCreate() {
         if (activeRef.current.errorCount >= MAX_CONSECUTIVE_ERRORS) {
           cleanup();
           toast({
-            title: "Connection lost",
-            description: "Unable to track browser session status.",
+            title: "连接丢失",
+            description: "无法追踪浏览器会话状态。",
             variant: "destructive",
           });
           return;
@@ -318,10 +318,10 @@ function useBackgroundBrowserProfileCreate() {
       });
 
       toast({
-        title: "Creating browser profile",
+        title: "正在创建浏览器配置文件",
         description: isSessionRunning
-          ? "Closing the session and capturing its state. When done, you'll see it in Browser Profiles."
-          : "Capturing the session's state. When done, you'll see it in Browser Profiles.",
+          ? "正在关闭会话并捕获其状态。完成后，您将在‘浏览器配置文件’中看到它。"
+          : "正在捕获会话状态。完成后，您将在‘浏览器配置文件’中看到它。",
       });
 
       if (!isSessionRunning) {
@@ -354,9 +354,9 @@ function useBackgroundBrowserProfileCreate() {
         const axiosError = error as AxiosError;
         const detail = getErrorDetail(axiosError);
         toast({
-          title: "Failed to close browser session",
+          title: "无法关闭浏览器会话",
           description:
-            detail ?? "Could not close the session to capture its state.",
+            detail ?? "无法关闭会话以捕获其状态。",
           variant: "destructive",
         });
       }

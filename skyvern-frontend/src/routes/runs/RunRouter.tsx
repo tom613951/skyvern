@@ -86,7 +86,7 @@ function RunRouter() {
 
   if (runId?.startsWith("tsk_v2")) {
     if (isLoading) {
-      return <div>Fetching task details...</div>;
+      return <div>正在获取任务详情...</div>;
     }
 
     if (!task_v2) {

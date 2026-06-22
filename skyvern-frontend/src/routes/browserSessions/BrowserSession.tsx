@@ -98,7 +98,7 @@ function BrowserSession() {
       <div className="h-screen w-full gap-4 p-6">
         <div className="flex h-full w-full items-center justify-center">
           {/* we need nice artwork here */}
-          Loading...
+          正在加载...
         </div>
       </div>
     );
@@ -109,7 +109,7 @@ function BrowserSession() {
       <div className="h-screen w-full gap-4 p-6">
         <div className="flex h-full w-full items-center justify-center">
           {/* we need nice artwork here */}
-          No browser session found.
+          未找到浏览器会话。
         </div>
       </div>
     );
@@ -121,7 +121,7 @@ function BrowserSession() {
         <div className="flex w-full flex-shrink-0 flex-row items-center justify-between rounded-lg border p-4">
           <div className="flex w-full flex-row items-center justify-start gap-2">
             <LogoMinimized />
-            <div className="text-xl">Browser Session</div>
+            <div className="text-xl">浏览器会话</div>
             {activeTab === "stream" && <StreamModeBadge mode={streamMode} />}
             {browserSession && (
               <div className="ml-auto flex flex-col items-end justify-end overflow-hidden">
@@ -137,7 +137,13 @@ function BrowserSession() {
                             : "bg-gray-500/20 text-gray-500"
                     }`}
                   >
-                    {browserSession.status}
+                    {browserSession.status === "running"
+                      ? "运行中"
+                      : browserSession.status === "completed"
+                        ? "已完成"
+                        : browserSession.status === "failed"
+                          ? "已失败"
+                          : browserSession.status}
                   </span>
                   <div className="max-w-[20rem] truncate font-mono text-xs opacity-75">
                     {browserSession.browser_session_id}
@@ -172,10 +178,10 @@ function BrowserSession() {
         <div className="flex w-full items-center justify-start gap-2">
           <SwitchBarNavigation
             options={[
-              { label: "Stream", to: "stream" },
-              { label: "Recordings", to: "recordings" },
-              { label: "Downloads", to: "downloads" },
-              { label: "Runs", to: "runs" },
+              { label: "实时画面", to: "stream" },
+              { label: "录像记录", to: "recordings" },
+              { label: "下载文件", to: "downloads" },
+              { label: "运行记录", to: "runs" },
             ]}
           />
 
@@ -186,26 +192,25 @@ function BrowserSession() {
                 onClick={() => setIsSaveProfileDialogOpen(true)}
               >
                 <BrowserIcon className="mr-2 h-4 w-4" />
-                Save Profile
+                保存配置文件
               </Button>
               <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                 <DialogTrigger asChild>
                   <Button variant="ghost">
                     <StopIcon className="mr-2 h-4 w-4" />
-                    Stop
+                    停止
                   </Button>
                 </DialogTrigger>
                 <DialogContent>
                   <DialogHeader>
-                    <DialogTitle>Are you sure?</DialogTitle>
+                    <DialogTitle>您确定吗？</DialogTitle>
                     <DialogDescription>
-                      Are you sure you want to stop (shut down) this browser
-                      session?
+                      确定要停止并关闭该浏览器会话吗？
                     </DialogDescription>
                   </DialogHeader>
                   <DialogFooter>
                     <DialogClose asChild>
-                      <Button variant="secondary">Back</Button>
+                      <Button variant="secondary">返回</Button>
                     </DialogClose>
                     <Button
                       variant="destructive"
@@ -217,7 +222,7 @@ function BrowserSession() {
                       {closeBrowserSessionMutation.isPending && (
                         <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
                       )}
-                      Stop Browser Session
+                      停止浏览器会话
                     </Button>
                   </DialogFooter>
                 </DialogContent>

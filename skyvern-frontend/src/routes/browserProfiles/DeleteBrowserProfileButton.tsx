@@ -37,28 +37,27 @@ function DeleteBrowserProfileButton({ profile, onDeleted }: Props) {
               <Button
                 size="icon"
                 variant="ghost"
-                aria-label="Delete browser profile"
+                aria-label="删除浏览器配置文件"
                 className="text-muted-foreground hover:text-destructive"
               >
                 <TrashIcon className="h-4 w-4" />
               </Button>
             </DialogTrigger>
           </TooltipTrigger>
-          <TooltipContent>Delete Browser Profile</TooltipContent>
+          <TooltipContent>删除浏览器配置文件</TooltipContent>
         </Tooltip>
       </TooltipProvider>
       <DialogContent onCloseAutoFocus={(e) => e.preventDefault()}>
         <DialogHeader>
-          <DialogTitle>Are you sure?</DialogTitle>
+          <DialogTitle>您确定吗？</DialogTitle>
         </DialogHeader>
         <div className="text-sm text-neutral-600 dark:text-slate-400">
-          The browser profile{" "}
-          <span className="font-bold text-primary">{profile.name}</span> will be
-          deleted. Agents referencing this profile will no longer find it.
+          浏览器配置文件{" "}
+          <span className="font-bold text-primary">{profile.name}</span> 将被删除。引用此配置文件的智能体将无法再找到它。
         </div>
         <DialogFooter>
           <DialogClose asChild>
-            <Button variant="secondary">Cancel</Button>
+            <Button variant="secondary">取消</Button>
           </DialogClose>
           <Button
             variant="destructive"
@@ -71,7 +70,7 @@ function DeleteBrowserProfileButton({ profile, onDeleted }: Props) {
             {deleteMutation.isPending && (
               <ReloadIcon className="mr-2 size-4 animate-spin" />
             )}
-            Delete
+            删除
           </Button>
         </DialogFooter>
       </DialogContent>

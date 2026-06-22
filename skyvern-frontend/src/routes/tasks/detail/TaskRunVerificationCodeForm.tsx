@@ -19,7 +19,7 @@ function TaskRunVerificationCodeForm() {
     <VerificationCodeBanner
       isWaitingForCode={isWaitingForCode}
       pollingStartedAt={task?.verification_code_polling_started_at ?? null}
-      label={`Task "${taskId}"`}
+      label={`任务 "${taskId}"`}
       notificationTag={`2fa-required-${taskId}`}
       navigateUrl={navigateUrl}
       defaultIdentifier={task?.verification_code_identifier ?? null}

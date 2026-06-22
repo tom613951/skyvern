@@ -55,15 +55,15 @@ function SavedTaskCard({ workflowId, title, url, description }: Props) {
     onError: (error) => {
       toast({
         variant: "destructive",
-        title: "There was an error while deleting the template",
+        title: "删除模板时出错",
         description: error.message,
       });
       setOpen(false);
     },
     onSuccess: () => {
       toast({
-        title: "Template deleted",
-        description: "Template deleted successfully",
+        title: "模板已删除",
+        description: "模板删除成功",
       });
       queryClient.invalidateQueries({
         queryKey: ["savedTasks"],
@@ -101,22 +101,22 @@ function SavedTaskCard({ workflowId, title, url, description }: Props) {
                 <DotsHorizontalIcon className="cursor-pointer" />
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-56">
-                <DropdownMenuLabel>Template Actions</DropdownMenuLabel>
+                <DropdownMenuLabel>模板操作</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
                   onSelect={() => {
                     setOpen(true);
                   }}
                 >
-                  Delete Template
+                  删除模板
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>Are you absolutely sure?</DialogTitle>
+                <DialogTitle>您确定吗？</DialogTitle>
                 <DialogDescription>
-                  Are you sure you want to delete this task template?
+                  您确定要删除此任务模板吗？
                 </DialogDescription>
               </DialogHeader>
               <DialogFooter>
@@ -126,7 +126,7 @@ function SavedTaskCard({ workflowId, title, url, description }: Props) {
                     setOpen(false);
                   }}
                 >
-                  Cancel
+                  取消
                 </Button>
                 <Button
                   variant="destructive"
@@ -138,7 +138,7 @@ function SavedTaskCard({ workflowId, title, url, description }: Props) {
                   {deleteTaskMutation.isPending && (
                     <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
                   )}
-                  Delete
+                  删除
                 </Button>
               </DialogFooter>
             </DialogContent>

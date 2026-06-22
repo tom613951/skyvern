@@ -659,25 +659,24 @@ function WorkflowsFlat() {
         <div className="space-y-5">
           <div className="flex items-center gap-2">
             <LightningBoltIcon className="size-6" />
-            <h1 className="text-2xl">Agents</h1>
+            <h1 className="text-2xl">智能体</h1>
           </div>
           <p className="text-sm leading-6 text-muted-foreground">
-            Create your own complex agents by connecting web agents together.
-            Define a series of actions, set it, and forget it.
+            通过将网络智能体连接在一起，创建您自己的复杂智能体。定义一系列操作，一键设定，省心运行。
           </p>
         </div>
         <div className="flex gap-5">
           <NarrativeCard
             index={1}
-            description="Save browser sessions and reuse them in subsequent runs"
+            description="保存浏览器会话并在后续运行中复用它们"
           />
           <NarrativeCard
             index={2}
-            description="Connect multiple agents together to carry out complex objectives"
+            description="连接多个智能体以共同执行复杂的任务目标"
           />
           <NarrativeCard
             index={3}
-            description="Execute non-browser tasks such as sending emails"
+            description="执行非浏览器任务，例如发送电子邮件"
           />
         </div>
       </div>
@@ -686,14 +685,14 @@ function WorkflowsFlat() {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <h2 className="text-lg font-semibold">Folders</h2>
+              <h2 className="text-lg font-semibold">文件夹</h2>
               <Button
                 variant="link"
                 size="sm"
                 className="h-auto p-0 text-blue-600 dark:text-blue-400"
                 onClick={() => setIsCreateFolderOpen(true)}
               >
-                + New folder
+                + 新建文件夹
               </Button>
             </div>
             {allFolders.length > 5 && (
@@ -703,7 +702,7 @@ function WorkflowsFlat() {
                 className="text-blue-600 dark:text-blue-400"
                 onClick={() => setIsViewAllFoldersOpen(true)}
               >
-                View all
+                查看全部
               </Button>
             )}
           </div>
@@ -730,12 +729,10 @@ function WorkflowsFlat() {
               <div className="mx-auto max-w-md">
                 <FolderIcon className="mx-auto mb-3 h-10 w-10 text-blue-400 opacity-50" />
                 <h3 className="mb-2 text-slate-900 dark:text-slate-100">
-                  Organize Your Agents with Folders
+                  使用文件夹整理您的智能体
                 </h3>
                 <p className="mb-4 text-sm text-slate-500 dark:text-slate-400">
-                  Keep your agents organized by creating folders. Group related
-                  agents together by project, team, or agent type for easier
-                  management.
+                  通过创建文件夹使您的智能体保持井然有序。按项目、团队或智能体类型将相关智能体分组，以便于管理。
                 </p>
                 <Button
                   variant="link"
@@ -744,7 +741,7 @@ function WorkflowsFlat() {
                   onClick={() => setIsCreateFolderOpen(true)}
                 >
                   <PlusIcon className="mr-2 h-4 w-4" />
-                  Create Your First Folder
+                  创建您的第一个文件夹
                 </Button>
               </div>
             </div>
@@ -753,7 +750,7 @@ function WorkflowsFlat() {
 
         {/* Agents Section */}
         <header className="flex items-center justify-between">
-          <h1 className="text-xl">My Agents</h1>
+          <h1 className="text-xl">我的智能体</h1>
           {selectedFolderId && (
             <Button
               variant="link"
@@ -761,7 +758,7 @@ function WorkflowsFlat() {
               className="h-auto p-0 text-blue-600 dark:text-blue-400"
               onClick={() => setSelectedFolderId(null)}
             >
-              View all agents
+              查看全部智能体
             </Button>
           )}
         </header>
@@ -773,7 +770,7 @@ function WorkflowsFlat() {
                 setSearch(value);
                 setParamPatch({ page: "1" });
               }}
-              placeholder="Search by title or input..."
+              placeholder="输入标题或内容进行搜索..."
               className="w-48 lg:w-72"
             />
             {taggingEnabled ? (
@@ -791,7 +788,7 @@ function WorkflowsFlat() {
               to="/discover"
               className="text-sm text-muted-foreground hover:text-foreground"
             >
-              Or start from a description →
+              或者从一段描述开始 →
             </Link>
             <ImportWorkflowButton
               onImportStart={startPolling}
@@ -805,7 +802,7 @@ function WorkflowsFlat() {
                   ) : (
                     <PlusIcon className="mr-2 h-4 w-4" />
                   )}
-                  Create
+                  创建
                   <ChevronDownIcon className="ml-2 h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
@@ -820,13 +817,13 @@ function WorkflowsFlat() {
                   }}
                 >
                   <PlusIcon className="mr-2 h-4 w-4" />
-                  Blank Agent
+                  空白智能体
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   onSelect={() => setIsTemplateDialogOpen(true)}
                 >
                   <BookmarkFilledIcon className="mr-2 h-4 w-4" />
-                  From Template
+                  从模板创建
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -850,11 +847,11 @@ function WorkflowsFlat() {
                   ID
                 </TableHead>
                 <TableHead className={showCheckbox ? "w-[27%]" : "w-[30%]"}>
-                  Title
+                  标题
                 </TableHead>
-                <TableHead className="w-[15%]">Folder</TableHead>
-                <TableHead className="w-[15%]">Created At</TableHead>
-                <TableHead className="w-[15%] text-right">Actions</TableHead>
+                <TableHead className="w-[15%]">文件夹</TableHead>
+                <TableHead className="w-[15%]">创建时间</TableHead>
+                <TableHead className="w-[15%] text-right">操作</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -893,7 +890,7 @@ function WorkflowsFlat() {
                 ))
               ) : displayWorkflows?.length === 0 ? (
                 <TableMessageRow colSpan={columnCount}>
-                  No agents found
+                  未找到智能体
                 </TableMessageRow>
               ) : (
                 displayWorkflows?.map((workflow) => {
@@ -1282,14 +1279,10 @@ function WorkflowsFlat() {
           <DialogContent>
             <DialogHeader>
               <DialogTitle>
-                Delete {bulkDeleteDialog.targets.length} Agent
-                {bulkDeleteDialog.targets.length === 1 ? "" : "s"}
+                删除 {bulkDeleteDialog.targets.length} 个智能体
               </DialogTitle>
               <DialogDescription>
-                Are you sure you want to delete{" "}
-                {bulkDeleteDialog.targets.length}{" "}
-                {bulkDeleteDialog.targets.length === 1 ? "agent" : "agents"}?
-                This action cannot be undone.
+                您确定要删除这 {bulkDeleteDialog.targets.length} 个智能体吗？此操作无法撤销。
               </DialogDescription>
             </DialogHeader>
             <DialogFooter>
@@ -1300,7 +1293,7 @@ function WorkflowsFlat() {
                   setBulkDeleteDialog({ open: false, targets: [] })
                 }
               >
-                Cancel
+                取消
               </Button>
               <Button
                 variant="destructive"
@@ -1309,7 +1302,7 @@ function WorkflowsFlat() {
                   void handleBulkDeleteConfirm();
                 }}
               >
-                {isBulkOperating ? "Deleting..." : "Delete"}
+                {isBulkOperating ? "正在删除..." : "删除"}
               </Button>
             </DialogFooter>
           </DialogContent>

@@ -149,11 +149,9 @@ services:
       retries: 24
       start_period: 180s
   skyvern-ui:
-    image: public.ecr.aws/skyvern/skyvern-ui:latest
-    # For local UI development/testing, replace the image line above with:
-    # build:
-    #   context: .
-    #   dockerfile: Dockerfile.ui
+    build:
+      context: .
+      dockerfile: Dockerfile.ui
     restart: on-failure
     ports:
       - 8080:8080

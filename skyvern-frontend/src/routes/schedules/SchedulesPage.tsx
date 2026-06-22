@@ -81,14 +81,14 @@ import { CreateOrgScheduleDialog } from "./CreateOrgScheduleDialog";
 type ScheduleStatus = "active" | "paused";
 
 const STATUS_OPTIONS: Array<{ label: string; value: ScheduleStatus }> = [
-  { label: "Active", value: "active" },
-  { label: "Paused", value: "paused" },
+  { label: "已启用", value: "active" },
+  { label: "已暂停", value: "paused" },
 ];
 
 function StatusDisplay({ enabled }: Readonly<{ enabled: boolean }>) {
   return (
     <Pill tone={enabled ? "success" : "queued"} className="capitalize">
-      {enabled ? "active" : "paused"}
+      {enabled ? "已启用" : "已暂停"}
     </Pill>
   );
 }
@@ -289,7 +289,7 @@ function SchedulesPage() {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl">Schedules</h1>
+        <h1 className="text-2xl">定时计划</h1>
       </div>
 
       {/* Search + Filters + Create */}
@@ -298,13 +298,13 @@ function SchedulesPage() {
           <TableSearchInput
             value={search}
             onChange={setSearch}
-            placeholder="Search by agent or schedule name..."
+            placeholder="搜索智能体或计划名称..."
             className="w-64"
           />
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger asChild>
               <Button variant="outline">
-                Filter by Status
+                按状态筛选
                 <ChevronDownIcon className="ml-2 size-4" />
               </Button>
             </DropdownMenuTrigger>
@@ -340,7 +340,7 @@ function SchedulesPage() {
                     setPage(1);
                   }}
                 >
-                  Clear all
+                  清除筛选
                 </button>
               )}
             </DropdownMenuContent>
@@ -348,7 +348,7 @@ function SchedulesPage() {
         </div>
         <Button onClick={() => setCreateDialogOpen(true)}>
           <PlusIcon className="mr-1.5 size-4" />
-          Create Schedule
+          创建计划
         </Button>
       </div>
 
@@ -365,16 +365,16 @@ function SchedulesPage() {
                     someSelected={someSelected}
                     hasSelection={selected.size > 0}
                     onToggleAll={toggleSelectAll}
-                    ariaLabel="Select all schedules"
+                    ariaLabel="选择所有计划"
                   />
                 )}
                 <TableHead className={showCheckbox ? "w-[28%]" : "w-[31%]"}>
-                  Agent
+                  智能体
                 </TableHead>
-                <TableHead className="w-[20%]">Name</TableHead>
-                <TableHead className="w-[20%]">Schedule</TableHead>
-                <TableHead className="w-[17%]">Next Run</TableHead>
-                <TableHead className="w-[7%]">Status</TableHead>
+                <TableHead className="w-[20%]">计划名称</TableHead>
+                <TableHead className="w-[20%]">定时规则</TableHead>
+                <TableHead className="w-[17%]">下次运行时间</TableHead>
+                <TableHead className="w-[7%]">状态</TableHead>
                 <TableHead className="w-[5%]" />
               </TableRow>
             </TableHeader>
@@ -392,7 +392,7 @@ function SchedulesPage() {
                     colSpan={columnCount}
                     className="py-8 text-center text-sm text-red-400"
                   >
-                    Failed to load schedules.
+                    加载定时计划失败。
                     {error?.message && (
                       <span className="block text-xs text-slate-500">
                         {error.message}
@@ -407,7 +407,7 @@ function SchedulesPage() {
                     colSpan={columnCount}
                     className="py-8 text-center text-sm text-slate-500"
                   >
-                    No schedules found.
+                    未找到定时计划。
                   </TableCell>
                 </TableRow>
               )}
@@ -415,7 +415,7 @@ function SchedulesPage() {
                 <TableRow
                   key={schedule.workflow_schedule_id}
                   tabIndex={0}
-                  aria-label={`Open schedule ${schedule.name ?? schedule.workflow_title}`}
+                  aria-label={`打开计划 ${schedule.name ?? schedule.workflow_title}`}
                   data-state={
                     isSelected(schedule.workflow_schedule_id)
                       ? "selected"
@@ -445,7 +445,7 @@ function SchedulesPage() {
                       checked={isSelected(schedule.workflow_schedule_id)}
                       hasSelection={selected.size > 0}
                       onSelect={handleSelect}
-                      ariaLabel={`Select schedule ${schedule.name ?? schedule.workflow_title}`}
+                      ariaLabel={`选择计划 ${schedule.name ?? schedule.workflow_title}`}
                     />
                   )}
                   <TableCell className="truncate font-medium">
@@ -488,21 +488,21 @@ function SchedulesPage() {
                               onSelect={() => disableMutation.mutate(schedule)}
                             >
                               <PauseIcon className="mr-2 size-4" />
-                              Pause
+                              暂停
                             </DropdownMenuItem>
                           ) : (
                             <DropdownMenuItem
                               onSelect={() => enableMutation.mutate(schedule)}
                             >
                               <PlayIcon className="mr-2 size-4" />
-                              Activate
+                              启用
                             </DropdownMenuItem>
                           )}
                           <DropdownMenuItem
                             onSelect={() => duplicateMutation.mutate(schedule)}
                           >
                             <CopyIcon className="mr-2 size-4" />
-                            Duplicate
+                            复制
                           </DropdownMenuItem>
                           <DropdownMenuItem
                             onSelect={() =>
@@ -511,7 +511,7 @@ function SchedulesPage() {
                             className="text-destructive"
                           >
                             <TrashIcon className="mr-2 size-4" />
-                            Delete
+                            删除
                           </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>
@@ -525,7 +525,7 @@ function SchedulesPage() {
           <div className="grid grid-cols-3 items-center px-4 py-2">
             <div className="flex items-center gap-2">
               <span className="whitespace-nowrap text-sm text-slate-400">
-                Items per page
+                每页条数
               </span>
               <Select value={String(pageSize)} onValueChange={setPageSize}>
                 <SelectTrigger className="w-[65px]">
@@ -599,7 +599,7 @@ function SchedulesPage() {
             disabled={isBulkOperating}
           >
             <PlayIcon className="mr-1.5 size-3.5" />
-            Activate
+            启用
           </Button>
           <Button
             size="sm"
@@ -608,7 +608,7 @@ function SchedulesPage() {
             disabled={isBulkOperating}
           >
             <PauseIcon className="mr-1.5 size-3.5" />
-            Pause
+            暂停
           </Button>
           <Button
             size="sm"
@@ -617,7 +617,7 @@ function SchedulesPage() {
             disabled={isBulkOperating}
           >
             <CopyIcon className="mr-1.5 size-3.5" />
-            Duplicate
+            复制
           </Button>
           <Button
             size="sm"
@@ -627,7 +627,7 @@ function SchedulesPage() {
             disabled={isBulkOperating}
           >
             <TrashIcon className="mr-1.5 size-3.5" />
-            Delete
+            删除
           </Button>
         </SelectionBar>
       )}
@@ -643,11 +643,9 @@ function SchedulesPage() {
       >
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Delete {bulkDeleteDialog.count} Schedules</DialogTitle>
+            <DialogTitle>删除 {bulkDeleteDialog.count} 个定时计划</DialogTitle>
             <DialogDescription>
-              Are you sure you want to delete {bulkDeleteDialog.count}{" "}
-              {bulkDeleteDialog.count === 1 ? "schedule" : "schedules"}? This
-              action cannot be undone.
+              您确定要删除这 {bulkDeleteDialog.count} 个定时计划吗？此操作无法撤销。
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
@@ -656,14 +654,14 @@ function SchedulesPage() {
               disabled={isBulkOperating}
               onClick={() => setBulkDeleteDialog({ open: false, count: 0 })}
             >
-              Cancel
+              取消
             </Button>
             <Button
               variant="destructive"
               disabled={isBulkOperating}
               onClick={handleBulkDeleteConfirm}
             >
-              {isBulkOperating ? "Deleting..." : "Delete"}
+              {isBulkOperating ? "正在删除..." : "删除"}
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -680,10 +678,9 @@ function SchedulesPage() {
       >
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Delete Schedule</DialogTitle>
+            <DialogTitle>删除定时计划</DialogTitle>
             <DialogDescription>
-              Are you sure you want to delete this schedule? This action cannot
-              be undone.
+              您确定要删除该定时计划吗？此操作无法撤销。
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
@@ -692,14 +689,14 @@ function SchedulesPage() {
               disabled={deleteMutation.isPending}
               onClick={() => setDeleteDialog({ open: false, schedule: null })}
             >
-              Cancel
+              取消
             </Button>
             <Button
               variant="destructive"
               disabled={deleteMutation.isPending}
               onClick={handleDeleteConfirm}
             >
-              {deleteMutation.isPending ? "Deleting..." : "Delete"}
+              {deleteMutation.isPending ? "正在删除..." : "删除"}
             </Button>
           </DialogFooter>
         </DialogContent>

@@ -131,12 +131,12 @@ function FolderTreeNode({
                       onClick={() => onCreateAgentInFolder(folder.folder_id)}
                       disabled={isCreatingAgent}
                       className="rounded p-1.5 text-slate-400 transition-colors hover:bg-slate-500/20 hover:text-slate-300 disabled:cursor-not-allowed disabled:opacity-50"
-                      aria-label="New agent in folder"
+                      aria-label="在此文件夹新建智能体"
                     >
                       <PlusIcon className="h-4 w-4" />
                     </button>
                   </TooltipTrigger>
-                  <TooltipContent>New agent here</TooltipContent>
+                  <TooltipContent>在此处新建智能体</TooltipContent>
                 </Tooltip>
               </TooltipProvider>
               <TooltipProvider>
@@ -146,12 +146,12 @@ function FolderTreeNode({
                       type="button"
                       onClick={() => setIsEditDialogOpen(true)}
                       className="rounded p-1.5 text-slate-400 transition-colors hover:bg-slate-500/20 hover:text-slate-300"
-                      aria-label="Edit folder"
+                      aria-label="编辑文件夹"
                     >
                       <Pencil1Icon className="h-4 w-4" />
                     </button>
                   </TooltipTrigger>
-                  <TooltipContent>Edit folder</TooltipContent>
+                  <TooltipContent>编辑文件夹</TooltipContent>
                 </Tooltip>
               </TooltipProvider>
               <DeleteFolderButton
@@ -178,7 +178,7 @@ function FolderTreeNode({
           {showCheckbox && <TableCell />}
           <TableCell colSpan={contentColSpan}>
             <span className="ml-12 text-sm text-muted-foreground">
-              This folder is empty
+              此文件夹为空
             </span>
           </TableCell>
         </TableRow>

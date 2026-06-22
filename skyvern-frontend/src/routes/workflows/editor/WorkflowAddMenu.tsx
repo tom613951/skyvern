@@ -44,7 +44,7 @@ function WorkflowAddMenu({
       {
         id: "1",
         icon: <PlusIcon className={buttonSize ? "h-3 w-3" : undefined} />,
-        text: "Add Block",
+        text: "添加步骤",
         onClick: () => {
           onAdd();
         },
@@ -59,7 +59,7 @@ function WorkflowAddMenu({
         id: "2",
         icon: <SquareIcon className={buttonSize ? "h-3 w-3" : undefined} />,
         enabled: settingsStore.isUsingABrowser && !recordingStore.isRecording,
-        text: "Record Browser",
+        text: "录制浏览器",
         onClick: () => {
           onRecord();
         },
@@ -70,7 +70,7 @@ function WorkflowAddMenu({
     menuItems.push({
       id: "3",
       icon: <UploadIcon className={buttonSize ? "h-3 w-3" : undefined} />,
-      text: "Upload SOP",
+      text: "上传 SOP",
       enabled: !isUploadingSOP,
       onClick: () => {
         onUploadSOP();

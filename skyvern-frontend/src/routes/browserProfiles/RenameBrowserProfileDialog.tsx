@@ -54,15 +54,15 @@ function RenameBrowserProfileDialog({ profile, open, onOpenChange }: Props) {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent onCloseAutoFocus={(e) => e.preventDefault()}>
         <DialogHeader>
-          <DialogTitle>Rename browser profile</DialogTitle>
+          <DialogTitle>重命名浏览器配置文件</DialogTitle>
           <DialogDescription>
-            Give this browser profile a new name.
+            为此浏览器配置文件输入一个新名称。
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit}>
           <div className="grid gap-4 py-4">
             <div className="grid gap-2">
-              <Label htmlFor="browser-profile-name">Name</Label>
+              <Label htmlFor="browser-profile-name">名称</Label>
               <Input
                 id="browser-profile-name"
                 value={name}
@@ -77,13 +77,13 @@ function RenameBrowserProfileDialog({ profile, open, onOpenChange }: Props) {
               variant="secondary"
               onClick={() => onOpenChange(false)}
             >
-              Cancel
+              取消
             </Button>
             <Button type="submit" disabled={!canSubmit}>
               {updateProfileMutation.isPending && (
                 <ReloadIcon className="mr-2 size-4 animate-spin" />
               )}
-              Save
+              保存
             </Button>
           </DialogFooter>
         </form>

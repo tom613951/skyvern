@@ -11,7 +11,7 @@ type Props = {
 
 function CreateBrowserProfileButton({
   size = "default",
-  label = "Create a Browser Profile",
+  label = "创建浏览器配置文件",
 }: Props) {
   const createBrowserSessionMutation = useCreateBrowserSessionMutation();
   const isBackgroundCreateInProgress = useBrowserProfileCreateStore(
@@ -27,7 +27,7 @@ function CreateBrowserProfileButton({
       disabled={disabled}
       title={
         isBackgroundCreateInProgress
-          ? "A browser profile is already being created"
+          ? "已有一个浏览器配置文件正在被创建"
           : undefined
       }
       onClick={() => {

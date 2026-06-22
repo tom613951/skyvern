@@ -142,7 +142,7 @@ function WorkflowRow({ workflow, depth = 0 }: WorkflowRowProps) {
             checked={isRowSelected}
             hasSelection={selectedCount > 0}
             onSelect={handleSelect}
-            ariaLabel={`Select ${workflow.title}`}
+            ariaLabel={`选择 ${workflow.title}`}
           />
         )}
         <TableCell
@@ -240,7 +240,7 @@ function WorkflowRow({ workflow, depth = 0 }: WorkflowRowProps) {
                         />
                       </div>
                     </TooltipTrigger>
-                    <TooltipContent>Assign to Folder</TooltipContent>
+                    <TooltipContent>分配到文件夹</TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
                 <WorkflowTagEditor
@@ -269,7 +269,7 @@ function WorkflowRow({ workflow, depth = 0 }: WorkflowRowProps) {
                     <Pencil2Icon className="h-4 w-4" />
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent>Open in Editor</TooltipContent>
+                <TooltipContent>在编辑器中打开</TooltipContent>
               </Tooltip>
             </TooltipProvider>
             <TooltipProvider>
@@ -289,7 +289,7 @@ function WorkflowRow({ workflow, depth = 0 }: WorkflowRowProps) {
                     <PlayIcon className="h-4 w-4" />
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent>Create New Run</TooltipContent>
+                <TooltipContent>创建新运行</TooltipContent>
               </Tooltip>
             </TooltipProvider>
             {selectedCount === 0 && (

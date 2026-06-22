@@ -161,7 +161,7 @@ function ScrollableActionList({
                         />
                       </TooltipTrigger>
                       <TooltipContent className="max-w-[250px]">
-                        Code Execution
+                        代码执行
                       </TooltipContent>
                     </Tooltip>
                   </TooltipProvider>
@@ -184,7 +184,7 @@ function ScrollableActionList({
               <>
                 <Separator />
                 <div className="text-xs text-slate-400">
-                  Input: {action.input}
+                  输入: {action.input}
                 </div>
               </>
             )}
@@ -199,10 +199,10 @@ function ScrollableActionList({
     <div className="h-[40rem] w-1/3 rounded border bg-slate-elevation1">
       <div className="flex items-center gap-2 p-4">
         <div className="flex h-8 flex-1 items-center justify-center rounded-sm bg-slate-700 px-3 text-xs text-gray-50">
-          Actions: {taskDetails.actions}
+          操作数: {taskDetails.actions}
         </div>
         <div className="flex h-8 flex-1 items-center justify-center rounded-sm bg-slate-700 px-3 text-xs text-gray-50">
-          Steps: {taskDetails.steps}
+          步数: {taskDetails.steps}
         </div>
         {isViewingV2 && <RunViewingModeToggle />}
       </div>
@@ -234,7 +234,7 @@ function ScrollableActionList({
                     )}
                   />
                   <span className={cn(useCompact && "text-xs text-slate-200")}>
-                    Live
+                    实时流
                   </span>
                 </div>
               </div>

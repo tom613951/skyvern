@@ -31,7 +31,7 @@ function DiscoverPage() {
             {createWorkflowMutation.isPending && (
               <ReloadIcon className="mr-2 h-3 w-3 animate-spin" />
             )}
-            Skip — start with blank canvas →
+            跳过 — 从空白画布开始 →
           </Button>
         </div>
       </div>

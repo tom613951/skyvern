@@ -2,21 +2,22 @@ import cronstrue from "cronstrue";
 import { CronExpressionParser } from "cron-parser";
 
 export const CRON_PRESETS = [
-  { label: "Hourly", expression: "0 * * * *" },
-  { label: "Daily", expression: "0 9 * * *" },
-  { label: "Weekdays", expression: "0 9 * * 1-5" },
-  { label: "Weekly", expression: "0 9 * * 1" },
-  { label: "Monthly", expression: "0 9 1 * *" },
+  { label: "每小时", expression: "0 * * * *" },
+  { label: "每天", expression: "0 9 * * *" },
+  { label: "工作日", expression: "0 9 * * 1-5" },
+  { label: "每周", expression: "0 9 * * 1" },
+  { label: "每月", expression: "0 9 1 * *" },
 ] as const;
 
 export function cronToHumanReadable(expression: string): string {
   try {
     return cronstrue.toString(expression, {
-      use24HourTimeFormat: false,
+      use24HourTimeFormat: true,
       verbose: false,
+      locale: "zh_CN",
     });
   } catch {
-    return "Invalid expression";
+    return "无效的 Cron 表达式";
   }
 }
 
@@ -50,7 +51,7 @@ export function getNextRuns(
 }
 
 export function formatNextRun(date: Date, timezone: string): string {
-  return new Intl.DateTimeFormat("en-US", {
+  return new Intl.DateTimeFormat("zh-CN", {
     weekday: "short",
     month: "short",
     day: "numeric",
@@ -58,7 +59,7 @@ export function formatNextRun(date: Date, timezone: string): string {
     hour: "numeric",
     minute: "2-digit",
     second: "2-digit",
-    hour12: true,
+    hour12: false,
     timeZone: timezone,
   }).format(date);
 }

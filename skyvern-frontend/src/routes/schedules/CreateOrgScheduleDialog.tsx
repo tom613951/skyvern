@@ -190,16 +190,16 @@ function CreateOrgScheduleDialog({ open, onOpenChange }: Readonly<Props>) {
     >
       <DialogContent className="max-h-[85vh] overflow-y-auto sm:max-w-lg">
         <DialogHeader>
-          <DialogTitle>Create Schedule</DialogTitle>
+          <DialogTitle>创建定时计划</DialogTitle>
           <DialogDescription>
-            Choose an agent and configure when it should run automatically.
+            选择一个智能体，并配置自动运行的时间规则。
           </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-6 py-4">
           {/* Agent Picker */}
           <div className="space-y-2">
-            <Label>Agent</Label>
+            <Label>智能体</Label>
             {selectedWorkflow ? (
               <div className="flex items-center justify-between rounded-md border border-slate-700 bg-slate-elevation3 px-3 py-2">
                 <span className="text-sm">{selectedWorkflow.title}</span>
@@ -209,7 +209,7 @@ function CreateOrgScheduleDialog({ open, onOpenChange }: Readonly<Props>) {
                   className="h-6 px-2 text-xs"
                   onClick={() => setSelectedWorkflow(null)}
                 >
-                  Change
+                  更改
                 </Button>
               </div>
             ) : (
@@ -218,7 +218,7 @@ function CreateOrgScheduleDialog({ open, onOpenChange }: Readonly<Props>) {
                   value={workflowSearch}
                   onChange={(e) => setWorkflowSearch(e.target.value)}
                   onFocus={() => setWorkflowPickerOpen(true)}
-                  placeholder="Search agents..."
+                  placeholder="搜索智能体..."
                 />
                 {workflowPickerOpen && (
                   <div className="max-h-40 overflow-y-auto rounded-md border border-slate-700 bg-slate-elevation3">
@@ -237,7 +237,7 @@ function CreateOrgScheduleDialog({ open, onOpenChange }: Readonly<Props>) {
                     ))}
                     {workflows.length === 0 && (
                       <div className="px-3 py-2 text-sm text-slate-500">
-                        No agents found
+                        未找到智能体
                       </div>
                     )}
                   </div>
@@ -248,17 +248,17 @@ function CreateOrgScheduleDialog({ open, onOpenChange }: Readonly<Props>) {
 
           {/* Schedule Name & Description */}
           <div className="space-y-2">
-            <Label>Name (optional)</Label>
+            <Label>计划名称（可选）</Label>
             <Input
-              placeholder="Auto-generated if empty"
+              placeholder="留空则自动生成"
               value={scheduleName}
               onChange={(e) => setScheduleName(e.target.value)}
             />
           </div>
           <div className="space-y-2">
-            <Label>Description (optional)</Label>
+            <Label>描述说明（可选）</Label>
             <Input
-              placeholder="Add a description..."
+              placeholder="添加计划描述..."
               value={scheduleDescription}
               onChange={(e) => setScheduleDescription(e.target.value)}
             />
@@ -274,7 +274,7 @@ function CreateOrgScheduleDialog({ open, onOpenChange }: Readonly<Props>) {
 
           {/* Cron Presets */}
           <div className="space-y-2">
-            <Label>Quick Presets</Label>
+            <Label>快捷预设</Label>
             <div className="flex flex-wrap gap-2">
               {CRON_PRESETS.map((preset) => (
                 <Button
@@ -295,7 +295,7 @@ function CreateOrgScheduleDialog({ open, onOpenChange }: Readonly<Props>) {
 
           {/* Custom Cron Input */}
           <div className="space-y-2">
-            <Label>Cron Expression</Label>
+            <Label>Cron 表达式</Label>
             <Input
               value={cronExpression}
               onChange={(e) => setCronExpression(e.target.value)}
@@ -307,14 +307,14 @@ function CreateOrgScheduleDialog({ open, onOpenChange }: Readonly<Props>) {
             )}
             {!valid && cronExpression && (
               <p className="text-sm text-destructive">
-                Invalid cron expression
+                无效的 Cron 表达式
               </p>
             )}
           </div>
 
           {/* Timezone Selector */}
           <div className="space-y-2">
-            <Label>Timezone</Label>
+            <Label>时区</Label>
             <Input
               value={timezoneFilter ?? timezone}
               onChange={(e) => setTimezoneFilter(e.target.value)}
@@ -328,7 +328,7 @@ function CreateOrgScheduleDialog({ open, onOpenChange }: Readonly<Props>) {
                 }
                 setTimezoneFilter(null);
               }}
-              placeholder="Search timezones..."
+              placeholder="搜索时区..."
             />
             {timezoneFilter !== null && (
               <div className="max-h-40 overflow-y-auto rounded-md border border-slate-700 bg-slate-elevation3">
@@ -351,18 +351,18 @@ function CreateOrgScheduleDialog({ open, onOpenChange }: Readonly<Props>) {
                 ))}
                 {filteredTimezones.length === 0 && (
                   <div className="px-3 py-2 text-sm text-slate-500">
-                    No timezones found
+                    未找到时区
                   </div>
                 )}
               </div>
             )}
-            <p className="text-xs text-slate-500">Current: {timezone}</p>
+            <p className="text-xs text-slate-500">当前时区: {timezone}</p>
           </div>
 
           {/* Next Runs Preview */}
           {nextRuns.length > 0 && (
             <div className="space-y-2">
-              <Label>Next Scheduled Runs</Label>
+              <Label>预测的下几次运行时间</Label>
               <div className="space-y-1 rounded-md border border-slate-700 bg-slate-elevation3 p-3">
                 {nextRuns.map((run) => (
                   <div
@@ -379,7 +379,7 @@ function CreateOrgScheduleDialog({ open, onOpenChange }: Readonly<Props>) {
 
         <DialogFooter>
           <Button variant="secondary" onClick={() => onOpenChange(false)}>
-            Cancel
+            取消
           </Button>
           <Button
             disabled={
@@ -387,7 +387,7 @@ function CreateOrgScheduleDialog({ open, onOpenChange }: Readonly<Props>) {
             }
             onClick={handleSubmit}
           >
-            {createMutation.isPending ? "Creating..." : "Create Schedule"}
+            {createMutation.isPending ? "正在创建..." : "创建计划"}
           </Button>
         </DialogFooter>
       </DialogContent>

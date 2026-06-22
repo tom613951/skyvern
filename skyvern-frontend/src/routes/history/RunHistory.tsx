@@ -229,7 +229,7 @@ function RunHistory() {
 
     // No runs found
     if (runs?.length === 0) {
-      return <TableMessageRow colSpan={6}>No runs found</TableMessageRow>;
+      return <TableMessageRow colSpan={6}>未找到运行记录</TableMessageRow>;
     }
 
     return runs?.map((run, index) => {
@@ -247,12 +247,12 @@ function RunHistory() {
           <div className="flex items-center gap-2">
             {triggerType && <TriggerTypeBadge triggerType={triggerType} />}
             {run.script_run && (
-              <Tip content="Ran with code">
+              <Tip content="以代码方式运行">
                 <LightningBoltIcon className="text-[gold]" />
               </Tip>
             )}
             {run.workflow_deleted && (
-              <Tip content="Source agent deleted">
+              <Tip content="源智能体已被删除">
                 <ExclamationTriangleIcon className="text-amber-400" />
               </Tip>
             )}
@@ -327,7 +327,7 @@ function RunHistory() {
                         </Button>
                       </TooltipTrigger>
                       <TooltipContent>
-                        {isExpanded ? "Hide Inputs" : "Show Inputs"}
+                        {isExpanded ? "隐藏输入" : "显示输入"}
                       </TooltipContent>
                     </Tooltip>
                   </TooltipProvider>
@@ -378,21 +378,21 @@ function RunHistory() {
   return (
     <div className="space-y-4">
       <header>
-        <h1 className="text-2xl">Run History</h1>
+        <h1 className="text-2xl">运行历史</h1>
       </header>
       {showOnboardingEmpty ? (
         <div className="rounded-lg border">
           <OnboardingEmptyState
             surface="runs"
             icon={<RocketIcon className="h-6 w-6" />}
-            title="Your run history will appear here"
-            description="Every time you run a workflow, the result shows up on this page. Create your first workflow to get started."
+            title="你的运行记录将在此显示"
+            description="每次你运行工作流时，其结果都会显示在此页面上。创建一个工作流开始吧。"
             primaryAction={{
-              label: "Create your first workflow",
+              label: "创建你的第一个工作流",
               onClick: () => navigate("/workflows"),
             }}
             secondaryAction={{
-              label: "Browse templates",
+              label: "浏览预设模板",
               onClick: () => navigate("/workflows"),
             }}
           />
@@ -405,7 +405,7 @@ function RunHistory() {
               data-testid="workflow-filter-banner"
             >
               <span className="truncate">
-                Filtering runs for workflow{" "}
+                正在筛选工作流的运行记录：{" "}
                 <span className="font-mono">{workflowPermanentIdFilter}</span>
               </span>
               <Button
@@ -414,7 +414,7 @@ function RunHistory() {
                 onClick={clearWorkflowFilter}
                 className="h-auto py-1 text-xs"
               >
-                Clear
+                清除
               </Button>
             </div>
           ) : null}
@@ -429,8 +429,8 @@ function RunHistory() {
               }}
               placeholder={
                 workflowPermanentIdFilter
-                  ? "Clear the agent filter above to search"
-                  : "Search by run ID or input..."
+                  ? "清除上方的智能体筛选条件以进行搜索"
+                  : "搜索运行 ID 或输入参数..."
               }
               disabled={!!workflowPermanentIdFilter}
               className="w-48 lg:w-72"
@@ -453,11 +453,11 @@ function RunHistory() {
             <Table className="sm:table-fixed">
               <TableHeader>
                 <TableRow>
-                  <TableHead className="w-[20%]">Run ID</TableHead>
-                  <TableHead className="w-[20%]">Detail</TableHead>
-                  <TableHead className="w-[16%]">Status</TableHead>
-                  <TableHead className="w-[27%]">Created At</TableHead>
-                  <TableHead className="w-[8%]">Duration</TableHead>
+                  <TableHead className="w-[20%]">运行 ID</TableHead>
+                  <TableHead className="w-[20%]">详情</TableHead>
+                  <TableHead className="w-[16%]">状态</TableHead>
+                  <TableHead className="w-[27%]">创建时间</TableHead>
+                  <TableHead className="w-[8%]">耗时</TableHead>
                   <TableHead className="w-[8%]"></TableHead>
                 </TableRow>
               </TableHeader>
@@ -466,7 +466,7 @@ function RunHistory() {
             <div className="relative px-3 py-3">
               <div className="absolute left-3 top-1/2 flex -translate-y-1/2 items-center gap-2 text-sm">
                 <span className="text-neutral-600 dark:text-slate-400">
-                  Items per page
+                  每页条数
                 </span>
                 <Select
                   value={String(itemsPerPage)}
@@ -580,7 +580,7 @@ function WorkflowRunParametersInline({
   if (!hasParameters && !hasExtraHeaders) {
     return (
       <div className="ml-8 py-4 text-sm text-neutral-600 dark:text-slate-400">
-        No inputs for this run
+        本次运行无输入参数
       </div>
     );
   }
@@ -606,7 +606,7 @@ function WorkflowRunParametersInline({
     <div className="space-y-4">
       {hasParameters && (
         <ParameterDisplayInline
-          title="Run Inputs"
+          title="运行输入"
           parameters={parameterItems}
           searchQuery={searchQuery}
           keywordMatchesParameter={keywordMatchesParameter}
@@ -615,7 +615,7 @@ function WorkflowRunParametersInline({
       )}
       {hasExtraHeaders && (
         <ParameterDisplayInline
-          title="Extra HTTP Headers"
+          title="额外 HTTP 请求头"
           parameters={headerItems}
           searchQuery={searchQuery}
           keywordMatchesParameter={keywordMatchesParameter}

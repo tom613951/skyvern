@@ -107,7 +107,7 @@ function WorkflowActions({
     onError: (error: AxiosError) => {
       toast({
         variant: "destructive",
-        title: "Failed to delete agent",
+        title: "删除智能体失败",
         description: error.message,
       });
     },
@@ -139,15 +139,15 @@ function WorkflowActions({
       });
       toast({
         title: variables.isTemplate
-          ? "Saved as template"
-          : "Removed from templates",
+          ? "已存为模板"
+          : "已从模板移除",
         variant: "success",
       });
     },
     onError: (error: AxiosError) => {
       toast({
         variant: "destructive",
-        title: "Failed to update template status",
+        title: "更新模板状态失败",
         description: error.message,
       });
     },
@@ -176,9 +176,9 @@ function WorkflowActions({
                 <MixerHorizontalIcon className="mr-2 h-4 w-4" />
                 {hasParameters
                   ? parametersExpanded
-                    ? "Hide parameters"
-                    : "Show parameters"
-                  : "No parameters"}
+                    ? "隐藏参数"
+                    : "显示参数"
+                  : "无参数"}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
             </>
@@ -190,14 +190,14 @@ function WorkflowActions({
               }
               const clonedWorkflow = convert({
                 ...workflow,
-                title: `Copy of ${workflow.title}`,
+                title: `${workflow.title} 的副本`,
               });
               createWorkflowMutation.mutate(clonedWorkflow);
             }}
             className="p-2"
           >
             <CopyIcon className="mr-2 h-4 w-4" />
-            Clone Agent
+            克隆智能体
           </DropdownMenuItem>
           <DropdownMenuItem
             onSelect={() => {
@@ -215,14 +215,14 @@ function WorkflowActions({
               <BookmarkIcon className="mr-2 h-4 w-4" />
             )}
             {workflow.is_template
-              ? "Remove from Templates"
-              : "Save as Template"}
+              ? "从模板移除"
+              : "存为模板"}
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuSub>
             <DropdownMenuSubTrigger>
               <DownloadIcon className="mr-2 h-4 w-4" />
-              Export as...
+              导出为...
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
@@ -246,23 +246,23 @@ function WorkflowActions({
           <DialogTrigger>
             <DropdownMenuItem className="p-2">
               <GarbageIcon className="mr-2 h-4 w-4 text-destructive" />
-              Delete Agent
+              删除智能体
             </DropdownMenuItem>
           </DialogTrigger>
         </DropdownMenuContent>
       </DropdownMenu>
       <DialogContent onCloseAutoFocus={(e) => e.preventDefault()}>
         <DialogHeader>
-          <DialogTitle>Are you sure?</DialogTitle>
+          <DialogTitle>您确定吗？</DialogTitle>
           <DialogDescription>
-            The agent{" "}
+            智能体{" "}
             <span className="font-semibold text-primary">{workflow.title}</span>{" "}
-            will be deleted.
+            将被删除。
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
           <DialogClose asChild>
-            <Button variant="secondary">Cancel</Button>
+            <Button variant="secondary">取消</Button>
           </DialogClose>
           <Button
             variant="destructive"
@@ -274,7 +274,7 @@ function WorkflowActions({
             {deleteWorkflowMutation.isPending && (
               <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
             )}
-            Delete
+            删除
           </Button>
         </DialogFooter>
       </DialogContent>

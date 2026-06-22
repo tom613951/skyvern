@@ -43,9 +43,9 @@ function useUpdateBrowserProfileMutation() {
         queryKey: ["browserProfile", variables.profileId],
       });
       toast({
-        title: "Browser profile updated",
+        title: "浏览器配置文件已更新",
         variant: "success",
-        description: "The browser profile has been updated.",
+        description: "浏览器配置文件更新成功。",
       });
     },
     onError: (error: AxiosError) => {
@@ -54,7 +54,7 @@ function useUpdateBrowserProfileMutation() {
         error.message;
       toast({
         variant: "destructive",
-        title: "Failed to update browser profile",
+        title: "更新浏览器配置文件失败",
         description: detail,
       });
     },
@@ -76,9 +76,9 @@ function useDeleteBrowserProfileMutation() {
         queryKey: ["browserProfile", profileId],
       });
       toast({
-        title: "Browser profile deleted",
+        title: "浏览器配置文件已删除",
         variant: "success",
-        description: "The browser profile has been deleted.",
+        description: "浏览器配置文件删除成功。",
       });
     },
     onError: (error: AxiosError) => {
@@ -87,7 +87,7 @@ function useDeleteBrowserProfileMutation() {
         error.message;
       toast({
         variant: "destructive",
-        title: "Failed to delete browser profile",
+        title: "删除浏览器配置文件失败",
         description: detail,
       });
     },

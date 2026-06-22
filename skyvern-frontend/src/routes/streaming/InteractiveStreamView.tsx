@@ -59,7 +59,7 @@ function InteractiveStreamView({
         {showControlButtons && !userIsControlling && inputReady && (
           <div className="absolute inset-0 z-10 flex items-center justify-center">
             <Button onClick={() => setUserIsControlling(true)}>
-              take control
+              接管控制
             </Button>
           </div>
         )}
@@ -68,7 +68,7 @@ function InteractiveStreamView({
             className="absolute bottom-2 left-1/2 z-10 -translate-x-1/2"
             onClick={() => setUserIsControlling(false)}
           >
-            stop controlling
+            停止接管
           </Button>
         )}
         <img

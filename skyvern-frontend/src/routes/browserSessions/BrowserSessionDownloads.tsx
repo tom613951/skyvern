@@ -75,7 +75,7 @@ function BrowserSessionDownloads() {
   if (isLoading) {
     return (
       <div className="flex h-full w-full items-center justify-center">
-        <div className="text-lg">Loading downloads...</div>
+        <div className="text-lg">正在加载下载文件...</div>
       </div>
     );
   }
@@ -84,7 +84,7 @@ function BrowserSessionDownloads() {
     return (
       <div className="flex h-full w-full items-center justify-center">
         <div className="text-lg text-red-500">
-          Error loading downloads: {error.message}
+          加载下载文件出错: {error.message}
         </div>
       </div>
     );
@@ -94,9 +94,9 @@ function BrowserSessionDownloads() {
     return (
       <div className="flex h-full w-full items-center justify-center">
         <div className="text-center">
-          <div className="mb-2 text-lg text-gray-500">No downloaded files</div>
+          <div className="mb-2 text-lg text-gray-500">暂无下载文件</div>
           <div className="text-sm text-gray-400">
-            Files downloaded during this browser session will appear here
+            在此浏览器会话期间下载的文件将在此显示
           </div>
         </div>
       </div>
@@ -106,9 +106,9 @@ function BrowserSessionDownloads() {
   return (
     <div className="h-full w-full overflow-auto p-4">
       <div className="mb-4">
-        <h2 className="text-xl font-semibold">Downloaded Files</h2>
+        <h2 className="text-xl font-semibold">已下载文件</h2>
         <p className="text-sm text-gray-500">
-          Files downloaded during this browser session
+          在该浏览器会话期间下载的文件
         </p>
       </div>
 
@@ -116,7 +116,7 @@ function BrowserSessionDownloads() {
         {downloadedFiles.map((file, index) => {
           const urlPath = file.url.split("?")[0] ?? file.url;
           const filename =
-            file.filename || urlPath.split("/").pop() || `File ${index + 1}`;
+            file.filename || urlPath.split("/").pop() || `文件 ${index + 1}`;
           const previewable = file.url && isPreviewable(filename);
 
           return (
@@ -143,28 +143,28 @@ function BrowserSessionDownloads() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex flex-1 items-center justify-center gap-1 rounded border px-2 py-1 text-xs hover:bg-muted"
-                      title={`Preview ${filename}`}
+                      title={`预览 ${filename}`}
                     >
                       <EyeOpenIcon className="size-3" />
-                      Preview
+                      预览
                     </a>
                   ) : (
                     <button
                       disabled
                       className="flex flex-1 cursor-not-allowed items-center justify-center gap-1 rounded border px-2 py-1 text-xs opacity-40"
-                      title="Preview not available for this file type"
+                      title="此文件类型不支持预览"
                     >
                       <EyeOpenIcon className="size-3" />
-                      Preview
+                      预览
                     </button>
                   )}
                   <button
                     onClick={() => downloadFile(file.url, filename)}
                     className="flex flex-1 items-center justify-center gap-1 rounded border px-2 py-1 text-xs hover:bg-muted"
-                    title={`Download ${filename}`}
+                    title={`下载 ${filename}`}
                   >
                     <DownloadIcon className="size-3" />
-                    Download
+                    下载
                   </button>
                 </div>
               )}

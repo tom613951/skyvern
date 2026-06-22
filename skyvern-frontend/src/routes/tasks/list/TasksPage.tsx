@@ -20,7 +20,7 @@ function TasksPage() {
           )}
           onClick={() => setView("history")}
         >
-          Run History
+          运行历史
         </div>
         <div
           className={cn(
@@ -31,7 +31,7 @@ function TasksPage() {
           )}
           onClick={() => setView("myTasks")}
         >
-          My Tasks
+          我的任务
         </div>
       </div>
       {view === "history" && <TaskHistory />}

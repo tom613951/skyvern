@@ -945,9 +945,9 @@ function Workspace({
       });
 
       toast({
-        title: "Browser cycled",
+        title: "浏览器已重启",
         variant: "success",
-        description: "Your browser has been cycled.",
+        description: "您的浏览器会话已成功重置。",
       });
 
       afterCycleBrowser();
@@ -957,7 +957,7 @@ function Workspace({
 
       toast({
         variant: "destructive",
-        title: "Failed to cycle browser",
+        title: "重启浏览器失败",
         description: error.message,
       });
 
@@ -987,7 +987,7 @@ function Workspace({
     onError: (error: AxiosError) => {
       toast({
         variant: "destructive",
-        title: "Failed to delete code key value",
+        title: "删除缓存键值失败",
         description: error.message,
       });
     },
@@ -2238,8 +2238,8 @@ function Workspace({
                 );
               } catch (error) {
                 toast({
-                  title: "Error",
-                  description: "Invalid JSON format in extra http headers",
+                  title: "错误",
+                  description: "额外 HTTP 请求头中的 JSON 格式无效",
                   variant: "destructive",
                 });
                 return;
@@ -2254,8 +2254,8 @@ function Workspace({
                 );
               } catch (error) {
                 toast({
-                  title: "Error",
-                  description: "Invalid JSON format in cdp connect headers",
+                  title: "错误",
+                  description: "CDP 连接头中的 JSON 格式无效",
                   variant: "destructive",
                 });
                 return;
@@ -2321,9 +2321,9 @@ function Workspace({
                     pendingWorkflow,
                   );
                   toast({
-                    title: "Update failed",
+                    title: "更新失败",
                     description:
-                      "Failed to apply agent update. Please try again.",
+                      "应用智能体更新失败。请重试。",
                     variant: "destructive",
                   });
                 }
@@ -2363,9 +2363,9 @@ function Workspace({
           } catch (error) {
             console.error("Failed to prepare agent comparison", error);
             toast({
-              title: "Comparison failed",
+              title: "比对失败",
               description:
-                "Failed to prepare agent for comparison. Please try again.",
+                "无法准备智能体比对。请重试。",
               variant: "destructive",
             });
           }
@@ -2380,8 +2380,8 @@ function Workspace({
               workflowData,
             );
             toast({
-              title: "Update failed",
-              description: "Failed to apply agent update. Please try again.",
+              title: "更新失败",
+              description: "应用智能体更新失败。请重试。",
               variant: "destructive",
             });
           }
@@ -2399,8 +2399,8 @@ function Workspace({
             });
           }
         }}
-        title="Delete Block"
-        description={`Are you sure you want to delete "${deleteBlockDialogState.nodeLabel}"?`}
+        title="删除步骤"
+        description={`确定要删除 "${deleteBlockDialogState.nodeLabel}" 吗？`}
         affectedBlocks={affectedBlocksForDelete}
         onConfirm={() => {
           if (deleteConfirmCallbackRef.current) {

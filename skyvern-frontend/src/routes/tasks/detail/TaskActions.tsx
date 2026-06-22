@@ -42,8 +42,8 @@ type StreamMessage = {
 };
 
 const STARTING_DIAGNOSTIC: StreamDiagnostic = {
-  title: "Waking up the browser stream",
-  detail: "Opening the stream and waiting for the first frame...",
+  title: "正在唤醒浏览器流",
+  detail: "正在打开流并等待第一帧...",
   pending: true,
 };
 
@@ -51,26 +51,26 @@ function diagnosticForStatus(status: string): StreamDiagnostic {
   switch (status) {
     case "not_found":
       return {
-        title: "We've misplaced this task",
-        detail: "The backend can't find it for your org.",
+        title: "找不到此任务",
+        detail: "后端无法为您所在的组织找到该任务。",
       };
     case "timeout":
       return {
-        title: "The browser's gone strangely quiet",
-        detail: "The task started, but no active page showed up to stream.",
-        hint: "Check backend logs for browser launch errors or a streaming-mode mismatch.",
+        title: "浏览器无响应",
+        detail: "任务已启动，但没有活动页面显示以进行流传输。",
+        hint: "请检查后端日志以获取浏览器启动错误或流模式不匹配的信息。",
       };
     case "completed":
     case "failed":
     case "terminated":
       return {
-        title: "This task has wrapped up",
-        detail: `It's no longer live — status: ${status}.`,
+        title: "此任务已结束",
+        detail: `流已结束 — 状态: ${status}。`,
       };
     default:
       return {
-        title: "Waiting for browser frames",
-        detail: `The stream is connected and the task status is ${status}.`,
+        title: "正在等待浏览器画面",
+        detail: `流已连接，任务状态为 ${status}。`,
         pending: true,
       };
   }
@@ -79,14 +79,14 @@ function diagnosticForStatus(status: string): StreamDiagnostic {
 function diagnosticForClose(event: CloseEvent): StreamDiagnostic {
   if (event.code === 1006) {
     return {
-      title: "The connection slipped away",
-      detail: "The browser stream WebSocket closed before sending a frame.",
-      hint: "Check that the API server is running and reachable from the UI.",
+      title: "连接已断开",
+      detail: "浏览器流 WebSocket 在发送首帧前已关闭。",
+      hint: "请检查 API 服务是否正在运行且可从 UI 访问。",
     };
   }
   return {
-    title: "The stream packed up and left",
-    detail: `WebSocket closed with code ${event.code}${event.reason ? ` (${event.reason})` : ""}.`,
+    title: "流传输已结束",
+    detail: `WebSocket 已关闭，代码: ${event.code}${event.reason ? ` (${event.reason})` : ""}。`,
   };
 }
 
@@ -159,8 +159,8 @@ function TaskActions() {
 
       socketRef.current.addEventListener("open", () => {
         setStreamDiagnostic({
-          title: "Hooked up to the stream",
-          detail: "Just waiting for the backend to hand us a browser.",
+          title: "已连接到流",
+          detail: "正在等待后端分配浏览器实例。",
           pending: true,
         });
       });
@@ -192,14 +192,14 @@ function TaskActions() {
               message.status === "terminated"
             ) {
               toast({
-                title: "Task Failed",
-                description: "The task has failed.",
+                title: "任务失败",
+                description: "该任务已运行失败。",
                 variant: "destructive",
               });
             } else if (message.status === "completed") {
               toast({
-                title: "Task Completed",
-                description: "The task has been completed.",
+                title: "任务已完成",
+                description: "该任务已成功运行完成。",
                 variant: "success",
               });
             }
@@ -207,16 +207,16 @@ function TaskActions() {
         } catch (e) {
           console.error("Failed to parse message", e);
           setStreamDiagnostic({
-            title: "The stream said something funny",
-            detail: "The browser sent a message the UI couldn't parse.",
+            title: "数据解析异常",
+            detail: "浏览器发送了 UI 无法解析的报文消息。",
           });
         }
       });
 
       socketRef.current.addEventListener("error", () => {
         setStreamDiagnostic({
-          title: "The stream hit a snag",
-          detail: "The connection ran into a network or server error.",
+          title: "流传输遇到阻碍",
+          detail: "连接遇到了网络或服务器错误。",
         });
       });
 
@@ -324,16 +324,16 @@ function TaskActions() {
     if (task?.status === Status.Created) {
       return (
         <div className="flex h-full w-full flex-col items-center justify-center gap-4 bg-slate-elevation1 text-lg">
-          <span>Task has been created.</span>
-          <span>Stream will start when the task is running.</span>
+          <span>任务已创建。</span>
+          <span>当任务开始运行时，流媒体传输将启动。</span>
         </div>
       );
     }
     if (task?.status === Status.Queued) {
       return (
         <div className="flex h-full w-full flex-col items-center justify-center gap-4 bg-slate-elevation1 text-lg">
-          <span>Your task is queued. Typical queue time is 1-2 minutes.</span>
-          <span>Stream will start when the task is running.</span>
+          <span>您的任务正在排队中。通常排队时间为 1-2 分钟。</span>
+          <span>当任务开始运行时，流媒体传输将启动。</span>
         </div>
       );
     }

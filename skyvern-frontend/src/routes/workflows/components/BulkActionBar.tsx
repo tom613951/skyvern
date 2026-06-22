@@ -94,7 +94,7 @@ function BulkActionBar({
           const yaml = convertToYAML(
             convert({
               ...workflow,
-              title: `Copy of ${workflow.title}`,
+              title: `${workflow.title} 的副本`,
             }),
           );
           return client.post("/workflows", yaml, {
@@ -108,10 +108,10 @@ function BulkActionBar({
         succeeded,
         total: count,
         results,
-        successTitle: (n) => `Cloned ${n} agent${n !== 1 ? "s" : ""}.`,
-        failureTitle: (n) => `Failed to clone ${n} agent${n !== 1 ? "s" : ""}.`,
+        successTitle: (n) => `已成功克隆 ${n} 个智能体。`,
+        failureTitle: (n) => `克隆 ${n} 个智能体失败。`,
         partialTitle: (successCount, failedCount) =>
-          `Cloned ${successCount} agent${successCount !== 1 ? "s" : ""}. ${failedCount} failed.`,
+          `已克隆 ${successCount} 个智能体，${failedCount} 个失败。`,
       });
       if (succeeded === count) {
         onClearSelection();
@@ -152,16 +152,16 @@ function BulkActionBar({
         results,
         successTitle: (n) =>
           isTemplate
-            ? `Saved ${n} agent${n !== 1 ? "s" : ""} as templates.`
-            : `Removed ${n} agent${n !== 1 ? "s" : ""} from templates.`,
+            ? `已将 ${n} 个智能体保存为模板。`
+            : `已将 ${n} 个智能体从模板中移除。`,
         failureTitle: (n) =>
           isTemplate
-            ? `Failed to save ${n} agent${n !== 1 ? "s" : ""} as templates.`
-            : `Failed to remove ${n} agent${n !== 1 ? "s" : ""} from templates.`,
+            ? `将 ${n} 个智能体保存为模板失败。`
+            : `从模板中移除 ${n} 个智能体失败。`,
         partialTitle: (successCount, failedCount) =>
           isTemplate
-            ? `Saved ${successCount} agent${successCount !== 1 ? "s" : ""} as templates. ${failedCount} failed.`
-            : `Removed ${successCount} agent${successCount !== 1 ? "s" : ""} from templates. ${failedCount} failed.`,
+            ? `已将 ${successCount} 个智能体保存为模板，${failedCount} 个失败。`
+            : `已将 ${successCount} 个智能体从模板中移除，${failedCount} 个失败。`,
       });
       if (succeeded === workflows.length) {
         onClearSelection();
@@ -196,10 +196,10 @@ function BulkActionBar({
         total: count,
         results,
         successTitle: (n) =>
-          `Tagged ${n} agent${n !== 1 ? "s" : ""} with ${tagLabel}.`,
-        failureTitle: (n) => `Failed to tag ${n} agent${n !== 1 ? "s" : ""}.`,
+          `已成功为 ${n} 个智能体添加标签 ${tagLabel}。`,
+        failureTitle: (n) => `为 ${n} 个智能体添加标签失败。`,
         partialTitle: (successCount, failedCount) =>
-          `Tagged ${successCount} agent${successCount !== 1 ? "s" : ""}. ${failedCount} failed.`,
+          `已为 ${successCount} 个智能体添加标签，${failedCount} 个失败。`,
       });
       // Tagging is additive; the selection stays for more tags or follow-up actions.
       if (succeeded > 0) {
@@ -252,7 +252,7 @@ function BulkActionBar({
         trigger={
           <Button size="sm" variant="ghost" disabled={isOperating}>
             <FolderIcon className="mr-1.5 h-4 w-4" />
-            Move to folder
+            移动到文件夹
           </Button>
         }
       />
@@ -270,7 +270,7 @@ function BulkActionBar({
         <DropdownMenuTrigger asChild>
           <Button size="sm" variant="ghost" disabled={isOperating}>
             <DotsHorizontalIcon className="mr-1.5 h-4 w-4" />
-            More
+            更多
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" side="top">
@@ -279,12 +279,12 @@ function BulkActionBar({
             onSelect={() => void handleBulkClone()}
           >
             <CopyIcon className="mr-2 h-4 w-4" />
-            Clone
+            克隆
           </DropdownMenuItem>
           <DropdownMenuSub>
             <DropdownMenuSubTrigger>
               <BookmarkIcon className="mr-2 h-4 w-4" />
-              Template
+              模板
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
@@ -295,7 +295,7 @@ function BulkActionBar({
                   }
                 >
                   <BookmarkIcon className="mr-2 h-4 w-4" />
-                  Save as Templates ({nonTemplates.length})
+                  保存为模板 ({nonTemplates.length})
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   disabled={templates.length === 0}
@@ -304,7 +304,7 @@ function BulkActionBar({
                   }
                 >
                   <BookmarkFilledIcon className="mr-2 h-4 w-4" />
-                  Remove from Templates ({templates.length})
+                  从模板中移除 ({templates.length})
                 </DropdownMenuItem>
               </DropdownMenuSubContent>
             </DropdownMenuPortal>
@@ -312,7 +312,7 @@ function BulkActionBar({
           <DropdownMenuSub>
             <DropdownMenuSubTrigger>
               <DownloadIcon className="mr-2 h-4 w-4" />
-              Export as...
+              导出为...
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
@@ -336,7 +336,7 @@ function BulkActionBar({
         disabled={isOperating}
       >
         <GarbageIcon className="mr-1.5 h-4 w-4" />
-        Delete
+        删除
       </Button>
     </SelectionBar>
   );

@@ -13,17 +13,17 @@ type StreamDiagnostic = {
 };
 
 const WHIMSICAL_LOADING_MESSAGES = [
-  "Hm, still working on it...",
-  "Hang tight, we're almost there...",
-  "Reticulating splines...",
-  "Backpropagating...",
-  "Attention is all I need...",
-  "Warming up the pixels...",
-  "Consulting the manual...",
-  "Teaching the browser some manners...",
-  "Looking for the bat phone...",
-  "Negotiating with the tubes...",
-  "Where's Shu?...",
+  "嗯，仍在努力处理中...",
+  "请稍候，马上就准备好了...",
+  "正在绘制页面结构...",
+  "反向传播计算中...",
+  "Attention 机制运行中...",
+  "像素渲染预热中...",
+  "查阅参考手册中...",
+  "正在规范浏览器行为...",
+  "呼叫求助电话中...",
+  "正在与网络管道通信...",
+  "Shu 在哪里？...",
 ];
 
 const WHIMSICAL_SPARKLE = "‧₊˚ ⋅ ✦ ✨ ✦ ⋅ ˚₊‧";
@@ -37,26 +37,26 @@ const STREAM_MODE_COPY: Record<
   { label: string; title: string; className: string }
 > = {
   cdp: {
-    label: "Local stream",
-    title: "Local browser streaming through the backend",
+    label: "本地流",
+    title: "本地浏览器通过后端进行画面流式传输",
     className:
       "border-cyan-600/30 bg-cyan-600/10 text-cyan-700 dark:border-cyan-500/40 dark:bg-cyan-500/10 dark:text-cyan-200",
   },
   vnc: {
     label: "VNC",
-    title: "VNC browser streaming",
+    title: "VNC 浏览器画面流式传输",
     className:
       "border-emerald-600/30 bg-emerald-600/10 text-emerald-700 dark:border-emerald-500/40 dark:bg-emerald-500/10 dark:text-emerald-200",
   },
   fallback: {
-    label: "VNC -> Local",
-    title: "VNC disconnected; using local browser streaming fallback",
+    label: "VNC -> 本地",
+    title: "VNC 已断开；降级使用本地浏览器画面流式传输",
     className:
       "border-amber-600/30 bg-amber-600/10 text-amber-700 dark:border-amber-500/40 dark:bg-amber-500/10 dark:text-amber-200",
   },
   unavailable: {
-    label: "Unavailable",
-    title: "Browser streaming is unavailable for this session",
+    label: "不可用",
+    title: "此会话无法使用浏览器画面流式传输",
     className:
       "border-neutral-400/40 bg-neutral-500/10 text-neutral-600 dark:border-slate-500/40 dark:bg-slate-500/10 dark:text-slate-300",
   },

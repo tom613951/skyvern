@@ -55,7 +55,7 @@ function BrowserSessionWorkflowRuns() {
   if (isLoading) {
     return (
       <div className="flex h-full w-full items-center justify-center">
-        <div className="text-lg">Loading runs...</div>
+        <div className="text-lg">正在加载运行记录...</div>
       </div>
     );
   }
@@ -64,7 +64,7 @@ function BrowserSessionWorkflowRuns() {
     return (
       <div className="flex h-full w-full items-center justify-center">
         <div className="text-lg text-red-500">
-          Error loading runs: {error?.message ?? "Unknown error"}
+          加载运行记录出错: {error?.message ?? "未知错误"}
         </div>
       </div>
     );
@@ -76,9 +76,9 @@ function BrowserSessionWorkflowRuns() {
     return (
       <div className="flex h-full w-full items-center justify-center">
         <div className="text-center">
-          <div className="mb-2 text-lg text-gray-500">No runs available</div>
+          <div className="mb-2 text-lg text-gray-500">暂无运行记录</div>
           <div className="text-sm text-gray-400">
-            No agent runs on this browser session
+            在此浏览器会话上没有智能体运行记录
           </div>
         </div>
       </div>
@@ -91,10 +91,10 @@ function BrowserSessionWorkflowRuns() {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-1/4">Agent</TableHead>
-              <TableHead className="w-1/4">Run ID</TableHead>
-              <TableHead className="w-1/4">Status</TableHead>
-              <TableHead className="w-1/4">Created At</TableHead>
+              <TableHead className="w-1/4">智能体</TableHead>
+              <TableHead className="w-1/4">运行 ID</TableHead>
+              <TableHead className="w-1/4">状态</TableHead>
+              <TableHead className="w-1/4">创建时间</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -127,7 +127,7 @@ function BrowserSessionWorkflowRuns() {
                   className="cursor-pointer"
                 >
                   <TableCell>
-                    {workflowRun.workflow_title ?? "Untitled agent"}
+                    {workflowRun.workflow_title ?? "未命名智能体"}
                   </TableCell>
                   <TableCell className="font-mono text-xs">
                     {workflowRun.workflow_run_id}

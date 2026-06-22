@@ -24,7 +24,7 @@ import {
 
 function createEmptyTaskTemplate() {
   return {
-    title: "New Template",
+    title: "新模板",
     description: "",
     is_saved_task: true,
     webhook_callback_url: null,
@@ -42,7 +42,7 @@ function createEmptyTaskTemplate() {
       blocks: [
         {
           block_type: "task",
-          label: "New Template",
+          label: "新模板",
           url: "https://example.com",
           navigation_goal: "",
           data_extraction_goal: null,
@@ -90,15 +90,15 @@ function SavedTasks() {
     onError: (error) => {
       toast({
         variant: "destructive",
-        title: "There was an error while saving changes",
+        title: "保存更改时出错",
         description: error.message,
       });
     },
     onSuccess: (response) => {
       toast({
         variant: "success",
-        title: "New template created",
-        description: "Your template was created successfully",
+        title: "已创建新模板",
+        description: "您的模板已成功创建",
       });
       queryClient.invalidateQueries({
         queryKey: ["savedTasks"],
@@ -121,7 +121,7 @@ function SavedTasks() {
             "bg-slate-900": hovering,
           })}
         >
-          <CardTitle className="font-normal">New Task</CardTitle>
+          <CardTitle className="font-normal">新任务</CardTitle>
           <CardDescription>{"https://.."}</CardDescription>
         </CardHeader>
         <CardContent

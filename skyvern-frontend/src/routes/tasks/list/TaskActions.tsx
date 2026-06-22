@@ -117,15 +117,15 @@ function TaskActions({ task }: Props) {
     onError: (error) => {
       toast({
         variant: "destructive",
-        title: "There was an error while saving changes",
+        title: "保存更改时出错",
         description: error.message,
       });
     },
     onSuccess: () => {
       toast({
         variant: "success",
-        title: "Template saved",
-        description: "Template saved successfully",
+        title: "模板已保存",
+        description: "模板保存成功",
       });
       queryClient.invalidateQueries({
         queryKey: ["workflows"],
@@ -148,7 +148,7 @@ function TaskActions({ task }: Props) {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56">
-            <DropdownMenuLabel>Task Actions</DropdownMenuLabel>
+            <DropdownMenuLabel>任务操作</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DialogTrigger asChild>
               <DropdownMenuItem
@@ -156,7 +156,7 @@ function TaskActions({ task }: Props) {
                   setOpen(true);
                 }}
               >
-                Save as Template
+                另存为模板
               </DropdownMenuItem>
             </DialogTrigger>
             <DropdownMenuItem
@@ -164,15 +164,15 @@ function TaskActions({ task }: Props) {
                 navigate(`/tasks/create/retry/${task.task_id}`);
               }}
             >
-              Rerun Task
+              重新运行任务
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Save Task as Template</DialogTitle>
+            <DialogTitle>将任务另存为模板</DialogTitle>
             <DialogDescription>
-              Save this task definition as a template that can be used later.
+              将此任务定义保存为模板以供日后使用。
             </DialogDescription>
           </DialogHeader>
           <Separator />
@@ -187,9 +187,9 @@ function TaskActions({ task }: Props) {
                 name="title"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Title *</FormLabel>
+                    <FormLabel>标题 *</FormLabel>
                     <FormControl>
-                      <Input {...field} placeholder="Task title" />
+                      <Input {...field} placeholder="任务标题" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -200,12 +200,12 @@ function TaskActions({ task }: Props) {
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Description</FormLabel>
+                    <FormLabel>描述</FormLabel>
                     <FormControl>
                       <Textarea
                         {...field}
                         rows={5}
-                        placeholder="Task description"
+                        placeholder="任务描述"
                       />
                     </FormControl>
                     <FormMessage />
@@ -219,7 +219,7 @@ function TaskActions({ task }: Props) {
               {mutation.isPending && (
                 <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
               )}
-              Save
+              保存
             </Button>
           </DialogFooter>
         </DialogContent>

@@ -16,9 +16,9 @@ function RecipeComingSoonPage({ title, description }: Props) {
       </h2>
       <div className="mt-24 flex w-full justify-center">
         <div className="flex w-[409px] flex-col items-center gap-4">
-          <h1 className="text-3xl font-bold">Apply for Private Beta</h1>
+          <h1 className="text-3xl font-bold">申请内测</h1>
           <h2 className="text-center text-neutral-600 dark:text-slate-400">
-            This Agent is currently in private beta, book a demo to learn more.
+            该智能体目前处于内测阶段，请预约演示以了解更多信息。
           </h2>
           <Button size="lg" asChild>
             <Link
@@ -26,7 +26,7 @@ function RecipeComingSoonPage({ title, description }: Props) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Book a Demo
+              预约演示
             </Link>
           </Button>
         </div>

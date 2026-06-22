@@ -115,7 +115,7 @@ function WorkflowEditor() {
           className="z-10 border-b border-amber-700/40 bg-amber-950/50 px-4 py-2 text-sm text-amber-200"
         >
           <strong className="font-semibold">
-            Workflow validation warning:
+            工作流验证警告:
           </strong>{" "}
           {elements.validationError.message}
         </div>

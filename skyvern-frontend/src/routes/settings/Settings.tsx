@@ -33,29 +33,29 @@ function Settings() {
     <div className="flex flex-col gap-8">
       <Card>
         <CardHeader className="border-b-2">
-          <CardTitle className="text-lg">Settings</CardTitle>
+          <CardTitle className="text-lg">系统设置</CardTitle>
           <CardDescription>
-            You can select environment and organization here
+            您可以在此处选择运行环境与关联组织
           </CardDescription>
         </CardHeader>
         <CardContent className="p-8">
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-4">
-              <Label className="w-36 whitespace-nowrap">Environment</Label>
+              <Label className="w-36 whitespace-nowrap">运行环境</Label>
               <Select value={environment} onValueChange={setEnvironment}>
                 <SelectTrigger>
-                  <SelectValue placeholder="Environment" />
+                  <SelectValue placeholder="运行环境" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="local">local</SelectItem>
+                  <SelectItem value="local">本地 (local)</SelectItem>
                 </SelectContent>
               </Select>
             </div>
             <div className="flex items-center gap-4">
-              <Label className="w-36 whitespace-nowrap">Organization</Label>
+              <Label className="w-36 whitespace-nowrap">关联组织</Label>
               <Select value={organization} onValueChange={setOrganization}>
                 <SelectTrigger>
-                  <SelectValue placeholder="Organization" />
+                  <SelectValue placeholder="关联组织" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="skyvern">Skyvern</SelectItem>
@@ -67,25 +67,25 @@ function Settings() {
       </Card>
       <Card>
         <CardHeader className="border-b-2">
-          <CardTitle className="text-lg">API Key</CardTitle>
-          <CardDescription>Currently active API key</CardDescription>
+          <CardTitle className="text-lg">API 密钥 (API Key)</CardTitle>
+          <CardDescription>当前正在生效的 API 密钥</CardDescription>
         </CardHeader>
         <CardContent className="p-8">
-          <HiddenCopyableInput value={apiKey ?? "API key not found"} />
+          <HiddenCopyableInput value={apiKey ?? "未找到 API 密钥"} />
         </CardContent>
       </Card>
       <Card>
         <CardHeader className="border-b-2">
-          <CardTitle className="text-lg">1Password Integration</CardTitle>
+          <CardTitle className="text-lg">1Password 集成</CardTitle>
           <CardDescription>
-            Manage your 1Password service account token.{" "}
+            配置与管理您的 1Password 服务账号 Token。{" "}
             <a
               href="https://developer.1password.com/docs/service-accounts/get-started/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 underline"
             >
-              Learn how to create a service account and get your token.
+              了解如何创建服务账号并获取 Token。
             </a>
           </CardDescription>
         </CardHeader>
@@ -95,10 +95,9 @@ function Settings() {
       </Card>
       <Card>
         <CardHeader className="border-b-2">
-          <CardTitle className="text-lg">Bitwarden Integration</CardTitle>
+          <CardTitle className="text-lg">Bitwarden 集成</CardTitle>
           <CardDescription>
-            Configure your Bitwarden account credentials to use your own vault
-            for credential management.
+            配置您的 Bitwarden 账号凭证，以便使用您自己的密码库进行凭证管理。
           </CardDescription>
         </CardHeader>
         <CardContent className="p-8">
@@ -107,8 +106,8 @@ function Settings() {
       </Card>
       <Card>
         <CardHeader className="border-b-2">
-          <CardTitle className="text-lg">Azure Integration</CardTitle>
-          <CardDescription>Manage your Azure integration</CardDescription>
+          <CardTitle className="text-lg">Azure 集成</CardTitle>
+          <CardDescription>配置并管理您的 Azure 服务集成</CardDescription>
         </CardHeader>
         <CardContent className="p-8">
           <AzureClientSecretCredentialTokenForm />
@@ -116,9 +115,9 @@ function Settings() {
       </Card>
       <Card>
         <CardHeader className="border-b-2">
-          <CardTitle className="text-lg">Custom Credential Service</CardTitle>
+          <CardTitle className="text-lg">自定义凭证服务</CardTitle>
           <CardDescription>
-            Configure your custom HTTP API for credential management.
+            配置自定义的 HTTP API，用于进行外部凭证数据对接。
           </CardDescription>
         </CardHeader>
         <CardContent className="p-8">
@@ -128,11 +127,11 @@ function Settings() {
       {(getAppVersion() !== "development" || versionData?.version) && (
         <p className="text-center text-xs text-muted-foreground/50">
           {getAppVersion() !== "development" && (
-            <>UI: {formatVersion(getAppVersion())}</>
+            <>UI 版本: {formatVersion(getAppVersion())}</>
           )}
           {getAppVersion() !== "development" && versionData?.version && " | "}
           {versionData?.version && (
-            <>API: {formatVersion(versionData.version)}</>
+            <>API 版本: {formatVersion(versionData.version)}</>
           )}
         </p>
       )}

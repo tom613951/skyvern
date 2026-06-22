@@ -224,14 +224,14 @@ function WorkflowRun() {
       });
       toast({
         variant: "success",
-        title: "Agent Canceled",
-        description: "The agent has been successfully canceled.",
+        title: "智能体已取消",
+        description: "智能体已成功取消。",
       });
     },
     onError: (error) => {
       toast({
         variant: "destructive",
-        title: "Error",
+        title: "错误",
         description: error.message,
       });
     },
@@ -297,8 +297,8 @@ function WorkflowRun() {
 
   const failureReasonTitle =
     workflowRun?.status === Status.Terminated
-      ? "Termination Reason"
-      : "Failure Reason";
+      ? "终止原因"
+      : "失败原因";
 
   const finallyBlockInTimeline = finallyBlockLabel
     ? workflowRunTimeline?.find(
@@ -498,23 +498,23 @@ function WorkflowRun() {
 
   const switchBarOptions: SwitchBarNavigationOption[] = [
     {
-      label: "Overview",
+      label: "总览",
       to: "overview",
     },
     {
-      label: "Output",
+      label: "输出",
       to: "output",
     },
     {
-      label: "Inputs",
+      label: "输入参数",
       to: "parameters",
     },
     {
-      label: "Recording",
+      label: "视频录制",
       to: "recording",
     },
     {
-      label: "Code",
+      label: "代码",
       to: "code",
       icon: !isGeneratingCode ? (
         <CodeIcon className="inline-block size-5" />
@@ -554,18 +554,17 @@ function WorkflowRun() {
                 <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-neutral-600 dark:text-slate-400">
                   {workflowRun.started_at && (
                     <span title={basicTimeFormat(workflowRun.started_at)}>
-                      Started: {basicLocalTimeFormat(workflowRun.started_at)}
+                      开始时间: {basicLocalTimeFormat(workflowRun.started_at)}
                     </span>
                   )}
                   {workflowRun.finished_at && (
                     <span title={basicTimeFormat(workflowRun.finished_at)}>
-                      Finished: {basicLocalTimeFormat(workflowRun.finished_at)}
+                      完成时间: {basicLocalTimeFormat(workflowRun.finished_at)}
                     </span>
                   )}
                   {isWorkflowDeleted && (
                     <span title={basicTimeFormat(workflow!.deleted_at!)}>
-                      Agent deleted on{" "}
-                      {basicLocalTimeFormat(workflow!.deleted_at!)}
+                      智能体已于 {basicLocalTimeFormat(workflow!.deleted_at!)} 被删除
                     </span>
                   )}
                 </div>
@@ -575,7 +574,7 @@ function WorkflowRun() {
                 className="font-mono text-sm text-neutral-600 hover:text-neutral-950 hover:underline hover:underline-offset-2 dark:text-slate-400 dark:hover:text-slate-200"
                 to={`/browser-session/${workflowRun.browser_session_id}/stream`}
               >
-                Browser Session: {workflowRun.browser_session_id}
+                浏览器会话: {workflowRun.browser_session_id}
               </Link>
             )}
             {workflowRun?.browser_profile_id && (
@@ -583,7 +582,7 @@ function WorkflowRun() {
                 className="font-mono text-sm text-neutral-600 hover:text-neutral-950 hover:underline hover:underline-offset-2 dark:text-slate-400 dark:hover:text-slate-200"
                 to={`/browser-profiles/${workflowRun.browser_profile_id}`}
               >
-                Browser Profile: {workflowRun.browser_profile_id}
+                浏览器配置文件: {workflowRun.browser_profile_id}
               </Link>
             )}
           </div>
@@ -638,7 +637,7 @@ function WorkflowRun() {
                     data-testid="workflow-open-editor-link"
                   >
                     <Pencil2Icon className="mr-2 h-4 w-4" />
-                    Edit
+                    编辑
                   </Link>
                 </Button>
               </>
@@ -646,18 +645,18 @@ function WorkflowRun() {
             {workflowRunIsCancellable && (
               <Dialog>
                 <DialogTrigger asChild>
-                  <Button variant="destructive">Cancel</Button>
+                  <Button variant="destructive">取消</Button>
                 </DialogTrigger>
                 <DialogContent>
                   <DialogHeader>
-                    <DialogTitle>Are you sure?</DialogTitle>
+                    <DialogTitle>您确定吗？</DialogTitle>
                     <DialogDescription>
-                      Are you sure you want to cancel this agent run?
+                      您确定要取消此次智能体运行吗？
                     </DialogDescription>
                   </DialogHeader>
                   <DialogFooter>
                     <DialogClose asChild>
-                      <Button variant="secondary">Back</Button>
+                      <Button variant="secondary">返回</Button>
                     </DialogClose>
                     <Button
                       variant="destructive"
@@ -669,7 +668,7 @@ function WorkflowRun() {
                       {cancelWorkflowMutation.isPending && (
                         <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
                       )}
-                      Cancel Agent Run
+                      取消智能体运行
                     </Button>
                   </DialogFooter>
                 </DialogContent>
@@ -689,7 +688,7 @@ function WorkflowRun() {
                   }}
                 >
                   <PlayIcon className="mr-2 h-4 w-4" />
-                  Rerun
+                  重新运行
                 </Link>
               </Button>
             )}
@@ -707,7 +706,7 @@ function WorkflowRun() {
           {(hasSomeExtractedInformation || hasTaskv2Output) && (
             <div className="space-y-4">
               <Label>
-                {hasTaskv2Output ? "Output" : "Extracted Information"}
+                {hasTaskv2Output ? "输出" : "提取出的信息"}
               </Label>
               <CodeEditor
                 language="json"
@@ -723,7 +722,7 @@ function WorkflowRun() {
           )}
           {hasFileUrls && (
             <div className="space-y-4">
-              <Label>Downloaded Files</Label>
+              <Label>下载的文件</Label>
               <ScrollArea>
                 <ScrollAreaViewport className="max-h-[250px] space-y-2">
                   {fileUrls.length > 0 ? (
@@ -745,7 +744,7 @@ function WorkflowRun() {
                       );
                     })
                   ) : (
-                    <div className="text-sm">No files downloaded</div>
+                    <div className="text-sm">未下载任何文件</div>
                   )}
                 </ScrollAreaViewport>
               </ScrollArea>

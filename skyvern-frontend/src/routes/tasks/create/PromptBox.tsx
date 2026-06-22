@@ -48,60 +48,60 @@ import { useSpeechToTextField } from "@/hooks/useSpeechToTextField";
 const exampleCases = [
   {
     key: "finditparts",
-    label: "Add a product to cart",
+    label: "添加商品至购物车",
     prompt:
-      'Go to https://www.finditparts.com first. Search for the product "W01-377-8537", add it to cart and then navigate to the cart page. Your goal is COMPLETE when you\'re on the cart page and the specified product is in the cart. Extract all product quantity information from the cart page. Do not attempt to checkout.',
+      '首先访问 https://www.finditparts.com。搜索商品 "W01-377-8537"，将其加入购物车，然后导航到购物车页面。当你在购物车页面并且指定商品已成功加入时，任务即为完成。提取购物车页面中的所有商品数量信息。不需要尝试结账。',
     icon: <CartIcon className="size-6" />,
   },
   {
     key: "job_application",
-    label: "Apply for a job",
-    prompt: `Go to https://jobs.lever.co/leverdemo-8/45d39614-464a-4b62-a5cd-8683ce4fb80a/apply, fill out the job application form and apply to the job. Fill out any public burden questions if they appear in the form. Your goal is complete when the page says you've successfully applied to the job. Terminate if you are unable to apply successfully. Here's the user information: {"name":"John Doe","email":"${generateUniqueEmail()}","phone":"${generatePhoneNumber()}","resume_url":"https://writing.colostate.edu/guides/documents/resume/functionalSample.pdf","cover_letter":"Generate a compelling cover letter for me"}`,
+    label: "自动职位申请",
+    prompt: `访问 https://jobs.lever.co/leverdemo-8/45d39614-464a-4b62-a5cd-8683ce4fb80a/apply，填写工作申请表单并提交申请。如果表单中出现任何关于负担调查等公共问题，请一并填写。当页面提示你已成功申请该职位时，任务即为完成。如果无法成功申请，则终止任务。以下是用户信息：{"name":"张三","email":"${generateUniqueEmail()}","phone":"${generatePhoneNumber()}","resume_url":"https://writing.colostate.edu/guides/documents/resume/functionalSample.pdf","cover_letter":"为我生成一份引人注目的求职信"}`,
     icon: <InboxIcon className="size-6" />,
   },
   {
     key: "geico",
-    label: "Get an insurance quote",
-    prompt: `Go to https://www.geico.com first. Navigate through the website until you generate an auto insurance quote. Do not generate a home insurance quote. If you're on a page showing an auto insurance quote (with premium amounts), your goal is COMPLETE. Extract all quote information in JSON format including the premium amount, the timeframe for the quote. Here's the user information: {"licensed_at_age":19,"education_level":"HIGH_SCHOOL","phone_number":"8042221111","full_name":"Chris P. Bacon","past_claim":[],"has_claims":false,"spouse_occupation":"Florist","auto_current_carrier":"None","home_commercial_uses":null,"spouse_full_name":"Amy Stake","auto_commercial_uses":null,"requires_sr22":false,"previous_address_move_date":null,"line_of_work":null,"spouse_age":"1987-12-12","auto_insurance_deadline":null,"email":"chris.p.bacon@abc.com","net_worth_numeric":1000000,"spouse_gender":"F","marital_status":"married","spouse_licensed_at_age":20,"license_number":"AAAAAAA090AA","spouse_license_number":"AAAAAAA080AA","how_much_can_you_lose":25000,"vehicles":[{"annual_mileage":10000,"commute_mileage":4000,"existing_coverages":null,"ideal_coverages":{"bodily_injury_per_incident_limit":50000,"bodily_injury_per_person_limit":25000,"collision_deductible":1000,"comprehensive_deductible":1000,"personal_injury_protection":null,"property_damage_per_incident_limit":null,"property_damage_per_person_limit":25000,"rental_reimbursement_per_incident_limit":null,"rental_reimbursement_per_person_limit":null,"roadside_assistance_limit":null,"underinsured_motorist_bodily_injury_per_incident_limit":50000,"underinsured_motorist_bodily_injury_per_person_limit":25000,"underinsured_motorist_property_limit":null},"ownership":"Owned","parked":"Garage","purpose":"commute","vehicle":{"style":"AWD 3.0 quattro TDI 4dr Sedan","model":"A8 L","price_estimate":29084,"year":2015,"make":"Audi"},"vehicle_id":null,"vin":null}],"additional_drivers":[],"home":[{"home_ownership":"owned"}],"spouse_line_of_work":"Agriculture, Forestry and Fishing","occupation":"Customer Service Representative","id":null,"gender":"M","credit_check_authorized":false,"age":"1987-11-11","license_state":"Washington","cash_on_hand":"$10000–14999","address":{"city":"HOUSTON","country":"US","state":"TX","street":"9625 GARFIELD AVE.","zip":"77082"},"spouse_education_level":"MASTERS","spouse_email":"amy.stake@abc.com","spouse_added_to_auto_policy":true}`,
+    label: "获取汽车保险报价",
+    prompt: `首先访问 https://www.geico.com。在该网站上进行操作，直到你成功生成一份汽车保险报价。不要生成房屋保险报价。如果当前页面显示了汽车保险报价（包含保费金额），则任务即为完成。以 JSON 格式提取所有报价信息，包括保费金额和报价有效期。以下是用户信息：{"licensed_at_age":19,"education_level":"HIGH_SCHOOL","phone_number":"8042221111","full_name":"Chris P. Bacon","past_claim":[],"has_claims":false,"spouse_occupation":"Florist","auto_current_carrier":"None","home_commercial_uses":null,"spouse_full_name":"Amy Stake","auto_commercial_uses":null,"requires_sr22":false,"previous_address_move_date":null,"line_of_work":null,"spouse_age":"1987-12-12","auto_insurance_deadline":null,"email":"chris.p.bacon@abc.com","net_worth_numeric":1000000,"spouse_gender":"F","marital_status":"married","spouse_licensed_at_age":20,"license_number":"AAAAAAA090AA","spouse_license_number":"AAAAAAA080AA","how_much_can_you_lose":25000,"vehicles":[{"annual_mileage":10000,"commute_mileage":4000,"existing_coverages":null,"ideal_coverages":{"bodily_injury_per_incident_limit":50000,"bodily_injury_per_person_limit":25000,"collision_deductible":1000,"comprehensive_deductible":1000,"personal_injury_protection":null,"property_damage_per_incident_limit":null,"property_damage_per_person_limit":25000,"rental_reimbursement_per_incident_limit":null,"rental_reimbursement_per_person_limit":null,"roadside_assistance_limit":null,"underinsured_motorist_bodily_injury_per_incident_limit":50000,"underinsured_motorist_bodily_injury_per_person_limit":25000,"underinsured_motorist_property_limit":null},"ownership":"Owned","parked":"Garage","purpose":"commute","vehicle":{"style":"AWD 3.0 quattro TDI 4dr Sedan","model":"A8 L","price_estimate":29084,"year":2015,"make":"Audi"},"vehicle_id":null,"vin":null}],"additional_drivers":[],"home":[{"home_ownership":"owned"}],"spouse_line_of_work":"Agriculture, Forestry and Fishing","occupation":"Customer Service Representative","id":null,"gender":"M","credit_check_authorized":false,"age":"1987-11-11","license_state":"Washington","cash_on_hand":"$10000–14999","address":{"city":"HOUSTON","country":"US","state":"TX","street":"9625 GARFIELD AVE.","zip":"77082"},"spouse_education_level":"MASTERS","spouse_email":"amy.stake@abc.com","spouse_added_to_auto_policy":true}`,
     icon: <FileTextIcon className="size-6" />,
   },
   {
     key: "california_edd",
-    label: "Fill out CA's online EDD",
-    prompt: `Go to https://eddservices.edd.ca.gov/acctservices/AccountManagement/AccountServlet?Command=NEW_SIGN_UP. Navigate through the employer services online enrollment form. Terminate when the form is completed. Here's the needed information: {"username":"isthisreal1","password":"Password123!","first_name":"John","last_name":"Doe","pin":"1234","email":"${generateUniqueEmail()}","phone_number":"${generatePhoneNumber()}"}`,
+    label: "自动填写加州EDD表单",
+    prompt: `访问 eddservices.edd.ca.gov 雇主在线服务注册表单。填写完成并终止。需要的信息如下：{"username":"isthisreal1","password":"Password123!","first_name":"John","last_name":"Doe","pin":"1234","email":"${generateUniqueEmail()}","phone_number":"${generatePhoneNumber()}"}`,
     icon: <Pencil1Icon className="size-6" />,
   },
   {
     key: "contact_us_forms",
-    label: "Fill a contact us form",
-    prompt: `Go to https://canadahvac.com/contact-hvac-canada. Fill out the contact us form and submit it. Your goal is complete when the page says your message has been sent. Here's the user information: {"name":"John Doe","email":"john.doe@gmail.com","phone":"123-456-7890","message":"Hello, I have a question about your services."}`,
+    label: "自动提交联系表单",
+    prompt: `访问 https://canadahvac.com/contact-hvac-canada。填写联系表单并提交。当页面提示你的留言已发送成功时，任务即为完成。以下是用户信息：{"name":"张三","email":"john.doe@gmail.com","phone":"123-456-7890","message":"您好，我想咨询一下你们的服务。"}`,
     icon: <FileTextIcon className="size-6" />,
   },
   {
     key: "hackernews",
-    label: "What's the top post on hackernews",
-    prompt: "Navigate to the Hacker News homepage and get the top 3 posts.",
+    label: "获取HackerNews热门帖子",
+    prompt: "导航到 Hacker News 主页并获取前 3 条热门帖子。",
     icon: <MessageIcon className="size-6" />,
   },
   {
     key: "AAPLStockPrice",
-    label: "Search for AAPL on Google Finance",
+    label: "搜索苹果股票价格",
     prompt:
-      'Go to google finance and find the "AAPL" stock price. COMPLETE when the search results for "AAPL" are displayed and the stock price is extracted.',
+      '访问谷歌财经（Google Finance）并查找 "AAPL" 股票价格。当 "AAPL" 的搜索结果显示且成功提取出股票价格时，任务即为完成。',
     icon: <GraphIcon className="size-6" />,
   },
   {
     key: "topRankedFootballTeam",
-    label: "Get the top ranked football team",
+    label: "查询世界第一足球队",
     prompt:
-      "Navigate to the FIFA World Ranking page and identify the top ranked football team. Extract the name of the top ranked football team from the FIFA World Ranking page.",
+      "导航到 FIFA 世界排名页面并找到当前排名第一的足球队。从排名页面中提取该球队的名称。",
     icon: <TrophyIcon className="size-6" />,
   },
   {
     key: "extractIntegrationsFromGong",
-    label: "Extract Integrations from Gong.io",
+    label: "提取Gong.io官方集成列表",
     prompt:
-      "Go to https://www.gong.io first. Navigate to the 'Integrations' page on the Gong website. Extract the names and descriptions of all integrations listed on the Gong integrations page. Ensure not to click on any external links or advertisements.",
+      "首先访问 https://www.gong.io。然后导航到 Gong 网站的 'Integrations'（集成）页面。提取页面上列出的所有集成工具的名称和描述。确保不要点击任何外部广告链接。",
     icon: <GearIcon className="size-6" />,
   },
 ];
@@ -282,7 +282,7 @@ function PromptBox({ enableCopilotHandoff = false }: PromptBoxProps) {
     onError: (error: AxiosError) => {
       toast({
         variant: "destructive",
-        title: "Error creating agent",
+        title: "创建智能体时出错",
         description: error.message,
       });
     },
@@ -327,7 +327,7 @@ function PromptBox({ enableCopilotHandoff = false }: PromptBoxProps) {
       >
         <div className="mx-auto flex min-w-44 flex-col items-center gap-7 px-8">
           <span className="text-2xl">
-            What task would you like to accomplish?
+            你想完成什么任务？
           </span>
           <div className="flex w-full max-w-xl flex-col">
             <div
@@ -351,7 +351,7 @@ function PromptBox({ enableCopilotHandoff = false }: PromptBoxProps) {
                 className="min-h-0 resize-none border-0 bg-transparent px-4 py-0 leading-5 text-foreground shadow-none placeholder:text-muted-foreground hover:border-0 focus-visible:ring-0"
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
-                placeholder="Enter your prompt..."
+                placeholder="请输入任务指令..."
               />
               <ImprovePrompt
                 isVisible={Boolean(prompt.trim())}
@@ -400,13 +400,12 @@ function PromptBox({ enableCopilotHandoff = false }: PromptBoxProps) {
             {showAdvancedSettings ? (
               <div className="rounded-b-lg px-2">
                 <div className="space-y-4 rounded-b-xl border border-t-0 border-input bg-background p-4 text-foreground shadow-sm">
-                  <header>Advanced Settings</header>
+                  <header>高级设置</header>
                   <div className="flex gap-16">
                     <div className="w-48 shrink-0">
-                      <div className="text-sm">Webhook Callback URL</div>
+                      <div className="text-sm">Webhook 回调地址</div>
                       <div className="text-xs text-muted-foreground">
-                        The URL of a webhook endpoint to send the extracted
-                        information
+                        任务提取到结构化数据后，将其发送到的 Webhook 接口 URL 地址
                       </div>
                     </div>
                     <div className="flex flex-col gap-2">
@@ -414,7 +413,7 @@ function PromptBox({ enableCopilotHandoff = false }: PromptBoxProps) {
                         className="w-full"
                         value={webhookCallbackUrl ?? ""}
                         onChange={(event) => {
-                          setWebhookCallbackUrl(event.target.value);
+                           setWebhookCallbackUrl(event.target.value);
                         }}
                       />
                       <TestWebhookDialog
@@ -428,7 +427,7 @@ function PromptBox({ enableCopilotHandoff = false }: PromptBoxProps) {
                             className="self-start"
                             disabled={!webhookCallbackUrl}
                           >
-                            Test Webhook
+                            测试 Webhook
                           </Button>
                         }
                       />
@@ -436,9 +435,9 @@ function PromptBox({ enableCopilotHandoff = false }: PromptBoxProps) {
                   </div>
                   <div className="flex gap-16">
                     <div className="w-48 shrink-0">
-                      <div className="text-sm">Proxy Location</div>
+                      <div className="text-sm">代理地理位置</div>
                       <div className="text-xs text-muted-foreground">
-                        Route Skyvern through one of our available proxies.
+                        通过我们提供的代理路由 Skyvern 的网络流量。
                       </div>
                     </div>
                     <ProxySelector
@@ -448,9 +447,9 @@ function PromptBox({ enableCopilotHandoff = false }: PromptBoxProps) {
                   </div>
                   <div className="flex gap-16">
                     <div className="w-48 shrink-0">
-                      <div className="text-sm">Browser Session ID</div>
+                      <div className="text-sm">浏览器会话 ID</div>
                       <div className="text-xs text-muted-foreground">
-                        The ID of a persistent browser session
+                        持久化浏览器会话的唯一 ID
                       </div>
                     </div>
                     <Input
@@ -463,10 +462,9 @@ function PromptBox({ enableCopilotHandoff = false }: PromptBoxProps) {
                   </div>
                   <div className="flex gap-16">
                     <div className="w-48 shrink-0">
-                      <div className="text-sm">Browser Address</div>
+                      <div className="text-sm">浏览器服务地址</div>
                       <div className="text-xs text-muted-foreground">
-                        The address of the Browser server to use for the task
-                        run.
+                        本次任务运行所使用的 Chrome/Chromium 调试地址。
                       </div>
                     </div>
                     <Input
@@ -479,9 +477,9 @@ function PromptBox({ enableCopilotHandoff = false }: PromptBoxProps) {
                   </div>
                   <div className="flex gap-16">
                     <div className="w-48 shrink-0">
-                      <div className="text-sm">2FA Identifier</div>
+                      <div className="text-sm">双重认证 (2FA) 标识符</div>
                       <div className="text-xs text-muted-foreground">
-                        The identifier for a 2FA code for this task.
+                        用于获取双重认证动态验证码的标识符。
                       </div>
                     </div>
                     <Input
@@ -493,10 +491,9 @@ function PromptBox({ enableCopilotHandoff = false }: PromptBoxProps) {
                   </div>
                   <div className="flex gap-16">
                     <div className="w-48 shrink-0">
-                      <div className="text-sm">Extra HTTP Headers</div>
+                      <div className="text-sm">额外 HTTP 请求头</div>
                       <div className="text-xs text-muted-foreground">
-                        Specify some self defined HTTP requests headers in Dict
-                        format
+                        以字典（Dict）格式指定自定义的 HTTP 请求头参数
                       </div>
                     </div>
                     <div className="flex-1">
@@ -511,17 +508,16 @@ function PromptBox({ enableCopilotHandoff = false }: PromptBoxProps) {
                                 : JSON.stringify(val),
                           )
                         }
-                        addButtonText="Add Header"
+                        addButtonText="添加请求头"
                       />
                     </div>
                   </div>
 
                   <div className="flex gap-16">
                     <div className="w-48 shrink-0">
-                      <div className="text-sm">Generate Script</div>
+                      <div className="text-sm">生成自动化脚本</div>
                       <div className="text-xs text-muted-foreground">
-                        Whether to generate scripts for this task run (on
-                        success).
+                        是否在任务运行成功后，自动为其生成 Playwright 自动化脚本。
                       </div>
                     </div>
                     <Switch
@@ -533,10 +529,9 @@ function PromptBox({ enableCopilotHandoff = false }: PromptBoxProps) {
                   </div>
                   <div className="flex gap-16">
                     <div className="w-48 shrink-0">
-                      <div className="text-sm">Publish Agent</div>
+                      <div className="text-sm">发布为智能体</div>
                       <div className="text-xs text-muted-foreground">
-                        Whether to create an agent alongside this task run. Will
-                        also be created if "Generate Scripts" is true.
+                        是否在本次任务运行的同时创建一个智能体。如果“生成自动化脚本”为是，也会自动创建。
                       </div>
                     </div>
                     <Switch
@@ -548,14 +543,14 @@ function PromptBox({ enableCopilotHandoff = false }: PromptBoxProps) {
                   </div>
                   <div className="flex gap-16">
                     <div className="w-48 shrink-0">
-                      <div className="text-sm">Max Steps Override</div>
+                      <div className="text-sm">最大执行步数限制</div>
                       <div className="text-xs text-muted-foreground">
-                        The maximum number of steps to take for this task.
+                        本次任务允许运行的最大步骤数量。
                       </div>
                     </div>
                     <Input
                       value={maxStepsOverride ?? ""}
-                      placeholder={`Default: ${MAX_STEPS_DEFAULT}`}
+                      placeholder={`默认: ${MAX_STEPS_DEFAULT}`}
                       onChange={(event) => {
                         setMaxStepsOverride(event.target.value);
                       }}
@@ -563,9 +558,9 @@ function PromptBox({ enableCopilotHandoff = false }: PromptBoxProps) {
                   </div>
                   <div className="flex gap-16">
                     <div className="w-48 shrink-0">
-                      <div className="text-sm">Data Schema</div>
+                      <div className="text-sm">输出数据结构 (Schema)</div>
                       <div className="text-xs text-muted-foreground">
-                        Specify the output data schema in JSON format
+                        使用 JSON 格式指定需要从网页中提取的输出数据结构
                       </div>
                     </div>
                     <div className="flex-1">
@@ -581,14 +576,14 @@ function PromptBox({ enableCopilotHandoff = false }: PromptBoxProps) {
                   </div>
                   <div className="flex gap-16">
                     <div className="w-48 shrink-0">
-                      <div className="text-sm">Max Screenshot Scrolls</div>
+                      <div className="text-sm">最大滚动截屏次数</div>
                       <div className="text-xs text-muted-foreground">
-                        {`The maximum number of scrolls for the post action screenshot. Default is ${MAX_SCREENSHOT_SCROLLS_DEFAULT}. If it's set to 0, it will take the current viewport screenshot.`}
+                        {`执行动作后网页向下滚动的最大截屏次数。默认是 ${MAX_SCREENSHOT_SCROLLS_DEFAULT}。如果设为 0，将仅截取当前可视区域。`}
                       </div>
                     </div>
                     <Input
                       value={maxScreenshotScrolls ?? ""}
-                      placeholder={`Default: ${MAX_SCREENSHOT_SCROLLS_DEFAULT}`}
+                      placeholder={`默认: ${MAX_SCREENSHOT_SCROLLS_DEFAULT}`}
                       onChange={(event) => {
                         setMaxScreenshotScrolls(event.target.value);
                       }}

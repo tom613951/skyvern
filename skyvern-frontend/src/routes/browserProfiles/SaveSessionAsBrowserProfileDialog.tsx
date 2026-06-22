@@ -63,18 +63,18 @@ function SaveSessionAsBrowserProfileDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent onCloseAutoFocus={(e) => e.preventDefault()}>
         <DialogHeader>
-          <DialogTitle>Save as Browser Profile</DialogTitle>
+          <DialogTitle>保存为浏览器配置文件</DialogTitle>
           <DialogDescription>
             {isSessionRunning
-              ? "Capture this session's state as a reusable profile. Saving closes the session and runs in the background."
-              : "Capture this session's state as a reusable profile."}
+              ? "将此会话的状态捕获为可重用的配置文件。保存将关闭该会话并在后台运行。"
+              : "将此会话的状态捕获为可重用的配置文件。"}
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit}>
           <div className="grid gap-4 pb-4">
             <div className="rounded-md border border-slate-700 bg-slate-elevation2 px-3 py-2">
               <div className="text-xs text-neutral-600 dark:text-slate-400">
-                Source session
+                源会话
               </div>
               <div className="truncate font-mono text-xs text-slate-200">
                 {browserSessionId}
@@ -82,28 +82,28 @@ function SaveSessionAsBrowserProfileDialog({
             </div>
             <div className="grid gap-2">
               <Label htmlFor="save-browser-profile-name">
-                Name <span className="text-red-400">*</span>
+                名称 <span className="text-red-400">*</span>
               </Label>
               <Input
                 id="save-browser-profile-name"
                 value={name}
                 onChange={(event) => setName(event.target.value)}
-                placeholder="e.g. logged-in-acme-account"
+                placeholder="例如：已登录的社交账号"
                 autoFocus
               />
             </div>
             <div className="grid gap-2">
               <Label htmlFor="save-browser-profile-description">
-                Description{" "}
+                描述{" "}
                 <span className="text-neutral-600 dark:text-slate-400">
-                  (optional)
+                  （可选）
                 </span>
               </Label>
               <Textarea
                 id="save-browser-profile-description"
                 value={description}
                 onChange={(event) => setDescription(event.target.value)}
-                placeholder="What state does this profile capture?"
+                placeholder="此配置文件捕获了什么状态？"
                 rows={4}
               />
             </div>
@@ -114,10 +114,10 @@ function SaveSessionAsBrowserProfileDialog({
               variant="secondary"
               onClick={() => onOpenChange(false)}
             >
-              Cancel
+              取消
             </Button>
             <Button type="submit" disabled={!canSubmit}>
-              Save Profile
+              保存配置文件
             </Button>
           </DialogFooter>
         </form>

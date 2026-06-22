@@ -78,10 +78,10 @@ function TaskInfo({ id }: Props) {
   return (
     <div className="flex gap-4">
       {task && <StatusBadge status={task.status} />}
-      <Badge>Steps: {notRunningSteps?.length}</Badge>
-      <Badge>Actions: {actionCount}</Badge>
+      <Badge>步数: {notRunningSteps?.length}</Badge>
+      <Badge>操作数: {actionCount}</Badge>
       {showCost && (
-        <Badge>Cost: {formatter.format(costCalculator(steps ?? []))}</Badge>
+        <Badge>费用: {formatter.format(costCalculator(steps ?? []))}</Badge>
       )}
     </div>
   );

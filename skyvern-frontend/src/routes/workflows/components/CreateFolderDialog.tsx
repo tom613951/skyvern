@@ -49,30 +49,30 @@ function CreateFolderDialog({ open, onOpenChange }: CreateFolderDialogProps) {
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Create New Folder</DialogTitle>
+          <DialogTitle>创建新文件夹</DialogTitle>
           <DialogDescription>
-            Create a folder to organize your agents.
+            创建一个文件夹来整理您的智能体。
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit}>
           <div className="grid gap-4 py-4">
             <div className="grid gap-2">
-              <Label htmlFor="folder-title">Title</Label>
+              <Label htmlFor="folder-title">标题</Label>
               <Input
                 id="folder-title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder="e.g., Production Agents"
+                placeholder="例如：生产智能体"
                 autoFocus
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="folder-description">Description (optional)</Label>
+              <Label htmlFor="folder-description">描述（可选）</Label>
               <Textarea
                 id="folder-description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                placeholder="Add a description..."
+                placeholder="添加描述..."
                 rows={3}
               />
             </div>
@@ -83,13 +83,13 @@ function CreateFolderDialog({ open, onOpenChange }: CreateFolderDialogProps) {
               variant="outline"
               onClick={() => handleOpenChange(false)}
             >
-              Cancel
+              取消
             </Button>
             <Button
               type="submit"
               disabled={!title.trim() || createFolderMutation.isPending}
             >
-              Create Folder
+              创建文件夹
             </Button>
           </DialogFooter>
         </form>

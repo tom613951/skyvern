@@ -60,7 +60,7 @@ function GeneratingCodeButton() {
       onClick={toggleCodeView}
     >
       <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
-      Code
+      代码
     </Button>
   );
 }
@@ -87,7 +87,7 @@ function MakeACopyButton() {
       ) : (
         <CopyIcon className="mr-3 h-6 w-6" />
       )}
-      Make a Copy to Edit
+      复制以编辑
     </Button>
   );
 }
@@ -124,7 +124,7 @@ function BrowserModeButton() {
           </Button>
         </TooltipTrigger>
         <TooltipContent>
-          {debugStore.isDebugMode ? "Turn off Browser" : "Turn on Browser"}
+          {debugStore.isDebugMode ? "关闭浏览器" : "开启浏览器"}
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
@@ -157,7 +157,7 @@ function SaveButton() {
             )}
           </Button>
         </TooltipTrigger>
-        <TooltipContent>Save</TooltipContent>
+        <TooltipContent>保存</TooltipContent>
       </Tooltip>
     </TooltipProvider>
   );
@@ -249,7 +249,7 @@ function RunButton() {
   return (
     <Button disabled={isRecording} size="lg" onClick={handleClick}>
       <PlayIcon className="mr-2 h-6 w-6" />
-      Run
+      运行
     </Button>
   );
 }
@@ -261,13 +261,13 @@ function EditorActionToolbar() {
       <SaveButton />
       <PanelToggleButton
         content="schedules"
-        label="Schedule"
+        label="定时计划"
         leadingIcon={<CalendarIcon className="h-5 w-5" />}
         iconOnly
       />
       <EditorOverflowMenu />
       <div className="mx-1 h-6 w-px bg-slate-700" aria-hidden="true" />
-      <PanelToggleButton content="parameters" label="Inputs" />
+      <PanelToggleButton content="parameters" label="输入参数" />
       <RunButton />
     </div>
   );

@@ -11,14 +11,14 @@ function IntegrationsUnavailable() {
     <div className="mx-auto max-w-2xl p-6">
       <Card>
         <CardHeader>
-          <CardTitle>Integrations</CardTitle>
+          <CardTitle>第三方集成</CardTitle>
           <CardDescription>
-            Third-party integrations are available in Skyvern Cloud.
+            第三方集成服务目前在 Skyvern Cloud 中可用。
           </CardDescription>
         </CardHeader>
         <CardContent className="text-sm text-slate-400">
           <p>
-            Connect your Google account and other providers by signing up at{" "}
+            请前往{" "}
             <a
               href="https://app.skyvern.com"
               target="_blank"
@@ -26,8 +26,8 @@ function IntegrationsUnavailable() {
               className="text-slate-200 underline hover:text-slate-100"
             >
               app.skyvern.com
-            </a>
-            .
+            </a>{" "}
+            注册并连接您的 Google 账号及其他服务商。
           </p>
         </CardContent>
       </Card>

@@ -30,10 +30,6 @@ import { CredentialFolderCard } from "./CredentialFolderCard";
 import { CreateCredentialFolderDialog } from "./CreateCredentialFolderDialog";
 import { ViewAllCredentialFoldersDialog } from "./ViewAllCredentialFoldersDialog";
 import type { CredentialFolder } from "./types/credentialFolderTypes";
-
-const subHeaderText =
-  "Securely store your passwords, credit cards, secrets, and manage incoming 2FA codes for your agents.";
-
 const TAB_VALUES = [
   "passwords",
   "creditCards",
@@ -153,15 +149,15 @@ function CredentialsPage() {
 
   return (
     <div className="space-y-5">
-      <h1 className="text-2xl">Credentials</h1>
+      <h1 className="text-2xl">凭证管理</h1>
       <div className="flex items-center justify-between">
         <div className="w-96 text-sm text-neutral-600 dark:text-slate-300">
-          {subHeaderText}
+          安全地存储您的密码、信用卡、密钥，并为您的智能体管理传入的双重认证 (2FA) 动态码。
         </div>
         <DropdownMenu modal={false}>
           <DropdownMenuTrigger asChild>
             <Button>
-              <PlusIcon className="mr-2 size-6" /> Add
+              <PlusIcon className="mr-2 size-6" /> 添加
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-48">
@@ -173,7 +169,7 @@ function CredentialsPage() {
               className="cursor-pointer"
             >
               <KeyIcon className="mr-2 size-4" />
-              Password
+              账号密码
             </DropdownMenuItem>
             <DropdownMenuItem
               onSelect={() => {
@@ -183,7 +179,7 @@ function CredentialsPage() {
               className="cursor-pointer"
             >
               <CardStackIcon className="mr-2 size-4" />
-              Credit Card
+              信用卡
             </DropdownMenuItem>
             <DropdownMenuItem
               onSelect={() => {
@@ -193,7 +189,7 @@ function CredentialsPage() {
               className="cursor-pointer"
             >
               <LockClosedIcon className="mr-2 size-4" />
-              Secret
+              应用密钥
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -202,14 +198,14 @@ function CredentialsPage() {
       <div className={cn("space-y-4", activeTab === "twoFactor" && "hidden")}>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <h2 className="text-lg font-semibold">Folders</h2>
+            <h2 className="text-lg font-semibold">文件夹</h2>
             <Button
               variant="link"
               size="sm"
               className="h-auto p-0 text-blue-600 dark:text-blue-400"
               onClick={() => setIsCreateFolderOpen(true)}
             >
-              + New folder
+              + 新建文件夹
             </Button>
           </div>
           {allFolders.length > 5 && (
@@ -219,7 +215,7 @@ function CredentialsPage() {
               className="text-blue-600 dark:text-blue-400"
               onClick={() => setIsViewAllFoldersOpen(true)}
             >
-              View all
+              查看全部
             </Button>
           )}
         </div>
@@ -255,12 +251,10 @@ function CredentialsPage() {
             <div className="mx-auto max-w-md">
               <FolderIcon className="mx-auto mb-3 h-10 w-10 text-blue-400 opacity-50" />
               <h3 className="mb-2 text-slate-900 dark:text-slate-100">
-                Organize Your Credentials with Folders
+                使用文件夹整理您的凭证
               </h3>
               <p className="mb-4 text-sm text-slate-500 dark:text-slate-400">
-                Keep your credentials organized by creating folders. Group
-                related credentials together by project, team, or environment
-                for easier management.
+                创建文件夹以分类整理您的凭证。您可以按项目、团队或环境进行归类，以便更轻松地管理它们。
               </p>
               <Button
                 variant="link"
@@ -269,7 +263,7 @@ function CredentialsPage() {
                 onClick={() => setIsCreateFolderOpen(true)}
               >
                 <PlusIcon className="mr-2 h-4 w-4" />
-                Create Your First Folder
+                创建您的第一个文件夹
               </Button>
             </div>
           </div>
@@ -283,10 +277,10 @@ function CredentialsPage() {
       >
         <div className="flex flex-wrap items-center justify-between gap-4">
           <TabsList className="bg-slate-elevation1">
-            <TabsTrigger value="passwords">Passwords</TabsTrigger>
-            <TabsTrigger value="creditCards">Credit Cards</TabsTrigger>
-            <TabsTrigger value="secrets">Secrets</TabsTrigger>
-            <TabsTrigger value="twoFactor">2FA</TabsTrigger>
+            <TabsTrigger value="passwords">账号密码</TabsTrigger>
+            <TabsTrigger value="creditCards">信用卡</TabsTrigger>
+            <TabsTrigger value="secrets">应用密钥</TabsTrigger>
+            <TabsTrigger value="twoFactor">双重认证</TabsTrigger>
           </TabsList>
           <div className="flex items-center gap-3">
             {selectedFolderId && activeTab !== "twoFactor" && (
@@ -296,14 +290,14 @@ function CredentialsPage() {
                 className="h-auto p-0 text-blue-600 dark:text-blue-400"
                 onClick={() => setSelectedFolderId(null)}
               >
-                View all credentials
+                查看全部凭证
               </Button>
             )}
             {activeTab !== "twoFactor" && (
               <TableSearchInput
                 value={search}
                 onChange={setSearch}
-                placeholder="Search credentials…"
+                placeholder="搜索凭证…"
                 className="w-72"
                 maxLength={200}
               />
@@ -370,37 +364,34 @@ function CredentialsPage() {
       {activeTab !== "twoFactor" && (
         <div className="mt-8 border-t border-slate-700 pt-4">
           <div className="text-sm italic text-neutral-600 dark:text-slate-400">
-            <strong>Note:</strong> This feature requires a Bitwarden-compatible
-            server ({" "}
+            <strong>提示：</strong> 该功能需要兼容 Bitwarden 的服务器（
             <a
               href="https://bitwarden.com/help/self-host-an-organization/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-400 underline hover:text-blue-300"
             >
-              self-hosted Bitwarden
+              自行托管的 Bitwarden
             </a>{" "}
-            ) or{" "}
+            ）或{" "}
             <a
               href="https://github.com/dani-garcia/vaultwarden"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-400 underline hover:text-blue-300"
             >
-              this community version
+              社区开源版本 Vaultwarden
             </a>{" "}
-            or a paid Bitwarden account. Make sure the relevant
-            `SKYVERN_AUTH_BITWARDEN_*` environment variables are configured. See
-            details{" "}
+            或付费的 Bitwarden 账号。请确保在本地配置了相关的 `SKYVERN_AUTH_BITWARDEN_*` 环境变量。详情请参阅
             <a
               href="https://docs.skyvern.com/credentials/bitwarden"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-400 underline hover:text-blue-300"
             >
-              here
+              此处
             </a>
-            .
+            。
           </div>
         </div>
       )}

@@ -38,7 +38,7 @@ function TaskRecording() {
   }
 
   if (taskIsError) {
-    return <div>Error loading recording</div>;
+    return <div>加载视频录像出错</div>;
   }
 
   if (recordingData?.url) {
@@ -48,14 +48,13 @@ function TaskRecording() {
   if (recordingData?.archived) {
     return (
       <div className="text-muted-foreground">
-        This recording has been archived. To request restoration, please contact
-        support@skyvern.com
+        此视频录像已归档。如果需要申请恢复，请联系 support@skyvern.com
         {/* TODO: add a "Request Restore" button */}
       </div>
     );
   }
 
-  return <div>No recording available for this task</div>;
+  return <div>此任务暂无视频录像</div>;
 }
 
 export { TaskRecording };
